@@ -3,19 +3,15 @@ using UnityEngine.Serialization;
 
 public class BasePowerUp : MonoBehaviour
 {
-    private string powerUpMessage = "The Power Up is Used";
-    
-    public EPowerUpType PowerUpType;
-    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void Start()
     {
-        Debug.Log($"This power up is of type: {PowerUpType}");
+        Debug.Log($"This power up is of type: {EPowerUpType.Base}");
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -25,7 +21,7 @@ public class BasePowerUp : MonoBehaviour
 
     public virtual void ActivatePowerUp()
     {
-        Debug.Log(powerUpMessage);
+        Debug.Log($"This PowerUp {EPowerUpType.Base} is being used}}");
     }
 }
 
