@@ -8,18 +8,12 @@ namespace Systems.Power_Ups
         private EPowerUpType powerUpType = EPowerUpType.Trampoline;
 
         protected override EPowerUpType PowerUpType => powerUpType;
-        
+
         public override void Update()
         {
-            Debug.Log($"{PowerUpType} is updating...");
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ActivatePowerUp();
-            }
             
         }
-        
+
         protected override void ActivatePowerUp()
         {
             Debug.Log($"This PowerUp {PowerUpType} is being used");

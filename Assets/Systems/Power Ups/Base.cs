@@ -11,10 +11,9 @@ namespace Systems.Power_Ups
 
         public override void Update()
         {
-            Debug.Log($"{PowerUpType} is updating...");
             
         }
-        
+
         protected override void ActivatePowerUp()
         {
             Debug.Log($"This PowerUp {PowerUpType} is being used");
