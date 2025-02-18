@@ -3,20 +3,15 @@ using UnityEngine;
 
 namespace Systems.Power_Ups
 {
-    public class Trampoline : PowerUpBase
+    public class Zipline : PowerUpBase
     {
-        private EPowerUpType powerUpType = EPowerUpType.Trampoline;
+        private EPowerUpType powerUpType = EPowerUpType.Zipline;
 
         protected override EPowerUpType PowerUpType => powerUpType;
-        
+
         public override void Update()
         {
             Debug.Log($"{PowerUpType} is updating...");
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ActivatePowerUp();
-            }
             
         }
         
