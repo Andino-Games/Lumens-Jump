@@ -17,6 +17,7 @@ namespace Systems.Power_Ups
         protected override void ActivatePowerUp()
         {
             Debug.Log($"This PowerUp {PowerUpType} is being used");
+            Destroy(gameObject, 0.3f);
             // Implement trampoline behavior here (e.g., apply a bounce force).
         }
     }
