@@ -5,27 +5,46 @@ public class LevelGenerator : MonoBehaviour
 {
     public GameObject platform;
     public Transform playerTransform;
+    public BoxCollider2D mapBoundsCollider;
 
-    public float timeBetweenSpawns;
-    private Vector3 platformSpawnPosition;
+    public float distanceBetweenPlatforms = 3f;
+    public int initialPlatformCount = 5;
+
+    private List<GameObject> platforms = new List<GameObject>();
+    private float lastPlatformY;
+
+    private void Start()
+    {
+        InitializePlatforms();
+    }
 
     private void Update()
     {
-        transform.position = playerTransform.position; 
-
-        float posy = Random.Range(transform.position.y + 2, transform.position.y + 4);
-        float posx = Random.Range(transform.position.x -3, transform.position.x + 3);
-
-        platformSpawnPosition = new Vector3 (posx, posy, 0);
-
-        if (playerTransform.localPosition.y > 5)
+        if (playerTransform.position.y - lastPlatformY > distanceBetweenPlatforms)
         {
-            SpawnPlatforms();
-        }      
+            SpawnPlatform();
+        }
     }
 
-    private void SpawnPlatforms()
+    private void InitializePlatforms()
     {
-        Instantiate(platform, platformSpawnPosition, Quaternion.identity);
+        for (int i = 0; i < initialPlatformCount; i++)
+        {
+            SpawnPlatform();
+        }
+    }
+
+    private void SpawnPlatform()
+    {
+        Bounds bounds = mapBoundsCollider.bounds;
+        float posy = lastPlatformY + distanceBetweenPlatforms;
+        float posx = Random.Range(bounds.min.x, bounds.max.x);
+        
+
+        Vector3 platformSpawnPosition = new Vector3(posx, posy, 0);
+        GameObject newPlatform = Instantiate(platform, platformSpawnPosition, Quaternion.identity);
+        platforms.Add(newPlatform);
+
+        lastPlatformY = newPlatform.transform.position.y;
     }
 }
