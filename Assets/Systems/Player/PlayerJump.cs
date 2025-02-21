@@ -11,7 +11,7 @@ namespace Systems.Player
         public Transform groundCheckOrigin;
         public float groundCheckDistance = 0.6f;
         
-        private Rigidbody2D rb;
+        [HideInInspector] public Rigidbody2D rb;
         private bool isGrounded;
 
         private bool IsFalling => rb.linearVelocity.y < 0;
