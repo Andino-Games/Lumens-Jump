@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public GameObject platform;
+    public List<GameObject> platforms = new List<GameObject>();
     public Transform playerTransform;
     public BoxCollider2D mapBoundsCollider;
 
     public float distanceBetweenPlatforms = 3f;
     public int initialPlatformCount = 5;
 
-    private List<GameObject> platforms = new List<GameObject>();
+    [SerializeField] private List<GameObject> instancedPlatforms = new List<GameObject>();
     private float lastPlatformY;
 
     private void Start()
@@ -40,10 +41,9 @@ public class LevelGenerator : MonoBehaviour
         float posy = lastPlatformY + distanceBetweenPlatforms;
         float posx = Random.Range(bounds.min.x, bounds.max.x);
         
-
         Vector3 platformSpawnPosition = new Vector3(posx, posy, 0);
-        GameObject newPlatform = Instantiate(platform, platformSpawnPosition, Quaternion.identity);
-        platforms.Add(newPlatform);
+        GameObject newPlatform = Instantiate(platforms[Random.Range(0, platforms.Count)], platformSpawnPosition, Quaternion.identity);
+        instancedPlatforms.Add(newPlatform);
 
         lastPlatformY = newPlatform.transform.position.y;
     }

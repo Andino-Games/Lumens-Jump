@@ -716,7 +716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a0508ee59933743b52a54dd99b82aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform: {fileID: 239240843}
+  platforms:
+  - {fileID: 8325399622301669948, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
+  - {fileID: 2395701595547980313, guid: bf3424dc08fc6c443913a465a972c6b2, type: 3}
+  - {fileID: 8325399622301669948, guid: af3a445de32e24044957b1242f60c0b7, type: 3}
   playerTransform: {fileID: 711998421}
   mapBoundsCollider: {fileID: 1438820220}
   distanceBetweenPlatforms: 2
