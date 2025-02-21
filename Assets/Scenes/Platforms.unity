@@ -688,6 +688,7 @@ MonoBehaviour:
     m_Bits: 64
   groundCheckOrigin: {fileID: 1267966425}
   groundCheckDistance: 0.14
+  rb: {fileID: 0}
 --- !u!50 &694313034
 Rigidbody2D:
   serializedVersion: 5
