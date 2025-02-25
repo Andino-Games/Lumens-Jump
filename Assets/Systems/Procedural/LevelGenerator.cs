@@ -8,6 +8,8 @@ namespace Systems.Procedural
         public List<GameObject> platforms = new List<GameObject>();
         public Transform playerTransform;
         public BoxCollider2D mapBoundsCollider;
+        
+        public GameObject levelParent;
 
         public float distanceBetweenPlatforms = 3f;
         public int initialPlatformCount = 5;
@@ -38,7 +40,7 @@ namespace Systems.Procedural
             float posx = Random.Range(bounds.min.x, bounds.max.x);
         
             Vector3 platformSpawnPosition = new Vector3(posx, posy, 0);
-            GameObject newPlatform = Instantiate(platforms[Random.Range(0, platforms.Count)], platformSpawnPosition, Quaternion.identity);
+            GameObject newPlatform = Instantiate(platforms[Random.Range(0, platforms.Count)], platformSpawnPosition, Quaternion.identity, levelParent.transform);
             instancedPlatforms.Add(newPlatform);
 
             lastPlatformY = newPlatform.transform.position.y;

@@ -172,7 +172,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.0362748}
+  m_Offset: {x: 0, y: 0.7542348}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +182,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9741353, y: 1.35255}
+  m_Size: {x: 0.99066955, y: 1.1586471}
   m_EdgeRadius: 0
 --- !u!50 &2078918177573500275
 Rigidbody2D:
@@ -242,13 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087af78381d016243b66cf7ae992d372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasContact: 0
   onBreak:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5691774500590855309}
         m_TargetAssemblyTypeName: Systems.Platforms.BreakPlatform, Assembly-CSharp
-        m_MethodName: DebugBreak
+        m_MethodName: Break
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
