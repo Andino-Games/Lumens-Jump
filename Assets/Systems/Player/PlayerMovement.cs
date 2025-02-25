@@ -15,17 +15,29 @@ namespace Systems.Player
         [Range(1, 4)] public float maxX;
 
         private Vector3 targetPosition;
+        private Rigidbody2D rb;
+        private PlayerEffects playerEffects; // Referencia a PlayerEffects
+
+        void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            playerEffects = GetComponent<PlayerEffects>(); // Obtiene la referencia al script
+        }
 
         void Update()
         {
             float moveX = joystick.Horizontal * speed * Time.deltaTime;
-            
             targetPosition = transform.position + new Vector3(moveX, 0, 0);
-            
-            // Clamp position to avoid going out of bounds.
+
+            // Clamp posición para evitar salir del nivel
             targetPosition.x = Mathf.Clamp(targetPosition.x, -maxX, maxX);
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+
+            // Si el jugador se está moviendo, activa feedback de movimiento
+            if (Mathf.Abs(moveX) > 0.05f)
+            {
+                playerEffects?.PlayMoveEffect();
+            }
         }
     }
 }
-
