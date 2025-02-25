@@ -47,6 +47,7 @@ namespace MoreMountains.Feedbacks
 		protected bool _initialized = false;
         
 		#endregion
+		
         
 		#region INITIALIZATION
 
