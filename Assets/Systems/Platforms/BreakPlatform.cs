@@ -1,4 +1,5 @@
 using System.Collections;
+using Systems.Platforms.Feel;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,13 +9,13 @@ namespace Systems.Platforms
     {
         public float breakTime = 2f;
     
-        public UnityEvent onBreak;
+        public PlatformFeedbacks platformFeedbacks;
 
         
 
-        public void Break()
+        public void Break(float time)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, time);
         }
     
         private IEnumerator OnTriggerEnter2D(Collider2D other)
@@ -25,7 +26,9 @@ namespace Systems.Platforms
             
                 yield return new WaitForSeconds(breakTime);
             
-                onBreak.Invoke();
+                platformFeedbacks?.BreakablePlatform();
+                
+                Break(0.8f);
             }
         }
 
