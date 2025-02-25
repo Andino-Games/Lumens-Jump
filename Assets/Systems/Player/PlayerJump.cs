@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using MoreMountains.Feedbacks; // Importante para usar Feel
 
 namespace Systems.Player
 {
@@ -10,13 +10,12 @@ namespace Systems.Player
         public LayerMask groundLayer;
         public Transform groundCheckOrigin;
         public float groundCheckDistance = 0.6f;
-
-        [Header("Feedbacks")] 
-        public MMF_Player jumpFeedback; // Feedback del salto
         
-        private Rigidbody2D rb;
+        [HideInInspector] public Rigidbody2D rb;
         private bool isGrounded;
 
+        private bool IsFalling => rb.linearVelocity.y < 0;
+        
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -24,10 +23,19 @@ namespace Systems.Player
 
         void Update()
         {
-            if (rb.linearVelocity.y >= 0) return;
-
+            // Check if the player is falling.
+            if (!IsFalling)
+            {
+                return;
+            }
+            
             Vector2 direction = Vector2.down;
-            isGrounded = Physics2D.Raycast(groundCheckOrigin.position, direction, groundCheckDistance, groundLayer);
+            isGrounded = Physics2D.Raycast(
+                groundCheckOrigin.position,
+                direction,
+                groundCheckDistance,
+                groundLayer
+            );
 
             if (isGrounded)
             {
@@ -37,10 +45,9 @@ namespace Systems.Player
 
         void Jump()
         {
-            jumpFeedback?.PlayFeedbacks();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
