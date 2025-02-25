@@ -13,11 +13,13 @@ namespace Systems.Player
         private Rigidbody2D rb;
         private bool isGrounded;
         private PlayerEffects playerEffects; // Referencia a PlayerEffects
+        private PlayerAnimatorManager playerAnimator;
 
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             playerEffects = GetComponent<PlayerEffects>(); // Obtiene la referencia al script
+            playerAnimator = GetComponent<PlayerAnimatorManager>();
         }
 
         void Update()
@@ -29,6 +31,7 @@ namespace Systems.Player
 
             if (isGrounded)
             {
+                playerAnimator.animator.SetTrigger("Jump");
                 Jump();
             }
         }
@@ -36,6 +39,7 @@ namespace Systems.Player
         void Jump()
         {
             playerEffects?.PlayJumpEffect(); // Activa el feedback del salto
+            
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
