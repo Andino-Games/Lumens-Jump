@@ -8,6 +8,7 @@ namespace Systems.Player
         [Header("Feedbacks")] 
         public MMF_Player moveFeedback; // Feedback para movimiento
         public MMF_Player jumpFeedback; // Feedback para salto
+        public MMF_Player collisionPlatformFeedback; // Feedback para colisión con plataforma
 
         /// <summary>
         /// Activa el feedback de movimiento
@@ -23,6 +24,7 @@ namespace Systems.Player
         public void PlayJumpEffect()
         {
             jumpFeedback?.PlayFeedbacks();
+            collisionPlatformFeedback?.StopFeedbacks(); 
         }
     }
 }

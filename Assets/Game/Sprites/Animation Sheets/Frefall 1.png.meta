@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Frefall 1_0: -4066225880556590216
+      Frefall 1_1: 3889518982598634199
+      Frefall 1_2: -7958431146355934861
+      Frefall 1_3: 1393731996744146739
+      Frefall 1_4: -3802254422019422017
+      Frefall 1_5: 6225970882096163263
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
