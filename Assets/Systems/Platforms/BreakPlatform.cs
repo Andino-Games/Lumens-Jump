@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Systems.Platforms
 {
-    public class BreakPlatform : MonoBehaviour
+    public class BreakPlatform : Platform
     {
         public float breakTime = 2f;
     

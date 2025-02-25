@@ -3,7 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlatformContact : MonoBehaviour
+public class PlatformContact : Platform
 {
     
 }

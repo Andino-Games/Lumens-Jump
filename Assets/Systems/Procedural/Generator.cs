@@ -4,7 +4,7 @@ namespace Systems.Procedural
 {
     public abstract class Generator : MonoBehaviour
     {
-        public virtual void Start()
+        protected virtual void Start()
         {
             Initialize();
         }

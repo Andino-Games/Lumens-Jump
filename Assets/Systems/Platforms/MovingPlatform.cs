@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Systems.Platforms
 {
-    public class MovingPlatform : MonoBehaviour
+    public class MovingPlatform : Platform
     {
         public List<Transform> points;
         public Transform platform;

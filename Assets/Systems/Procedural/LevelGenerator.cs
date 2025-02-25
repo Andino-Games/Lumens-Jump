@@ -1,21 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Systems.Procedural
 {
-    public class LevelGenerator : Generator
+    public class LevelGenerator : MonoBehaviour
     {
-        public List<GameObject> platforms = new List<GameObject>();
         public Transform playerTransform;
         public BoxCollider2D mapBoundsCollider;
-        
+
         public GameObject levelParent;
 
         public float distanceBetweenPlatforms = 3f;
         public int initialPlatformCount = 5;
 
-        [SerializeField] private List<GameObject> instancedPlatforms = new List<GameObject>();
         private float lastPlatformY;
+
+        [SerializeField]
+        private List<Platform> platforms;
+        public Transform platformHolder;
+        public int minPoolSize = 10;
+        public int maxPoolSize = 50;
+
+        private ObjectPool<Platform> platformPool;
+
+        private void Start()
+        {
+            Initialize();
+        }
 
         private void Update()
         {
@@ -25,25 +37,57 @@ namespace Systems.Procedural
             }
         }
 
-        protected override void Initialize()
+        private Platform CreatePlatform()
         {
-            for (int i = 0; i < initialPlatformCount; i++)
-            {
-                Spawn();
-            }
+            int rnd = Random.Range(0, 3);
+
+            Platform platform = Instantiate(platforms[rnd], Vector3.zero, Quaternion.identity, platformHolder);
+
+            platform.SetPool(platformPool);
+
+            return platform;
+
         }
 
-        protected override void Spawn()
+        private void OnTakePlatformFromPool(Platform platform)
         {
+
             Bounds bounds = mapBoundsCollider.bounds;
             float posy = lastPlatformY + distanceBetweenPlatforms;
             float posx = Random.Range(bounds.min.x, bounds.max.x);
-        
-            Vector3 platformSpawnPosition = new Vector3(posx, posy, 0);
-            GameObject newPlatform = Instantiate(platforms[Random.Range(0, platforms.Count)], platformSpawnPosition, Quaternion.identity, levelParent.transform);
-            instancedPlatforms.Add(newPlatform);
 
-            lastPlatformY = newPlatform.transform.position.y;
+            Vector3 platformSpawnPosition = new (posx, posy, 0);
+
+            platform.transform.position = platformSpawnPosition;
+
+            lastPlatformY = platform.transform.position.y;
+
+            platform.gameObject.SetActive(true);
+        }
+
+
+        private void OnReturnPlatformFromPool(Platform platform)
+        {
+            platform.gameObject.SetActive(false);
+            platform.transform.position = Vector3.zero;
+        }
+
+        private void OnDestroyPlatform(Platform platform)
+        {
+            Destroy(platform.gameObject);
+        }
+
+
+
+        protected  void Initialize()
+        {
+            platformPool = new(CreatePlatform, OnTakePlatformFromPool, OnReturnPlatformFromPool, OnDestroyPlatform, true, minPoolSize, maxPoolSize);
+        }
+
+        protected  void Spawn()
+        {
+            platformPool.Get();
         }
     }
 }
+
