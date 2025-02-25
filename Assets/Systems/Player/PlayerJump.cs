@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Systems.Player
@@ -10,32 +9,23 @@ namespace Systems.Player
         public LayerMask groundLayer;
         public Transform groundCheckOrigin;
         public float groundCheckDistance = 0.6f;
-        
-        [HideInInspector] public Rigidbody2D rb;
-        private bool isGrounded;
 
-        private bool IsFalling => rb.linearVelocity.y < 0;
-        
+        private Rigidbody2D rb;
+        private bool isGrounded;
+        private PlayerEffects playerEffects; // Referencia a PlayerEffects
+
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            playerEffects = GetComponent<PlayerEffects>(); // Obtiene la referencia al script
         }
 
         void Update()
         {
-            // Check if the player is falling.
-            if (!IsFalling)
-            {
-                return;
-            }
-            
+            if (rb.linearVelocity.y >= 0) return;
+
             Vector2 direction = Vector2.down;
-            isGrounded = Physics2D.Raycast(
-                groundCheckOrigin.position,
-                direction,
-                groundCheckDistance,
-                groundLayer
-            );
+            isGrounded = Physics2D.Raycast(groundCheckOrigin.position, direction, groundCheckDistance, groundLayer);
 
             if (isGrounded)
             {
@@ -45,9 +35,10 @@ namespace Systems.Player
 
         void Jump()
         {
+            playerEffects?.PlayJumpEffect(); // Activa el feedback del salto
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
