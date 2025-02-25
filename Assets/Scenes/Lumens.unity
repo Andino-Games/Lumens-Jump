@@ -722,8 +722,10 @@ MonoBehaviour:
   - {fileID: 8325399622301669948, guid: af3a445de32e24044957b1242f60c0b7, type: 3}
   playerTransform: {fileID: 711998421}
   mapBoundsCollider: {fileID: 1438820220}
+  levelParent: {fileID: 71378465}
   distanceBetweenPlatforms: 2
   initialPlatformCount: 7
+  instancedPlatforms: []
 --- !u!4 &1113100403
 Transform:
   m_ObjectHideFlags: 0
