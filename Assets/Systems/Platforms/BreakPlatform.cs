@@ -6,7 +6,7 @@ namespace Systems.Platforms
 {
     public class BreakPlatform : MonoBehaviour
     {
-        
+        public float breakTime = 2f;
     
         public UnityEvent onBreak;
 
@@ -23,7 +23,7 @@ namespace Systems.Platforms
             {
                 Debug.Log(other.name);
             
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(breakTime);
             
                 onBreak.Invoke();
             }
