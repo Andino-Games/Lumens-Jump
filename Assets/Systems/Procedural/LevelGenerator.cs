@@ -79,12 +79,12 @@ namespace Systems.Procedural
 
 
 
-        protected  void Initialize()
+        protected void Initialize()
         {
             platformPool = new(CreatePlatform, OnTakePlatformFromPool, OnReturnPlatformFromPool, OnDestroyPlatform, true, minPoolSize, maxPoolSize);
         }
 
-        protected  void Spawn()
+        protected void Spawn()
         {
             platformPool.Get();
         }
