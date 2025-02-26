@@ -1,7 +1,6 @@
 using System.Collections;
 using Systems.Platforms.Feel;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Systems.Platforms
 {

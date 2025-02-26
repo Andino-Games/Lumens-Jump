@@ -12,13 +12,13 @@ namespace Systems.Player
         public float groundCheckDistance = 0.6f;
 
         private Rigidbody2D rb;
-        private bool isJumping;
+        public bool isJumping;
         private bool isGrounded;
         private PlayerEffects playerEffects; // Referencia a PlayerEffects
         private PlayerAnimatorManager playerAnimator;
         
         [SerializeField] private CinemachineCamera playerCamera;
-        [SerializeField] private Transform cameraBounds;
+        public Transform cameraBounds;
 
         void Start()
         {
@@ -52,13 +52,13 @@ namespace Systems.Player
         {
             if (isJumping)
             {
-                var vector3 = cameraBounds.position;
-                vector3.y = transform.position.y;
-                cameraBounds.position = vector3;
+                
+                cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
                 playerCamera.Follow = transform; // Camera follows only when jumping
             }
             else if (rb.linearVelocityY < 0) // Stops following only when falling
             {
+                cameraBounds.position = cameraBounds.position;
                 playerCamera.Follow = null;
             }
         }

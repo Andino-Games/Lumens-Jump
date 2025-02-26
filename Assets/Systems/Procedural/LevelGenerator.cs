@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Systems.Platforms;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -9,10 +10,7 @@ namespace Systems.Procedural
         public Transform playerTransform;
         public BoxCollider2D mapBoundsCollider;
 
-        public GameObject levelParent;
-
         public float distanceBetweenPlatforms = 3f;
-        public int initialPlatformCount = 5;
 
         private float lastPlatformY;
 
@@ -39,6 +37,12 @@ namespace Systems.Procedural
 
         private Platform CreatePlatform()
         {
+            if (platforms.Count == 0)
+            {
+                Debug.LogError("Platforms list is empty! Make sure it's assigned in the Inspector.");
+                return null;
+            }
+            
             int rnd = Random.Range(0, 3);
 
             Platform platform = Instantiate(platforms[rnd], Vector3.zero, Quaternion.identity, platformHolder);
