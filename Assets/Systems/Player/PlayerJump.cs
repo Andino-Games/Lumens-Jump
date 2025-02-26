@@ -18,6 +18,7 @@ namespace Systems.Player
         private PlayerAnimatorManager playerAnimator;
         
         [SerializeField] private CinemachineCamera playerCamera;
+        [SerializeField] private Transform cameraBounds;
 
         void Start()
         {
@@ -51,6 +52,9 @@ namespace Systems.Player
         {
             if (isJumping)
             {
+                var vector3 = cameraBounds.position;
+                vector3.y = transform.position.y;
+                cameraBounds.position = vector3;
                 playerCamera.Follow = transform; // Camera follows only when jumping
             }
             else if (rb.linearVelocityY < 0) // Stops following only when falling
