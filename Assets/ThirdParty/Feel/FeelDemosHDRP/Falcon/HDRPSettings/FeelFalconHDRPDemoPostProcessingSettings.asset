@@ -96,6 +96,22 @@ MonoBehaviour:
   m_Resolution:
     m_OverrideState: 1
     m_Value: 2
+--- !u!114 &-4198815268467609871
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &-2314332179760026362
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -317,24 +333,8 @@ MonoBehaviour:
   m_Name: FeelFalconHDRPDemoPostProcessingSettings
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 8711377374188185572}
-  - {fileID: 6640133647794636954}
-  - {fileID: 396278178000043239}
-  - {fileID: -2109818796249167647}
-  - {fileID: -1817739172173926176}
-  - {fileID: -877394172629233039}
-  - {fileID: 1622680066408518032}
-  - {fileID: -4683021943386259129}
-  - {fileID: 6013285994444237452}
-  - {fileID: -7939911367390343821}
-  - {fileID: -2314332179760026362}
-  - {fileID: 7381206715512943917}
-  - {fileID: 4921280515941939543}
-  - {fileID: 6704185719683628941}
-  - {fileID: 1190844326130119954}
-  - {fileID: 1867153897525965622}
-  - {fileID: 9005373322329986601}
-  - {fileID: 3260594495799357335}
+  - {fileID: 4782177808461507943}
+  - {fileID: -4198815268467609871}
 --- !u!114 &396278178000043239
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -553,6 +553,34 @@ MonoBehaviour:
     m_Value: 1
     min: 0
     max: 1
+--- !u!114 &4782177808461507943
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
+  xMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  yMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  scale:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &4921280515941939543
 MonoBehaviour:
   m_ObjectHideFlags: 3
