@@ -1146,9 +1146,37 @@ PrefabInstance:
       propertyPath: moveFeedback
       value: 
       objectReference: {fileID: 1703139432}
+    - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 2084017205}
+    - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 2084017205}
     - target: {fileID: 3364080409062560796, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533462905626427801, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Size.x
+      value: 1.981718
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533462905626427801, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1187134
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533462905626427801, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.05905079
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533462905626427801, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.98054785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841318170524466739, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Constraints
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: joystick
@@ -1249,6 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9c78f7fc3411b4faf25d4e13aa8936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!224 &1101602087 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8135886326569738822, guid: 56fae09712773584fb63896d473a98ee, type: 3}
