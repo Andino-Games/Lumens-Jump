@@ -17,17 +17,21 @@ namespace Systems.Player
         private Vector3 targetPosition;
         private Rigidbody2D rb;
         private PlayerEffects playerEffects; // Referencia a PlayerEffects
+        private SpriteRenderer spriteRenderer;
 
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             playerEffects = GetComponent<PlayerEffects>(); // Obtiene la referencia al script
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         void Update()
         {
             float moveX = joystick.Horizontal * speed * Time.deltaTime;
             targetPosition = transform.position + new Vector3(moveX, 0, 0);
+
+            Flip(moveX);
 
             // Clamp posición para evitar salir del nivel
             targetPosition.x = Mathf.Clamp(targetPosition.x, -maxX, maxX);
@@ -37,6 +41,18 @@ namespace Systems.Player
             if (Mathf.Abs(moveX) > 0.05f)
             {
                 playerEffects?.PlayMoveEffect();
+            }
+        }
+
+        private void Flip(float horizontalMovement)
+        {
+            if (horizontalMovement > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (horizontalMovement < 0)
+            {
+                spriteRenderer.flipX = true;
             }
         }
     }

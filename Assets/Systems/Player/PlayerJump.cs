@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Systems.Player
@@ -11,9 +12,12 @@ namespace Systems.Player
         public float groundCheckDistance = 0.6f;
 
         private Rigidbody2D rb;
+        private bool isJumping;
         private bool isGrounded;
         private PlayerEffects playerEffects; // Referencia a PlayerEffects
         private PlayerAnimatorManager playerAnimator;
+        
+        [SerializeField] private CinemachineCamera playerCamera;
 
         void Start()
         {
@@ -31,13 +35,33 @@ namespace Systems.Player
 
             if (isGrounded)
             {
+                isJumping = true;
                 playerAnimator.animator.SetTrigger("Jump");
                 Jump();
+            }
+            else
+            {
+                isJumping = false;
+            }
+
+            CameraFollowCheck();
+        }
+
+        private void CameraFollowCheck()
+        {
+            if (isJumping)
+            {
+                playerCamera.Follow = transform; // Camera follows only when jumping
+            }
+            else if (rb.linearVelocityY < 0) // Stops following only when falling
+            {
+                playerCamera.Follow = null;
             }
         }
 
         void Jump()
         {
+            
             playerEffects?.PlayJumpEffect(); // Activa el feedback del salto
             
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
