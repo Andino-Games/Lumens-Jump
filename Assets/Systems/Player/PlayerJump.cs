@@ -17,7 +17,7 @@ namespace Systems.Player
         private PlayerEffects playerEffects; // Referencia a PlayerEffects
         private PlayerAnimatorManager playerAnimator;
         
-        [SerializeField] private CinemachineCamera playerCamera;
+        public CinemachineCamera playerCamera;
         public Transform cameraBounds;
 
         void Start()

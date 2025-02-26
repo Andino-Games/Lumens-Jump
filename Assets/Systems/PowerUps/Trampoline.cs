@@ -9,6 +9,8 @@ namespace Systems.PowerUps
         public float impulseForce;
 
         private GameObject player;
+        
+        [SerializeField] private Animator animator;
 
         public override void Start()
         {
@@ -26,8 +28,15 @@ namespace Systems.PowerUps
             PlayerJump playerJump = player.GetComponent<PlayerJump>();
             
             playerJump.isJumping = true;
+            animator.SetTrigger("Activate");
+            
+            rb.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
+            
+            playerJump.playerCamera.Follow = player.transform;
 
-            yield return null;
+            yield return new WaitForSeconds(1.2f);
+            
+            playerJump.playerCamera.Follow = null;
         }
     }
 }

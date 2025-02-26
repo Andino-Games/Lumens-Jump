@@ -26,7 +26,6 @@ namespace Systems.PowerUps
         protected virtual void ActivatePowerUp()
         {
             Debug.Log($"This PowerUp {powerUpName} is being used");
-            SpriteRenderer.enabled = false;
             _powerUpRoutine = StartCoroutine(HandlePowerUp());
         }
 
