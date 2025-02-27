@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8949f0d86a465b640aaed8a32d2891f2
+timeCreated: 1445031583
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 40588
+  packageName: FurBall 2D V1.2 mobile optimized
+  packageVersion: 1.2
+  assetPath: Assets/FurBall2D_mobile/Game.unity
+  uploadId: 89137

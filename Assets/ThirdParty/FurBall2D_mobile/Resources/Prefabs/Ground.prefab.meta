@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3e790b369fc40ab40855f35798178386
+timeCreated: 1445892373
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 40588
+  packageName: FurBall 2D V1.2 mobile optimized
+  packageVersion: 1.2
+  assetPath: Assets/FurBall2D_mobile/Resources/Prefabs/Ground.prefab
+  uploadId: 89137

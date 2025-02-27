@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cedd6b8aa00fe2447a85598ce20f40a6
+timeCreated: 1445028820
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 40588
+  packageName: FurBall 2D V1.2 mobile optimized
+  packageVersion: 1.2
+  assetPath: Assets/FurBall2D_mobile/Animations/FurBall_Cloud_1024_0.controller
+  uploadId: 89137

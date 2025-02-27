@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b2a92b6ce0aebb6458663257bb669e35
+timeCreated: 1434825501
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 40588
+  packageName: FurBall 2D V1.2 mobile optimized
+  packageVersion: 1.2
+  assetPath: Assets/FurBall2D_mobile/Animations/walking.anim
+  uploadId: 89137
