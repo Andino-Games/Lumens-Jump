@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: e49cf51ebd6eb7042846ff7992cf2682
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6174489687846394989
+    second: Trampoline_0
+  - first:
+      213: -1574206165498074595
+    second: Trampoline_1
+  - first:
+      213: 1637445239225114495
+    second: Trampoline_2
+  - first:
+      213: -4920842064380796391
+    second: Trampoline_3
+  - first:
+      213: 8708974243075517521
+    second: Trampoline_4
+  - first:
+      213: -1287993467039989830
+    second: Trampoline_5
+  - first:
+      213: 1253445163484956917
+    second: Trampoline_6
+  - first:
+      213: 4094903113879457726
+    second: Trampoline_7
+  - first:
+      213: 7132069457367312912
+    second: Trampoline_8
+  - first:
+      213: 7194373846718583224
+    second: Trampoline_9
+  - first:
+      213: -1964076576047539849
+    second: Trampoline_10
+  - first:
+      213: 5026165240527575679
+    second: Trampoline_11
+  - first:
+      213: -3302552899733175621
+    second: Trampoline_12
+  - first:
+      213: 648750218426491012
+    second: Trampoline_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 250
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Trampoline_0
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 1042
+        width: 254
+        height: 235
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c956148a130b550800000000000000
+      internalID: 6174489687846394989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_1
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 1042
+        width: 255
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1ae14e35db472ae0800000000000000
+      internalID: -1574206165498074595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_2
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 1042
+        width: 255
+        height: 117
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7fda2ff4cf59b610800000000000000
+      internalID: 1637445239225114495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_3
+      rect:
+        serializedVersion: 2
+        x: 1670
+        y: 1042
+        width: 254
+        height: 301
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91268c4d638a5bbb0800000000000000
+      internalID: -4920842064380796391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_4
+      rect:
+        serializedVersion: 2
+        x: 2182
+        y: 1042
+        width: 254
+        height: 370
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15cea849eed7cd870800000000000000
+      internalID: 8708974243075517521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_5
+      rect:
+        serializedVersion: 2
+        x: 2694
+        y: 1042
+        width: 254
+        height: 393
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abfbe0c04c0202ee0800000000000000
+      internalID: -1287993467039989830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_6
+      rect:
+        serializedVersion: 2
+        x: 3207
+        y: 1042
+        width: 255
+        height: 328
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8c3f23cb1256110800000000000000
+      internalID: 1253445163484956917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_7
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 528
+        width: 255
+        height: 132
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebf0d64bfa404d830800000000000000
+      internalID: 4094903113879457726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_8
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 529
+        width: 256
+        height: 166
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01aaac752633af260800000000000000
+      internalID: 7132069457367312912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_9
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 530
+        width: 256
+        height: 270
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1950b65ec87d360800000000000000
+      internalID: 7194373846718583224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_10
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 530
+        width: 256
+        height: 264
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 779550d92c23eb4e0800000000000000
+      internalID: -1964076576047539849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_11
+      rect:
+        serializedVersion: 2
+        x: 2182
+        y: 530
+        width: 254
+        height: 244
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7adf0018a680c540800000000000000
+      internalID: 5026165240527575679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_12
+      rect:
+        serializedVersion: 2
+        x: 2694
+        y: 530
+        width: 254
+        height: 237
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2c777a2a9fa22d0800000000000000
+      internalID: -3302552899733175621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trampoline_13
+      rect:
+        serializedVersion: 2
+        x: 3206
+        y: 530
+        width: 254
+        height: 235
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 480a44de2e2d00900800000000000000
+      internalID: 648750218426491012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 31d31a9b3429ddf438b5acf2cdb3f8cf
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Trampoline_0: 6174489687846394989
+      Trampoline_1: -1574206165498074595
+      Trampoline_10: -1964076576047539849
+      Trampoline_11: 5026165240527575679
+      Trampoline_12: -3302552899733175621
+      Trampoline_13: 648750218426491012
+      Trampoline_2: 1637445239225114495
+      Trampoline_3: -4920842064380796391
+      Trampoline_4: 8708974243075517521
+      Trampoline_5: -1287993467039989830
+      Trampoline_6: 1253445163484956917
+      Trampoline_7: 4094903113879457726
+      Trampoline_8: 7132069457367312912
+      Trampoline_9: 7194373846718583224
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
