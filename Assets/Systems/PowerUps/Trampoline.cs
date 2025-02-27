@@ -18,8 +18,6 @@ namespace Systems.PowerUps
             {
                 player = GameObject.FindGameObjectWithTag("Player");
             }
-            
-            
         }
 
         protected override IEnumerator HandlePowerUp()
@@ -33,6 +31,7 @@ namespace Systems.PowerUps
             rb.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
             
             playerJump.playerCamera.Follow = player.transform;
+            Debug.Log("Following Player");
 
             yield return new WaitForSeconds(1.2f);
             
