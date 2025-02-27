@@ -202,11 +202,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &337759913 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
-  m_PrefabInstance: {fileID: 5500306783701292899}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &673216507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,7 +477,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 723082801}
-  - {fileID: 337759913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1345309852
@@ -495,19 +489,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2184186783936372377, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.966983
+      value: 0.633568
       objectReference: {fileID: 0}
     - target: {fileID: 2184186783936372377, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.79835
+      value: 1.7225784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2184186783936372377, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.3157222
       objectReference: {fileID: 0}
     - target: {fileID: 2184186783936372377, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0734
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2184186783936372377, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5959
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: 2184186783936372377, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -892,7 +890,7 @@ GameObject:
   - component: {fileID: 1794346510}
   m_Layer: 0
   m_Name: CinemachineCamera
-  m_TagString: Untagged
+  m_TagString: CinemachineCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1076,63 +1074,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &5500306783701292899
+--- !u!1001 &1999290814
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1074412035}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3004297097225129390, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
-      propertyPath: m_Name
-      value: Trampoline
-      objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.65
+      value: 0.9081546
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.056
+      value: -0.6926713
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.041046754
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+    - target: {fileID: 2184186783936372377, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325399622301669948, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
+      propertyPath: m_Name
+      value: Platform Trampoline
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1145,3 +1143,4 @@ SceneRoots:
   - {fileID: 1074412035}
   - {fileID: 1794346512}
   - {fileID: 214031707}
+  - {fileID: 1999290814}

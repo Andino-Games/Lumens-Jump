@@ -1491,7 +1491,6 @@ MonoBehaviour:
   - {fileID: -7243928677647002912, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
   - {fileID: 1497442787838827859, guid: bf3424dc08fc6c443913a465a972c6b2, type: 3}
   - {fileID: 5691774500590855309, guid: af3a445de32e24044957b1242f60c0b7, type: 3}
-  - {fileID: -7243928677647002912, guid: e84478d94c810b5479219162dcb0d3a3, type: 3}
   platformHolder: {fileID: 1717461419}
   minPoolSize: 10
   maxPoolSize: 50
@@ -2546,7 +2545,7 @@ GameObject:
   - component: {fileID: 2084017208}
   m_Layer: 0
   m_Name: CinemachineCamera
-  m_TagString: Untagged
+  m_TagString: CinemachineCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
