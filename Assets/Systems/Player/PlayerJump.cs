@@ -1,3 +1,4 @@
+using Systems.Platforms;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -19,12 +20,24 @@ namespace Systems.Player
         
         public CinemachineCamera playerCamera;
         public Transform cameraBounds;
+        
+        [Header("Game Manager")]
+        [SerializeField] private GameManager gameManager;
 
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             playerEffects = GetComponent<PlayerEffects>(); // Obtiene la referencia al script
             playerAnimator = GetComponent<PlayerAnimatorManager>();
+
+            if (gameManager == null)
+            {
+                gameManager = FindFirstObjectByType<GameManager>();
+            }
+            else
+            {
+                return;
+            }
         }
 
         void Update()
@@ -36,7 +49,23 @@ namespace Systems.Player
 
             if (isGrounded)
             {
+                RaycastHit2D hit = Physics2D.Raycast(groundCheckOrigin.position, direction, groundCheckDistance, groundLayer);
+                
+                Platform platform = hit.collider.GetComponent<Platform>();
+
+                if (platform != null)
+                {
+                    platform.PointCounter();    
+                }
+                else
+                {
+                    Debug.LogWarning("Platform could not be found");
+                }
+                
+                
                 isJumping = true;
+                gameManager.AddPoints(1);
+                Debug.Log(gameManager.points);
                 playerAnimator.animator.SetTrigger("Jump");
                 Jump();
             }
