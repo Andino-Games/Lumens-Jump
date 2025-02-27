@@ -19,7 +19,7 @@ namespace Systems.Procedural
         public Transform platformHolder;
         public int minPoolSize = 10;
         public int maxPoolSize = 50;
-
+        
         private ObjectPool<Platform> platformPool;
 
         private void Start()
@@ -43,7 +43,7 @@ namespace Systems.Procedural
                 return null;
             }
             
-            int rnd = Random.Range(0, 3);
+            int rnd = Random.Range(0, platforms.Count);
 
             Platform platform = Instantiate(platforms[rnd], Vector3.zero, Quaternion.identity, platformHolder);
 
