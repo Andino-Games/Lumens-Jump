@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.19656396, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1681874883740948737}
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.123636484, b: 1, a: 1}
+  m_Sprite: {fileID: 7465855713940309216, guid: 04ce0039e4460e24c805a1a4a6eaa81d, type: 3}
+  m_Color: {r: 0.39857998, g: 0.73, b: 0.7242199, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 10.24, y: 0.97}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -209,6 +209,18 @@ PrefabInstance:
       value: Trampoline
       objectReference: {fileID: 0}
     - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5699215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1357747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.56788737
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.005
       objectReference: {fileID: 0}
@@ -247,6 +259,18 @@ PrefabInstance:
     - target: {fileID: 4285491395473261428, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448195218962586591, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7242199
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448195218962586591, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448195218962586591, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.39857998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
