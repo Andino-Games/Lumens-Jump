@@ -9,51 +9,51 @@ namespace Systems.PowerUps
     {
         public float impulseForce;
 
-        [SerializeField] private GameObject player;
+        public bool powerActive;
+
+        [SerializeField] private PlayerJump playerJump;
         
         [SerializeField] private Animator animator;
-        
-        [SerializeField] private CinemachineCamera playerCamera;
-        
-        [SerializeField] private Collider2D playerCollider;
+       
 
         public override void Start()
         {
-            if (player == null)
+            powerActive = false;
+
+            if (playerJump == null)
             {
-                player = GameObject.FindGameObjectWithTag("Player");
+                playerJump = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerJump>();
             }
 
-            if (playerCamera == null)
-            {
-                playerCamera = GameObject.FindGameObjectWithTag("CinemachineCamera").GetComponent<CinemachineCamera>();
-            }
+            
+        }
 
-            if (playerCollider == null)
+        public void RaycastPowerUp()
+        {
+            ActivatePowerUp();
+        }
+
+        protected override void ActivatePowerUp()
+        {
+            if (powerActive) return;
+            else if (!powerActive)
             {
-                playerCollider = player.GetComponent<Collider2D>();
+                base.ActivatePowerUp();
             }
+            
         }
 
         protected override IEnumerator HandlePowerUp()
         {
-            
-            Rigidbody2D rb = PlayerGameObject.GetComponent<Rigidbody2D>();
-            PlayerJump playerJump = player.GetComponent<PlayerJump>();
-            
-            playerJump.isJumping = true;
+            playerJump.Trampoline(impulseForce, powerActive);
+
             animator.SetTrigger("Activate");
-            
-            
-            playerCamera.Follow = playerJump.transform;
-            
-            rb.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
             
 
             yield return new WaitForSeconds(1.5f);
-            
-            
-            playerJump.playerCamera.Follow = null;
+
+            powerActive = false;
+
         }
     }
 }
