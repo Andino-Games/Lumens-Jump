@@ -243,4 +243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakTime: 2
+  isPlayerDownwards: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   platformFeedbacks: {fileID: 2383542521023743540, guid: 814850abe0211e1439723d1796015c43, type: 3}
+  platformObject: {fileID: 8325399622301669948}
