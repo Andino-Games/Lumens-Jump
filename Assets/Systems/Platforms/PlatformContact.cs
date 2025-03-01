@@ -1,10 +1,30 @@
 using System;
-using System.Collections;
-using Systems.Platforms;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlatformContact : Platform
+namespace Systems.Platforms
 {
-    
+    public class PlatformContact : Platform
+    {
+        private bool canGivePoints;
+        
+        private GameManager gameManager;
+
+        public override void Start()
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            
+            
+        }
+
+        public void AddPoints()
+        {
+            if (canGivePoints)
+            {
+                gameManager.AddPoints(1);
+            }
+            
+            canGivePoints = false;
+        }
+    }
 }
