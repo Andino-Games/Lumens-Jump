@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -8,12 +9,16 @@ namespace Systems.Player
         [Header("Jump Config")]
         public float jumpForce = 7f;
         public LayerMask groundLayer;
+        public LayerMask trampolineLayer;
         public Transform groundCheckOrigin;
         public float groundCheckDistance = 0.6f;
+
+        private RaycastHit2D hit2D;
 
         private Rigidbody2D rb;
         public bool isJumping;
         private bool isGrounded;
+        private bool isTrampoline;
         private PlayerEffects playerEffects; // Referencia a PlayerEffects
         private PlayerAnimatorManager playerAnimator;
         
@@ -34,6 +39,8 @@ namespace Systems.Player
             Vector2 direction = Vector2.down;
             isGrounded = Physics2D.Raycast(groundCheckOrigin.position, direction, groundCheckDistance, groundLayer);
 
+            GetRaycastTrampoline();
+
             if (isGrounded)
             {
                 isJumping = true;
@@ -45,14 +52,33 @@ namespace Systems.Player
                 isJumping = false;
             }
 
-            CameraFollowCheck();
+            if (isTrampoline)
+            {
+                hit2D.collider.GetComponent<PowerUps.Trampoline>()
+                    .RaycastPowerUp();
+            }
+
+                CameraFollowCheck();
+        }
+
+        private void GetRaycastTrampoline()
+        {
+            hit2D = Physics2D.Raycast(groundCheckOrigin.position, Vector2.down, groundCheckDistance, trampolineLayer);
+
+            if (hit2D.collider != null)
+            {
+                isTrampoline = true;
+            }
+            else
+            {
+                isTrampoline = false;
+            }
         }
 
         private void CameraFollowCheck()
         {
             if (isJumping)
             {
-                
                 cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
                 playerCamera.Follow = transform; // Camera follows only when jumping
             }
@@ -69,6 +95,15 @@ namespace Systems.Player
             playerEffects?.PlayJumpEffect(); // Activa el feedback del salto
             
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        public void Trampoline(float impulseForce, bool powerState)
+        {
+            if (powerState) isJumping = true;
+            else isJumping = false;
+
+            rb.AddForce(Vector2.up * impulseForce, ForceMode2D.Impulse);
+
         }
 
         private void OnDrawGizmos()

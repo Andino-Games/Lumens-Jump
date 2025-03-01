@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5752292285718197046}
   - component: {fileID: 7136428687835017801}
   - component: {fileID: 5139936292896744220}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trampoline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.65, y: -1.87, z: 0.041046754}
-  m_LocalScale: {x: 0.36449766, y: 1.4579906, z: 0.7289953}
+  m_LocalScale: {x: 0.71934915, y: 0.76909006, z: 0.38454503}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Trampoline
   impulseForce: 20
+  powerActive: 0
+  playerJump: {fileID: 0}
   animator: {fileID: 5139936292896744220}
 --- !u!95 &5139936292896744220
 Animator:
