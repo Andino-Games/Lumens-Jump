@@ -1619,15 +1619,15 @@ RectTransform:
   m_GameObject: {fileID: 692796639}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0161958, y: 1.0161958, z: 1.0161958}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 904553942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -319}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5.348694}
+  m_SizeDelta: {x: 0, y: -48.5625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692796641
 MonoBehaviour:
@@ -2148,7 +2148,7 @@ RectTransform:
   m_GameObject: {fileID: 904553941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.52, y: 2.52, z: 2.52}
+  m_LocalScale: {x: 2.4798372, y: 2.4798372, z: 2.4798372}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 692796640}
@@ -2156,8 +2156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -817.144}
+  m_SizeDelta: {x: 160, y: 78.5625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904553943
 MonoBehaviour:
@@ -2222,13 +2222,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904553941}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.3254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2679,8 +2679,6 @@ MonoBehaviour:
   mapBoundsCollider: {fileID: 1438820220}
   distanceBetweenPlatforms: 2
   platforms:
-  - {fileID: -7243928677647002912, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
-  - {fileID: 5691774500590855309, guid: af3a445de32e24044957b1242f60c0b7, type: 3}
   - {fileID: -7243928677647002912, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
   - {fileID: 1497442787838827859, guid: bf3424dc08fc6c443913a465a972c6b2, type: 3}
   platformHolder: {fileID: 1717461419}
