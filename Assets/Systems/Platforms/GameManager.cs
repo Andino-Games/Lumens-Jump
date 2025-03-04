@@ -1,11 +1,13 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 namespace Systems.Platforms
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance;
+
         [HideInInspector] public int points = 0;
         private int highScore;
 
@@ -23,6 +25,14 @@ namespace Systems.Platforms
         [Header("InitialGround")]
         [SerializeField] private GameObject initialGround;
 
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+        }
+
         private void Start()
         {
             LoadHighScore();
@@ -31,12 +41,13 @@ namespace Systems.Platforms
 
         private void Update()
         {
-            pointsText.text = points.ToString();
+            pointsText.text = "Score: " + points; // Asegurar que siempre actualiza el puntaje en pantalla
         }
 
         public void AddPoints(int pointsToAdd)
         {
             points += pointsToAdd;
+            pointsText.text = "Score: " + points; // Actualizar UI de puntaje en tiempo real
         }
 
         public void GameOver()
@@ -59,11 +70,13 @@ namespace Systems.Platforms
             gameOverPanel.SetActive(false);
             creditsPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
+            pointsText.text = "Score: 0"; // Reiniciar la UI de puntaje
         }
 
         public void StartGame()
         {
             mainMenuPanel.SetActive(false);
+            Debug.Log("StartGame llamado"); 
             StartCoroutine(GroundStart());
         }
 
@@ -80,7 +93,7 @@ namespace Systems.Platforms
 
         private IEnumerator GroundStart()
         {
-            yield return new WaitForSeconds(initialDelay);
+            yield return new WaitForSeconds(4f); 
             initialGround.SetActive(false);
         }
 
