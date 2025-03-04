@@ -1,4 +1,5 @@
 using System.Collections;
+using Systems.Procedural;
 using UnityEngine;
 using TMPro;
 
@@ -71,7 +72,34 @@ namespace Systems.Platforms
             creditsPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
             pointsText.text = "Score: 0"; // Reiniciar la UI de puntaje
+            
+            ResetGame();
         }
+        
+        private void ResetGame()
+        {
+            // 🏁 Reiniciar posición del jugador
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                player.transform.position = new Vector3(0, 0, 0); // Ajusta la posición inicial correcta
+                player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // Asegurar que no tenga velocidad residual
+            }
+
+            // 🌱 Hacer visible el suelo inicial
+            if (initialGround != null)
+            {
+                initialGround.SetActive(true);
+            }
+
+            // 🔄 Resetear LevelGenerator
+            LevelGenerator levelGen = FindObjectOfType<LevelGenerator>();
+            if (levelGen != null)
+            {
+                levelGen.ResetLevel();
+            }
+        }
+
 
         public void StartGame()
         {
