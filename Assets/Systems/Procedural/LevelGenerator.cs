@@ -1,14 +1,19 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Systems.Platforms;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Systems.Procedural
 {
     public class LevelGenerator : MonoBehaviour
-    {
+    { 
+        [SerializeField] private Transform lastInitialPlatform;
         public Transform playerTransform;
-        public BoxCollider2D mapBoundsCollider;
+        public PolygonCollider2D mapBoundsCollider;
 
         public float distanceBetweenPlatforms = 3f;
 
@@ -22,17 +27,32 @@ namespace Systems.Procedural
         
         private ObjectPool<Platform> platformPool;
 
+        private bool initPoolFunction;
+
         private void Start()
         {
-            Initialize();
-        }
+            lastPlatformY = lastInitialPlatform.position.y;
+            
+            Vector3 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0f));
+            Vector3 bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
 
-        private void Update()
-        {
-            if (playerTransform.position.y - lastPlatformY > distanceBetweenPlatforms)
+            topLeft.y += 2.72f; 
+            bottomRight.y += 2.72f; 
+            
+            Vector2[] points =
             {
-                Spawn();
-            }
+                new Vector2(topLeft.x, topLeft.y),
+                new Vector2(-topLeft.x, topLeft.y),
+                new Vector2(bottomRight.x, bottomRight.y),
+                new Vector2(-bottomRight.x, bottomRight.y)
+            };
+
+            mapBoundsCollider.points = points;
+            
+            PlayerPrefs.SetFloat("HighScore", 100);
+            float variable = PlayerPrefs.GetFloat("HighScore", 0);
+            
+            Initialize();
         }
 
         private Platform CreatePlatform()
@@ -50,13 +70,12 @@ namespace Systems.Procedural
             platform.SetPool(platformPool);
 
             return platform;
-
         }
 
         private void OnTakePlatformFromPool(Platform platform)
         {
-
             Bounds bounds = mapBoundsCollider.bounds;
+            
             float posy = lastPlatformY + distanceBetweenPlatforms;
             float posx = Random.Range(bounds.min.x, bounds.max.x);
 
@@ -69,7 +88,6 @@ namespace Systems.Procedural
             platform.gameObject.SetActive(true);
         }
 
-
         private void OnReturnPlatformFromPool(Platform platform)
         {
             platform.gameObject.SetActive(false);
@@ -81,16 +99,29 @@ namespace Systems.Procedural
             Destroy(platform.gameObject);
         }
 
-
-
         protected void Initialize()
         {
             platformPool = new(CreatePlatform, OnTakePlatformFromPool, OnReturnPlatformFromPool, OnDestroyPlatform, true, minPoolSize, maxPoolSize);
         }
-
-        protected void Spawn()
+        
+        public void Spawn()
         {
             platformPool.Get();
+        }
+        
+        public void ResetLevel()
+        {
+            // 🗑️ Eliminar TODAS las plataformas existentes
+            foreach (Transform platform in platformHolder)
+            {
+                Destroy(platform.gameObject);
+            }
+
+            // 📍 Reiniciar contador de altura
+            lastPlatformY = 0;
+
+            // 🏗️ Volver a generar el nivel como si estuviera empezando
+            Initialize();
         }
     }
 }

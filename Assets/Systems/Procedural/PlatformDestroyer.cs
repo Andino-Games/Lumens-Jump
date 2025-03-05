@@ -1,30 +1,28 @@
+using Systems.Platforms;
 using UnityEngine;
 
-public class PlatformDestroyer : MonoBehaviour
+namespace Systems.Procedural
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlatformDestroyer : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Platform"))
+        [SerializeField] private LevelGenerator leveGen;
+    
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Destroying platform");
+            if (other.gameObject.CompareTag("Platform"))
+            {
+                Debug.Log("Destroying platform");
 
-            GameObject platformObject = other.gameObject;
+                GameObject platformObject = other.gameObject;
 
-            platformObject.SetActive(false);
-
-
+                platformObject.SetActive(false);
+            
+                Platform platform = platformObject.GetComponent<Platform>();
+            
+                platform?.ReleasePlatform();
+            
+                leveGen?.Spawn();
+            }
         }
     }
 }

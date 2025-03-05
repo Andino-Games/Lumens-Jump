@@ -1,30 +1,30 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Systems.Platforms
 {
-    public class PlatformContact : Platform
+    public class PlatformContact : MonoBehaviour
     {
-        private bool canGivePoints;
-        
+        private bool canGivePoints = true; // Ahora inicia en true para permitir sumar puntos
         private GameManager gameManager;
 
-        public override void Start()
+        private void Start()
         {
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            
-            
         }
 
-        public void AddPoints()
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (canGivePoints)
+            if (other.CompareTag("Player") && canGivePoints)
             {
-                gameManager.AddPoints(1);
+                AddPoints();
+                Debug.Log("Puntos sumados" + gameManager.points);
             }
-            
-            canGivePoints = false;
+        }
+
+        private void AddPoints()
+        {
+            gameManager.AddPoints(1); // Suma 1 punto en el GameManager
+            canGivePoints = false; // Evita que la plataforma siga dando puntos repetidamente
         }
     }
 }
