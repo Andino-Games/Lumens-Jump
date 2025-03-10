@@ -1,4 +1,3 @@
-using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -29,7 +28,7 @@ namespace UnityStandardAssets.CrossPlatformInput
             if (Application.isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting play
 #endif
             {
-                UnityEngine.EventSystems.EventSystem system = GameObject.FindObjectOfType<UnityEngine.EventSystems.EventSystem>();
+                UnityEngine.EventSystems.EventSystem system = GameObject.FindFirstObjectByType<UnityEngine.EventSystems.EventSystem>();
 
                 if (system == null)
                 {//the scene have no event system, spawn one
@@ -37,7 +36,6 @@ namespace UnityStandardAssets.CrossPlatformInput
 
                     o.AddComponent<UnityEngine.EventSystems.EventSystem>();
                     o.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
-                    o.AddComponent<UnityEngine.EventSystems.TouchInputModule>();
                 }
             }
         }
@@ -46,14 +44,18 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         private void OnEnable()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             EditorUserBuildSettings.activeBuildTargetChanged += Update;
+#pragma warning restore CS0618 // Type or member is obsolete
             EditorApplication.update += Update;
         }
 
 
         private void OnDisable()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             EditorUserBuildSettings.activeBuildTargetChanged -= Update;
+#pragma warning restore CS0618 // Type or member is obsolete
             EditorApplication.update -= Update;
         }
 
@@ -69,17 +71,17 @@ namespace UnityStandardAssets.CrossPlatformInput
         {
 #if MOBILE_INPUT
 		EnableControlRig(true);
-		#else
+#else
             EnableControlRig(false);
 #endif
         }
 
 
-        private void EnableControlRig(bool enabled)
+        private void EnableControlRig(bool state)
         {
-            foreach (Transform t in transform)
+            foreach (Transform transformChild in transform)
             {
-                t.gameObject.SetActive(enabled);
+                transformChild.gameObject.SetActive(state);
             }
         }
     }
