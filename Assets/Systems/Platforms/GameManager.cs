@@ -78,7 +78,7 @@ namespace Systems.Platforms
         
         private void ResetGame()
         {
-            // 🏁 Reiniciar posición del jugador
+            // Reiniciar posición del jugador
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
@@ -86,13 +86,13 @@ namespace Systems.Platforms
                 player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // Asegurar que no tenga velocidad residual
             }
 
-            // 🌱 Hacer visible el suelo inicial
+            // Hacer visible el suelo inicial
             if (initialGround != null)
             {
                 initialGround.SetActive(true);
             }
 
-            // 🔄 Resetear LevelGenerator
+            // Resetear LevelGenerator
             LevelGenerator levelGen = FindObjectOfType<LevelGenerator>();
             if (levelGen != null)
             {

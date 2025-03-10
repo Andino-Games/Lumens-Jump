@@ -1,0 +1,23 @@
+# ninja log v5
+2	6182	7633166410621274	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1ba4d5d76e44e3ab
+156	1119	7633166359839112	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	38b9cb1981226fb4
+1121	1840	7633166367261569	C:/Users/PC/Documents/Unity Projects/Lumens-Jump/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/304x2r46/obj/arm64-v8a/libswappywrapper.so	898ec8219ae971cd
+45	4800	7633166396882794	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5d8abf23a155a6a5
+70	5241	7633166400638545	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	63bdc3e200fe42fb
+14	5325	7633166401794706	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2fc28a23d9902c2c
+126	5286	7633166401469566	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	e4432879580d5c61
+141	5795	7633166406607167	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e5334ae714f7751c
+22	5477	7633166402680627	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d144fb6cd16c70f6
+36	5862	7633166407288714	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	972364841e55811a
+6182	6420	7633166412858128	C:/Users/PC/Documents/Unity Projects/Lumens-Jump/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/304x2r46/obj/arm64-v8a/libgame.so	1e361549c70a6b94
+91	739	7633217524786253	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	38b9cb1981226fb4
+740	992	7633217527280227	C:/Users/PC/Documents/Unity Projects/Lumens-Jump/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/304x2r46/obj/arm64-v8a/libswappywrapper.so	898ec8219ae971cd
+71	2495	7633217542180795	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5d8abf23a155a6a5
+43	2513	7633217542215405	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	63bdc3e200fe42fb
+58	2562	7633217542934306	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	e4432879580d5c61
+10	2570	7633217543012217	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d144fb6cd16c70f6
+35	2723	7633217544221599	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2fc28a23d9902c2c
+82	2727	7633217544318588	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e5334ae714f7751c
+51	2940	7633217546811052	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	972364841e55811a
+20	3033	7633217547738502	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1ba4d5d76e44e3ab
+3034	3144	7633217548884063	C:/Users/PC/Documents/Unity Projects/Lumens-Jump/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/304x2r46/obj/arm64-v8a/libgame.so	1e361549c70a6b94
