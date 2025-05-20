@@ -7,11 +7,11 @@ namespace Systems.Player
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private CinemachineCamera cinemachineCamera;
-        private GameManager gameManager;
+        private GameManager _gameManager;
 
         private void Start()
         {
-            gameManager = FindObjectOfType<GameManager>(); // Encuentra el GameManager en la escena
+            _gameManager = FindAnyObjectByType<GameManager>(); // Encuentra el GameManager en la escena
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +25,7 @@ namespace Systems.Player
 
         private void GameOver()
         {
-            gameManager.GameOver(); // Llama al Game Over del GameManager
+            _gameManager.GameOver(); // Llama al Game Over del GameManager
         }
     }
 }
