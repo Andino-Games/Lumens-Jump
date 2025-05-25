@@ -8,28 +8,14 @@ namespace Systems.Platforms
 {
     public class GameManager : MonoBehaviour
     {
-        [HideInInspector] public int points = 0;
-        private int highScore;
-
-        public float initialDelay = 5f;
-
         private TextMeshProUGUI pointsText;
         private TextMeshProUGUI finalScoreText;
         private TextMeshProUGUI highScoreText;
-
-        //  Ya no necesitamos estos paneles como variables,
-        //  ya que están en escenas separadas
-        //  private GameObject gameOverPanel;
-        //  private GameObject mainMenuPanel;
-        //  private GameObject creditsPanel;
 
         [SerializeField] private GameObject initialGround;
 
         private void Start()
         {
-            LoadHighScore();
-
-            //  Dependiendo de la escena activa, asignamos las referencias de la UI
             Scene currentScene = SceneManager.GetActiveScene();
 
             if (currentScene.name == "GameScene")
@@ -40,56 +26,40 @@ namespace Systems.Platforms
             {
                 finalScoreText = GameObject.Find("FinalScoreText").GetComponent<TextMeshProUGUI>();
                 highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
+                ShowFinalScore();
             }
-            //  No necesitamos buscar referencias en MainMenuScene o CreditsScene,
-            //  ya que no se utilizan en este script
-
-            //ShowMainMenu();  //  Esto ya no es necesario aquí
+            else if (currentScene.name == "MainMenuScene")
+            {
+                PersistentData.Instance.LoadHighScore(); //  Load High Score in MainMenu
+            }
         }
 
         private void Update()
         {
             if (pointsText != null)
             {
-                pointsText.text = "Score: " + points;
+                pointsText.text = "Score: " + PersistentData.Instance.currentScore;
             }
         }
 
         public void AddPoints(int pointsToAdd)
         {
-            points += pointsToAdd;
+            PersistentData.Instance.currentScore += pointsToAdd;
             if (pointsText != null)
             {
-                pointsText.text = "Score: " + points;
+                pointsText.text = "Score: " + PersistentData.Instance.currentScore;
             }
         }
 
         public void GameOver()
         {
-            SceneManager.LoadScene("GameOverScene");  //  Cargamos la escena de Game Over
-            //if (gameOverPanel != null) gameOverPanel.SetActive(true);
-            //if (finalScoreText != null) finalScoreText.text = "Final Score: " + points;
-
-            if (points > highScore)
-            {
-                highScore = points;
-                PlayerPrefs.SetInt("HighScore", highScore);
-                PlayerPrefs.Save();
-            }
-            //if (highScoreText != null) highScoreText.text = "High Score: " + highScore;
-
-            //StartCoroutine(ReturnToMainMenu());
+            PersistentData.Instance.SaveHighScore();
+            SceneManager.LoadScene("GameOverScene");
         }
 
         public void ShowMainMenu()
         {
-            SceneManager.LoadScene("MainMenuScene");  //  Cargamos la escena del Main Menu
-            points = 0;
-            //if (gameOverPanel != null) gameOverPanel.SetActive(false);
-            //if (creditsPanel != null) creditsPanel.SetActive(false);
-            //if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
-            //if (pointsText != null) pointsText.text = "Score: 0";
-
+            SceneManager.LoadScene("MainMenuScene");
             ResetGame();
         }
 
@@ -106,6 +76,8 @@ namespace Systems.Platforms
 
             LevelGenerator levelGen = FindObjectOfType<LevelGenerator>();
             if (levelGen != null) levelGen.ResetLevel();
+
+            PersistentData.Instance.ResetScore();
         }
 
         public void StartGame()
@@ -116,8 +88,6 @@ namespace Systems.Platforms
         public void ShowCredits()
         {
             SceneManager.LoadScene("CreditsScene");
-            //if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
-            //if (creditsPanel != null) creditsPanel.SetActive(true);
         }
 
         public void ExitGame()
@@ -131,15 +101,10 @@ namespace Systems.Platforms
             if (initialGround != null) initialGround.SetActive(false);
         }
 
-        private void LoadHighScore()
+        private void ShowFinalScore()
         {
-            highScore = PlayerPrefs.GetInt("HighScore", 0);
-        }
-
-        private IEnumerator ReturnToMainMenu()
-        {
-            yield return new WaitForSeconds(5f);
-            SceneManager.LoadScene("MainMenuScene");
+            if (finalScoreText != null) finalScoreText.text = "Final Score: " + PersistentData.Instance.currentScore;
+            if (highScoreText != null) highScoreText.text = "High Score: " + PersistentData.Instance.highScore;
         }
     }
 }

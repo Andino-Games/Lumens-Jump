@@ -4,27 +4,27 @@ namespace Systems.Platforms
 {
     public class PlatformContact : MonoBehaviour
     {
-        private bool canGivePoints = true;
-        private GameManager gameManager;
+        private bool _canGivePoints = true;
+        private GameManager _gameManager;
 
         private void Start()
         {
-            gameManager = FindObjectOfType<GameManager>();
+            _gameManager = FindObjectOfType<GameManager>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player") && canGivePoints)
+            if (other.CompareTag("Player") && _canGivePoints)
             {
                 AddPoints();
-                Debug.Log("Puntos sumados" + gameManager.points);
+                Debug.Log("Puntos sumados " + PersistentData.Instance.currentScore);
             }
         }
 
         private void AddPoints()
         {
-            gameManager.AddPoints(1);
-            canGivePoints = false;
+            _gameManager.AddPoints(1);
+            _canGivePoints = false;
         }
     }
 }
