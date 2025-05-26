@@ -1,17 +1,18 @@
 using Systems.Platforms;
 using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 
 namespace Systems.Player
 {
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private CinemachineCamera cinemachineCamera;
-        private GameManager _gameManager;
+        private GameManager gameManager;
 
         private void Start()
         {
-            _gameManager = FindAnyObjectByType<GameManager>(); // Encuentra el GameManager en la escena
+            gameManager = FindObjectOfType<GameManager>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -19,13 +20,14 @@ namespace Systems.Player
             if (other.CompareTag("GameOverZone"))
             {
                 cinemachineCamera.Follow = null;
-                Invoke(nameof(GameOver), 1f);
+                Invoke(nameof(HandleGameOver), 1f);
             }
         }
 
-        private void GameOver()
+        private void HandleGameOver()
         {
-            _gameManager.GameOver(); // Llama al Game Over del GameManager
+            gameManager.GameOver();
+            //  SceneManager.LoadScene("GameOverScene");  // Carga la escena de Game Over
         }
     }
 }
