@@ -111,7 +111,7 @@ namespace Systems.Procedural
         
         public void ResetLevel()
         {
-            // 🗑️ Eliminar TODAS las plataformas existentes
+            
             foreach (Transform platform in platformHolder)
             {
                 Destroy(platform.gameObject);
