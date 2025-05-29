@@ -27,7 +27,7 @@ namespace Systems.Platforms
         {
             if (contact != null)
             {
-                contact.gameObject.SetActive(true); // Asegurar que esté activo al usarse
+                contact.gameObject.SetActive(true); 
                 contact.SendMessage("AddPoints", SendMessageOptions.DontRequireReceiver);
             }
         }
