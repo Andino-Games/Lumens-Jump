@@ -111,16 +111,16 @@ namespace Systems.Procedural
         
         public void ResetLevel()
         {
-            // 🗑️ Eliminar TODAS las plataformas existentes
+            
             foreach (Transform platform in platformHolder)
             {
                 Destroy(platform.gameObject);
             }
 
-            // 📍 Reiniciar contador de altura
+            
             lastPlatformY = 0;
 
-            // 🏗️ Volver a generar el nivel como si estuviera empezando
+            
             Initialize();
         }
     }
