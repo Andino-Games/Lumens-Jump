@@ -9,18 +9,15 @@ namespace Systems.Procedural
     
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Platform"))
+            // Lógica simple y directa: si una plataforma entra aquí, se recicla.
+            if (other.CompareTag("Platform"))
             {
-                Debug.Log("Destroying platform");
-
-                GameObject platformObject = other.gameObject;
-
-                platformObject.SetActive(false);
+                Platform platform = other.GetComponent<Platform>();
             
-                Platform platform = platformObject.GetComponent<Platform>();
-            
+                // Llama al método para liberar la plataforma de vuelta al pool.
                 platform?.ReleasePlatform();
             
+                // Pide al generador que cree una nueva plataforma arriba.
                 leveGen?.Spawn();
             }
         }

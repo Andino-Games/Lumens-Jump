@@ -407,12 +407,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339138630}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.008180074, y: -4.5915947, z: 10}
+  m_LocalScale: {x: 0.4159546, y: 0.4159546, z: 0.4159546}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 711998421}
+  m_Father: {fileID: 513506891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &339138632
 BoxCollider2D:
@@ -473,6 +473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leveGen: {fileID: 1113100402}
+  playerTransform: {fileID: 711998421}
+  verticalDistanceThreshold: 5
 --- !u!1 &513506888
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +569,7 @@ Transform:
   m_Children:
   - {fileID: 1865113367}
   - {fileID: 97482114}
+  - {fileID: 339138631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &513506892
@@ -745,10 +748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8615648123826762830, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 339138631}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
 --- !u!4 &711998421 stripped
@@ -927,14 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4432fda50f05904ab83ea9b70051833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
-  initialDelay: 5
-  pointsText: {fileID: 1216549185}
-  finalScoreText: {fileID: 0}
-  highScoreText: {fileID: 0}
-  gameOverPanel: {fileID: 0}
-  mainMenuPanel: {fileID: 0}
-  creditsPanel: {fileID: 0}
   initialGround: {fileID: 2093766722}
 --- !u!1001 &1053627782
 PrefabInstance:

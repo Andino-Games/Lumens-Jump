@@ -1,5 +1,5 @@
-using System;
-using Unity.Cinemachine;
+using Systems.Platforms;
+using Unity.Cinemachine; // Asegúrate de que este 'using' está presente para Cinemachine
 using UnityEngine;
 
 namespace Systems.Player
@@ -8,99 +8,59 @@ namespace Systems.Player
     {
         [Header("Jump Config")]
         public float jumpForce = 7f;
-        public float maxJumpForce = 15f; // Límite máximo de fuerza de salto
+        public float maxJumpForce = 15f;
         public LayerMask groundLayer;
-        public LayerMask trampolineLayer;
-        public Transform groundCheckOrigin;
-        public float groundCheckDistance = 0.6f;
 
         [Header("Game Difficulty")]
-        public float difficultyMultiplier = 1.02f; // Factor de aumento progresivo
-        public float difficultyIncreaseRate = 5f; // Cada cuántos segundos aumenta la dificultad
+        public float difficultyMultiplier = 1.02f;
+        public float difficultyIncreaseRate = 5f;
         
-        private float timeSinceStart;
-        private float initialJumpForce;
-        private float initialGravityScale;
-        
-        private RaycastHit2D hit2D;
-        private Rigidbody2D rb;
-        public bool isJumping;
-        private bool isGrounded;
-        private bool isTrampoline;
-        private PlayerEffects playerEffects;
-        private PlayerAnimatorManager playerAnimator;
-        
+        // --- SECCIÓN DE CÁMARA RE-AÑADIDA ---
+        [Header("Camera Config")]
         public CinemachineCamera playerCamera;
         public Transform cameraBounds;
+        // --- FIN DE SECCIÓN RE-AÑADIDA ---
 
+        public bool isJumping;
+        private float timeSinceStart;
+        private Rigidbody2D rb;
+        private PlayerEffects playerEffects;
+        
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             playerEffects = GetComponent<PlayerEffects>();
-            playerAnimator = GetComponent<PlayerAnimatorManager>();
-            
-            // Guardar valores iniciales
-            initialJumpForce = jumpForce;
-            initialGravityScale = rb.gravityScale;
         }
 
         void Update()
         {
             timeSinceStart += Time.deltaTime;
             
-            // Aumentar dificultad cada cierto tiempo
             if (timeSinceStart >= difficultyIncreaseRate) 
             {
                 IncreaseDifficulty();
-                timeSinceStart = 0; // Reinicia el contador
+                timeSinceStart = 0;
             }
-
-            if (rb.linearVelocity.y >= 0) return;
-
-            Vector2 direction = Vector2.down;
-            isGrounded = Physics2D.Raycast(groundCheckOrigin.position, direction, groundCheckDistance, groundLayer);
-            GetRaycastTrampoline();
-
-            if (isGrounded)
+            
+            // --- LLAMADA AL MÉTODO RE-AÑADIDA ---
+            // Llamamos a la lógica de la cámara en cada fotograma.
+            CameraFollowCheck();
+            // --- FIN DE LLAMADA ---
+        }
+        
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (((1 << collision.gameObject.layer) & groundLayer) != 0)
             {
-                isJumping = true;
-                playerAnimator.animator.SetTrigger("Jump");
+                PlatformContact contact = collision.gameObject.GetComponent<PlatformContact>();
+                contact?.GrantPoints();
                 Jump();
             }
-            else
-            {
-                isJumping = false;
-            }
-
-            if (isTrampoline)
-            {
-                hit2D.collider.GetComponent<PowerUps.Trampoline>().RaycastPowerUp();
-            }
-
-            CameraFollowCheck();
         }
-
-        private void GetRaycastTrampoline()
-        {
-            hit2D = Physics2D.Raycast(groundCheckOrigin.position, Vector2.down, groundCheckDistance, trampolineLayer);
-            isTrampoline = hit2D.collider != null;
-        }
-
-        private void CameraFollowCheck()
-        {
-            if (isJumping)
-            {
-                cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
-                playerCamera.Follow = transform;
-            }
-            else if (rb.linearVelocity.y < 0)
-            {
-                playerCamera.Follow = null;
-            }
-        }
-
+        
         void Jump()
         {
+            isJumping = true;
             playerEffects?.PlayJumpEffect();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
@@ -113,20 +73,39 @@ namespace Systems.Player
 
         private void IncreaseDifficulty()
         {
-            // Incrementa la fuerza de salto sin pasarse del máximo
             if (jumpForce < maxJumpForce)
             {
                 jumpForce *= difficultyMultiplier;
             }
-            
-            // Aumenta la gravedad progresivamente
             rb.gravityScale *= difficultyMultiplier;
         }
-
-        private void OnDrawGizmos()
+        
+        
+        private void CameraFollowCheck()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(groundCheckOrigin.position, groundCheckOrigin.position + Vector3.down * groundCheckDistance);
+            // Si la velocidad vertical es positiva (subiendo) o cero, la cámara sigue al jugador.
+            if (rb.linearVelocity.y >= 0)
+            {
+                if (playerCamera != null)
+                {
+                    playerCamera.Follow = transform;
+                }
+                // También actualizamos la posición del "límite" inferior de la cámara mientras subimos.
+                if (cameraBounds != null)
+                {
+                    cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
+                }
+            }
+            // Si la velocidad es negativa (cayendo), la cámara deja de seguir al jugador.
+            // Esto permite que el jugador caiga fuera de la pantalla y active el "GameOverZone".
+            else
+            {
+                if (playerCamera != null)
+                {
+                    playerCamera.Follow = null;
+                }
+            }
         }
+        
     }
 }

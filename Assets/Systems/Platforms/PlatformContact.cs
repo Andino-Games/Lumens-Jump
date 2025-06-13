@@ -4,7 +4,7 @@ namespace Systems.Platforms
 {
     public class PlatformContact : MonoBehaviour
     {
-        private bool _canGivePoints = true;
+        private bool _canGivePoints;
         private GameManager _gameManager;
 
         private void Start()
@@ -12,17 +12,16 @@ namespace Systems.Platforms
             _gameManager = FindObjectOfType<GameManager>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnEnable()
         {
-            if (other.CompareTag("Player") && _canGivePoints)
-            {
-                AddPoints();
-                Debug.Log("Puntos sumados " + PersistentData.Instance.currentScore);
-            }
+            // Esto reinicia el estado de la plataforma cada vez que se activa desde el pool.
+            _canGivePoints = true;
         }
 
-        private void AddPoints()
+        public void GrantPoints()
         {
+            if (!_canGivePoints) return;
+            
             _gameManager.AddPoints(1);
             _canGivePoints = false;
         }
