@@ -15,16 +15,23 @@ namespace Systems.Procedural
         public Transform playerTransform;
         public PolygonCollider2D mapBoundsCollider;
 
-        public float distanceBetweenPlatforms = 3f;
+        //Nuevo ajuste del espaciado de plataformas
+        [Header("Platform spacing")]
+        [SerializeField] private float minVerticalDistance = 2f;
+        [SerializeField] private float maxVerticalDistance = 3.5f;
+        [SerializeField] private float maxHorizontalOffset = 3f;
+        //public float distanceBetweenPlatforms = 3f;
 
         private float lastPlatformY;
+        private float lastPlatformX;//variable para controlar la posición X de la última plataforma generada
 
         [SerializeField]
         private List<Platform> platforms;
         public Transform platformHolder;
         public int minPoolSize = 10;
         public int maxPoolSize = 50;
-        
+        private float generationThreshold;
+
         private ObjectPool<Platform> platformPool;
 
         private bool initPoolFunction;
@@ -55,6 +62,16 @@ namespace Systems.Procedural
             Initialize();
         }
 
+        //Integracion de metodo Update para la generación de plataformas
+        private void Update()
+        {
+            if (playerTransform.position.y > generationThreshold)
+            {
+                Spawn();
+                generationThreshold = lastPlatformY;
+            }
+        }
+
         private Platform CreatePlatform()
         {
             if (platforms.Count == 0)
@@ -76,14 +93,19 @@ namespace Systems.Procedural
         {
             Bounds bounds = mapBoundsCollider.bounds;
             
-            float posy = lastPlatformY + distanceBetweenPlatforms;
-            float posx = Random.Range(bounds.min.x, bounds.max.x);
+            float randomDistance = Random.Range(minVerticalDistance, maxVerticalDistance);// distancia aleatoria entre plataformas
+            float posy = lastPlatformY + randomDistance;// posición Y de la nueva plataforma
+
+            float minPosX = Mathf.Max(bounds.min.x, lastPlatformX - maxHorizontalOffset);// posición mínima X de la nueva plataforma, asegurando que no se salga del mapa
+            float maxPosX = Mathf.Min(bounds.max.x, lastPlatformX + maxHorizontalOffset);// posición máxima X de la nueva plataforma, asegurando que no se salga del mapa
+            float posx = Random.Range(minPosX, maxPosX);
 
             Vector3 platformSpawnPosition = new (posx, posy, 0);
 
             platform.transform.position = platformSpawnPosition;
 
             lastPlatformY = platform.transform.position.y;
+            lastPlatformX = platform.transform.position.x;
 
             platform.gameObject.SetActive(true);
         }
@@ -102,6 +124,13 @@ namespace Systems.Procedural
         protected void Initialize()
         {
             platformPool = new(CreatePlatform, OnTakePlatformFromPool, OnReturnPlatformFromPool, OnDestroyPlatform, true, minPoolSize, maxPoolSize);
+            
+            generationThreshold = lastPlatformY;//se añadió para que la generación de plataformas comience desde la última plataforma generada
+
+            for (int i = 0; i < minPoolSize; i++) //ciclo para llenar el pool con plataformas iniciales
+            {
+                Spawn();
+            }
         }
         
         public void Spawn()
