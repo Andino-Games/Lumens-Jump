@@ -4,27 +4,26 @@ namespace Systems.Platforms
 {
     public class PlatformContact : MonoBehaviour
     {
-        private bool canGivePoints = true; // Ahora inicia en true para permitir sumar puntos
-        private GameManager gameManager;
+        private bool _canGivePoints;
+        private GameManager _gameManager;
 
         private void Start()
         {
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _gameManager = FindObjectOfType<GameManager>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnEnable()
         {
-            if (other.CompareTag("Player") && canGivePoints)
-            {
-                AddPoints();
-                Debug.Log("Puntos sumados" + gameManager.points);
-            }
+            // Esto reinicia el estado de la plataforma cada vez que se activa desde el pool.
+            _canGivePoints = true;
         }
 
-        private void AddPoints()
+        public void GrantPoints()
         {
-            gameManager.AddPoints(1); // Suma 1 punto en el GameManager
-            canGivePoints = false; // Evita que la plataforma siga dando puntos repetidamente
+            if (!_canGivePoints) return;
+            
+            _gameManager.AddPoints(1);
+            _canGivePoints = false;
         }
     }
 }
