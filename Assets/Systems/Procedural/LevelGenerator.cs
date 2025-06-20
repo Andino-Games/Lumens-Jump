@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Systems.Platforms;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -92,12 +93,25 @@ namespace Systems.Procedural
         private void OnTakePlatformFromPool(Platform platform)
         {
             Bounds bounds = mapBoundsCollider.bounds;
-            
+
+            // Asegurarse de que la plataforma tenga un collider para calcular su ancho
+            var platformCollider = platform.GetComponent<Collider2D>();
+            if (platformCollider == null) 
+            {
+                Debug.LogError("La plataforma no tiene un collider para calcular su ancho");
+                return;
+            }
+
+            float platformWidth = platformCollider.bounds.size.x / 2; // Ancho de la plataforma dividido por 2 para obtener el radio
+
+            float spawnableBounsMinX = bounds.min.x + platformWidth; // posición mínima X de la nueva plataforma, asegurando que no se salga del mapa
+            float spawnableBounsMaxX = bounds.max.x - platformWidth; // posición máxima X de la nueva plataforma, asegurando que no se salga del mapa
+
             float randomDistance = Random.Range(minVerticalDistance, maxVerticalDistance);// distancia aleatoria entre plataformas
             float posy = lastPlatformY + randomDistance;// posición Y de la nueva plataforma
 
-            float minPosX = Mathf.Max(bounds.min.x, lastPlatformX - maxHorizontalOffset);// posición mínima X de la nueva plataforma, asegurando que no se salga del mapa
-            float maxPosX = Mathf.Min(bounds.max.x, lastPlatformX + maxHorizontalOffset);// posición máxima X de la nueva plataforma, asegurando que no se salga del mapa
+            float minPosX = Mathf.Max(spawnableBounsMinX, lastPlatformX - maxHorizontalOffset);// posición mínima X de la nueva plataforma, asegurando que no se salga del mapa
+            float maxPosX = Mathf.Min(spawnableBounsMaxX, lastPlatformX + maxHorizontalOffset);// posición máxima X de la nueva plataforma, asegurando que no se salga del mapa
             float posx = Random.Range(minPosX, maxPosX);
 
             Vector3 platformSpawnPosition = new (posx, posy, 0);
