@@ -10,8 +10,19 @@ namespace Systems.Platforms
         int goalPoint = 0;
         public float moveSpeed = 2;
 
+        [Header("CONTROL DE VELOCIDAD DE LA PLATAFORMA")]
+        [SerializeField] private float timeToIncreaseSpeed = 12f;
+        [SerializeField] private float currentTime = 0f;
+        [SerializeField] private float speedIncrease = 1.1f;
+
         private void Update()
         {
+            currentTime += Time.deltaTime;
+            if (currentTime >= timeToIncreaseSpeed)
+            {
+                moveSpeed *= speedIncrease;
+                currentTime = 0f; // Resetea el temporizador
+            }
             MoveToNextPoint();
         }
 
