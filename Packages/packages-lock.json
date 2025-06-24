@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.andinogames.powerups": {
+      "version": "file:com.andinogames.powerups",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,
