@@ -4,10 +4,17 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-namespace Systems.Platforms
+
+namespace Systems.Manager 
 {
     public class GameManager : MonoBehaviour
     {
+        
+        [Header("Pause Menu")]
+        [SerializeField] private GameObject pausePanel;
+        private bool isPaused = false;
+        
+
         private TextMeshProUGUI pointsText;
         private TextMeshProUGUI finalScoreText;
         private TextMeshProUGUI highScoreText;
@@ -16,6 +23,10 @@ namespace Systems.Platforms
 
         private void Start()
         {
+            if (pausePanel != null) pausePanel.SetActive(false);
+            
+            Time.timeScale = 1f;
+
             Scene currentScene = SceneManager.GetActiveScene();
 
             if (currentScene.name == "GameScene")
@@ -30,25 +41,52 @@ namespace Systems.Platforms
             }
             else if (currentScene.name == "MainMenuScene")
             {
-                PersistentData.Instance.LoadHighScore(); //  Load High Score in MainMenu
+                PersistentData.Instance.LoadHighScore();
             }
         }
 
         private void Update()
         {
+
             if (pointsText != null)
             {
                 pointsText.text = "Score: " + PersistentData.Instance.currentScore;
             }
         }
+        
+
+        public void TogglePause()
+        {
+            isPaused = !isPaused;
+            if (isPaused)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+
+        public void PauseGame()
+        {
+            isPaused = true;
+            Time.timeScale = 0f; 
+            if (pausePanel != null) pausePanel.SetActive(true);
+        }
+
+        public void ResumeGame()
+        {
+            isPaused = false;
+            Time.timeScale = 1f; // Reanuda el tiempo del juego.
+            if (pausePanel != null) pausePanel.SetActive(false);
+        }
+
+        
 
         public void AddPoints(int pointsToAdd)
         {
             PersistentData.Instance.currentScore += pointsToAdd;
-            if (pointsText != null)
-            {
-                pointsText.text = "Score: " + PersistentData.Instance.currentScore;
-            }
         }
 
         public void GameOver()
@@ -59,12 +97,15 @@ namespace Systems.Platforms
 
         public void ShowMainMenu()
         {
+            
+            Time.timeScale = 1f;
             SceneManager.LoadScene("MainMenuScene");
             ResetGame();
         }
 
         private void ResetGame()
         {
+            
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
@@ -85,20 +126,10 @@ namespace Systems.Platforms
             SceneManager.LoadScene("GameScene");
         }
 
-        public void ShowCredits()
-        {
-            SceneManager.LoadScene("CreditsScene");
-        }
-
         public void ExitGame()
         {
+            // Esto solo funciona en un build del juego, no en el editor.
             Application.Quit();
-        }
-
-        private IEnumerator GroundStart()
-        {
-            yield return new WaitForSeconds(4f);
-            if (initialGround != null) initialGround.SetActive(false);
         }
 
         private void ShowFinalScore()

@@ -1,3 +1,4 @@
+using Systems.Manager;
 using Systems.Platforms;
 using UnityEngine;
 using Unity.Cinemachine;
@@ -27,7 +28,6 @@ namespace Systems.Player
         private void HandleGameOver()
         {
             gameManager.GameOver();
-            //  SceneManager.LoadScene("GameOverScene");  // Carga la escena de Game Over
         }
     }
 }
