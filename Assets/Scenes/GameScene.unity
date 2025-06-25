@@ -473,8 +473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leveGen: {fileID: 1113100402}
-  playerTransform: {fileID: 711998421}
-  verticalDistanceThreshold: 5
 --- !u!1 &513506888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1256,9 @@ MonoBehaviour:
   lastInitialPlatform: {fileID: 316267364}
   playerTransform: {fileID: 711998421}
   mapBoundsCollider: {fileID: 1955375098}
-  distanceBetweenPlatforms: 1.5
+  minVerticalDistance: 2
+  maxVerticalDistance: 3.25
+  maxHorizontalOffset: 3
   platforms:
   - {fileID: -7243928677647002912, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
   - {fileID: 1497442787838827859, guid: bf3424dc08fc6c443913a465a972c6b2, type: 3}
