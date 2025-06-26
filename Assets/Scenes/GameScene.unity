@@ -1605,7 +1605,7 @@ MonoBehaviour:
   playerTransform: {fileID: 711998421}
   mapBoundsCollider: {fileID: 1955375098}
   minVerticalDistance: 2
-  maxVerticalDistance: 3.25
+  maxVerticalDistance: 2.8
   maxHorizontalOffset: 3
   platforms:
   - {fileID: -7243928677647002912, guid: 1dee68104a5823241a106d7f1dba48a2, type: 3}
