@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Systems.Procedural
+namespace Systems.PowerUps
 {
-    public class PowerUpsGenerator : Generator
+    public class PowerUpsGenerator : MonoBehaviour
     {
         public List<GameObject> powerUps = new List<GameObject>();
         
@@ -15,8 +15,7 @@ namespace Systems.Procedural
         [SerializeField] private List<GameObject> instancedPowerUps = new List<GameObject>();
         public float lastPowerUpPosition;
         
-        
-        protected override void Initialize()
+        protected void Initialize()
         {
             for (int i = 0; i < powerUpsCount; i++)
             {
@@ -24,7 +23,7 @@ namespace Systems.Procedural
             }
         }
 
-        protected override void Spawn()
+        private void Spawn()
         {
             Bounds bounds = mapBoundsCollider.bounds;
             float posY = lastPowerUpPosition + distanceBetweenPowerUps;
