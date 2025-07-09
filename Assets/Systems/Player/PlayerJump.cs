@@ -1,5 +1,4 @@
-using Systems.Platforms;
-using Unity.Cinemachine; // Asegúrate de que este 'using' está presente para Cinemachine
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Systems.Player
@@ -10,6 +9,7 @@ namespace Systems.Player
         public float jumpForce = 7f;
         public float maxJumpForce = 15f;
         public LayerMask groundLayer;
+        public Transform groundCheck;
 
         [Header("Game Difficulty")]
         public float difficultyMultiplier = 1.02f;
@@ -42,13 +42,11 @@ namespace Systems.Player
             CameraFollowCheck();
         }
         
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (((1 << collision.gameObject.layer) & groundLayer) != 0 && 
-                _rb.linearVelocityY <= 0)
+                _rb.linearVelocityY <= 0 && collision.transform.position.y <= groundCheck.position.y)
             {
-                PlatformContact contact = collision.gameObject.GetComponent<PlatformContact>();
-                contact?.GrantPoints();
                 Jump();
             }
         }
@@ -56,6 +54,7 @@ namespace Systems.Player
         void Jump()
         {
             _playerEffects?.PlayJumpEffect();
+            _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
         }
 

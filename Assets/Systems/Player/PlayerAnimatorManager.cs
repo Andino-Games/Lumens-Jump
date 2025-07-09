@@ -4,14 +4,14 @@ namespace Systems.Player
 {
     public class PlayerAnimatorManager : MonoBehaviour
     {
-        [HideInInspector] public Animator animator;
-    
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        private Animator _animator;
+        private Rigidbody2D _rigidbody;
+        
         void Start()
         {
-            animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
-
-    
+        
     }
 }

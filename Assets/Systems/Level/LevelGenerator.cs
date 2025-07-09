@@ -3,6 +3,8 @@ using Systems.Level.Data;
 using UnityEngine;
 using UnityEngine.Pool;
 using Systems.Level.Platforms;
+using Systems.Manager;
+using Systems.PowerUps;
 
 namespace Systems.Level
 {
@@ -20,15 +22,14 @@ namespace Systems.Level
 
         [Header("Generación")]
         [SerializeField] private int initialSpawnCount = 6;
-        [SerializeField] private float spawnInterval = 2f;
+        [SerializeField] private float spawnYInterval = 2f;
+        [SerializeField] private float spawnXInterval = 0.5f;
 
-        private readonly List<ObjectPool<Platform>> _pools = new();
-        private readonly List<Platform> _active = new();
-        private float _nextSpawnY;
-        private float _startReferenceY;
+        [Header("PowerUp Generator")]
+        [SerializeField] private PowerUpsGenerator powerUpsGenerator;
         
-        private float _leftScreenX;
-        private float _rightScreenX;
+        private readonly List<ObjectPool<Platform>> _pools = new();
+        private float _nextSpawnY;
         
         private void Start()
         {
@@ -36,39 +37,86 @@ namespace Systems.Level
             
             if (!mainCamera)
             {
-                Debug.LogError("No se encontró la cámara principal. Asegúrate de que haya una cámara con la etiqueta 'MainCamera'.");
+                Debug.LogError("No se encontró la cámara principal. Asegúrate de que haya una cámara con la etiqueta 'MainCamera'.", this);
                 return;
             }
             
             if(!playerTransform)
             {
-                Debug.LogError("No se ha asignado el transform del jugador. Por favor, asígnalo en el inspector.");
+                Debug.LogError("No se ha asignado el transform del jugador. Por favor, asígnalo en el inspector.", this);
                 return;
             }
             
-            // Configuramos los límites de la pantalla
-            _leftScreenX  = mainCamera.ScreenToWorldPoint(Vector3.zero).x;
-            _rightScreenX = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+            if (platformPrefabs == null || platformPrefabs.Count == 0)
+            {
+                Debug.LogError("No se han asignado prefabs de plataformas. Por favor, asígnalos en el inspector.", this);
+                return;
+            }
             
-            _nextSpawnY = playerTransform.position.y + spawnInterval;
+            InitializePools();
+        }
+        
+        private void OnPlatformUsed()
+        {
+            GameManager.Instance.AddPoints(1);
+            Spawn();
+        }
+        
+        private void Spawn(ObjectPool<Platform> pool = null)
+        {
+            if (pool == null)
+            {
+                // Elegir pool aleatoria
+                int idx = Random.Range(0, _pools.Count);
+                pool = _pools[idx];
+            }
             
+            Platform plat = pool.Get();
+
+            // Calcular PlatformData
+            float spawnX = Random.Range(-spawnXInterval, spawnXInterval);
+            
+            PlatformData data = new PlatformData
+            {
+                position = new Vector3(spawnX, _nextSpawnY, 0f),
+                hasBeenUsed = false,
+            };
+            
+            _nextSpawnY += spawnYInterval;
+            
+            // Inicializar con datos
+            plat.Initialize(pool, data);
+            
+            // Generar PowerUp si corresponde
+            Transform powerUpTransform = powerUpsGenerator.GeneratePowerUp();
+            if (powerUpTransform)
+            {
+                powerUpTransform.SetParent(plat.transform);
+                powerUpTransform.localPosition = Vector3.zero + new Vector3(0f, 0.5f, 0f);
+            }
+        }
+
+        private void InitializePools()
+        {
             // Para cada prefab creamos una pool y la precalentamos
             foreach (Platform prefab in platformPrefabs)
             {
                 ObjectPool<Platform> pool = new ObjectPool<Platform>(
                     createFunc: () =>
                     {
-                        return Instantiate(prefab, platformHolder);
+                        Platform platform = Instantiate(prefab, platformHolder);
+                        platform.gameObject.SetActive(false);
+                        return platform;
                     },
-                    actionOnGet: plat =>
+                    actionOnGet: platform =>
                     {
-                        plat.gameObject.SetActive(true);
-                        _active.Add(plat);
+                        platform.gameObject.SetActive(true);
+                        platform.onPlatformUsed.AddListener(OnPlatformUsed);
                     },
-                    actionOnRelease: plat =>
+                    actionOnRelease: platform =>
                     {
-                        plat.gameObject.SetActive(false);
-                        _active.Remove(plat);
+                        platform.gameObject.SetActive(false);
+                        platform.onPlatformUsed.RemoveListener(OnPlatformUsed);
                     },
                     actionOnDestroy: plat =>
                     {
@@ -90,57 +138,12 @@ namespace Systems.Level
             }
             
             // Spawnear plataformas iniciales
-            _startReferenceY = playerTransform.position.y;
-            _nextSpawnY = 0;
+            ObjectPool<Platform> defaultPool = _pools[0];
+            _nextSpawnY = playerTransform.position.y + spawnYInterval - 0.5f;
             for (int i = 0; i < initialSpawnCount; i++)
             {
-                _nextSpawnY += spawnInterval;
-                Spawn();
+                Spawn(defaultPool);
             }
-        }
-
-        private void Update()
-        {
-            // Spawn según la posición del jugador
-            if (playerTransform.position.y >= _nextSpawnY)
-            {
-                _nextSpawnY += spawnInterval;
-                Spawn();
-            }
-        }
-
-        private void Spawn()
-        {
-            // Elegir pool aleatoria
-            int idx = Random.Range(0, _pools.Count);
-            ObjectPool<Platform> pool = _pools[idx];
-            Platform plat = pool.Get();
-
-            // Calcular PlatformData
-            float spawnY = _nextSpawnY;
-            float spawnX = Random.Range(_leftScreenX, _rightScreenX);
-
-            PlatformData data = new PlatformData
-            {
-                position    = new Vector3(spawnX, spawnY, 0f),
-                hasBeenUsed = false,
-                points      = 1
-            };
-
-            // Inicializar con datos
-            plat.Initialize(pool, data);
-        }
-
-        public void ResetLevel()
-        {
-            // devolver todas las plataformas activas
-            for (int i = _active.Count - 1; i >= 0; i--)
-            {
-                _active[i].DestroyPlatform();
-            }
-
-            // recalcular el siguiente Y de spawn
-            _nextSpawnY = playerTransform.position.y + spawnInterval;
         }
     }
 }

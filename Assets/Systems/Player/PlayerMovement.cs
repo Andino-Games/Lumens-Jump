@@ -16,7 +16,7 @@ namespace Systems.Player
 
         private Vector3 targetPosition;
         private Rigidbody2D rb;
-        private PlayerEffects playerEffects; // Referencia a PlayerEffects
+        private PlayerEffects playerEffects;
         private SpriteRenderer spriteRenderer;
 
         void Start()
@@ -28,7 +28,13 @@ namespace Systems.Player
 
         void Update()
         {
-            float moveX = joystick.Horizontal * speed * Time.deltaTime;
+            float moveX = 0f;
+            
+#if UNITY_EDITOR
+            moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime; 
+#else
+            moveX = joystick.Horizontal * speed * Time.deltaTime;
+#endif
             targetPosition = transform.position + new Vector3(moveX, 0, 0);
 
             Flip(moveX);

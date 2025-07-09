@@ -1,42 +1,31 @@
+using Systems.Utils;
 using UnityEngine;
 
-public class PersistentData : MonoBehaviour
+namespace Systems.Manager
 {
-    public static PersistentData Instance;
-
-    public int currentScore;
-    public int highScore;
-
-    private void Awake()
+    public class PersistentData : Singleton<PersistentData>
     {
-        if (Instance == null)
+        public int currentScore;
+        public int highScore;
+        
+        public void ResetScore()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);  //  Aseguramos que este objeto persista
+            currentScore = 0;
         }
-        else
+        
+        public void SaveHighScore()
         {
-            Destroy(gameObject);  //  Evitamos duplicados
+            if (currentScore > highScore)
+            {
+                highScore = currentScore;
+                PlayerPrefs.SetInt("HighScore", highScore);
+                PlayerPrefs.Save();
+            }
         }
-    }
-
-    public void ResetScore()
-    {
-        currentScore = 0;
-    }
-
-    public void SaveHighScore()
-    {
-        if (currentScore > highScore)
+        
+        public void LoadHighScore()
         {
-            highScore = currentScore;
-            PlayerPrefs.SetInt("HighScore", highScore);
-            PlayerPrefs.Save();
+            highScore = PlayerPrefs.GetInt("HighScore", PlayerPrefs.GetInt("HighScore", 0));
         }
-    }
-
-    public void LoadHighScore()
-    {
-        highScore = PlayerPrefs.GetInt("HighScore", PlayerPrefs.GetInt("HighScore", 0));
     }
 }

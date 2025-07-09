@@ -1,39 +1,48 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Systems.PowerUps
 {
+    [Serializable]
+    public class PowerUpElement
+    {
+        public PowerUp powerUp;
+        public int percentageChance;
+    }
+    
     public class PowerUpsGenerator : MonoBehaviour
     {
-        public List<GameObject> powerUps = new List<GameObject>();
-        
-        public BoxCollider2D mapBoundsCollider;
-        
-        public float distanceBetweenPowerUps = Random.Range(4.5f, 8.5f);
-        public int powerUpsCount = 4;
-        
-        [SerializeField] private List<GameObject> instancedPowerUps = new List<GameObject>();
-        public float lastPowerUpPosition;
-        
-        protected void Initialize()
-        {
-            for (int i = 0; i < powerUpsCount; i++)
-            {
-                Spawn();
-            }
-        }
+        [SerializeField] private List<PowerUpElement> powerUps;
 
-        private void Spawn()
+        public Transform GeneratePowerUp()
         {
-            Bounds bounds = mapBoundsCollider.bounds;
-            float posY = lastPowerUpPosition + distanceBetweenPowerUps;
-            float posX = Random.Range(bounds.min.x, bounds.max.x);
+            if (powerUps.Count == 0)
+            {
+                Debug.LogWarning("No power-ups available to generate.");
+                return null;
+            }
+
+            int totalChance = 0;
+            foreach (var element in powerUps)
+            {
+                totalChance += element.percentageChance;
+            }
+
+            int randomValue = UnityEngine.Random.Range(0, totalChance);
+            int cumulativeChance = 0;
+
+            foreach (var element in powerUps)
+            {
+                cumulativeChance += element.percentageChance;
+                if (randomValue < cumulativeChance)
+                {
+                    return Instantiate(element.powerUp.transform, transform.position, Quaternion.identity);
+                }
+            }
             
-            Vector3 powerUpSpawnPosition = new Vector3(posX, posY, 0);
-            GameObject newPowerUp = Instantiate(powerUps[Random.Range(0, powerUps.Count)], powerUpSpawnPosition, Quaternion.identity);
-            instancedPowerUps.Add(newPowerUp);
-            
-            lastPowerUpPosition = newPowerUp.transform.position.y;
+            return null;
         }
+        
     }
 }

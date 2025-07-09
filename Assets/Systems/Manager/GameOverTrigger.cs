@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameOverTrigger : MonoBehaviour
+namespace Systems.Manager
 {
-    public UnityEvent onGameOver;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class GameOverTrigger : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        public UnityEvent onGameOver;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            onGameOver.Invoke();
+            if (collision.CompareTag("Player"))
+            {
+                onGameOver.Invoke();
+            }
         }
     }
 }

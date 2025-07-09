@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 1261708765317539033}
   - component: {fileID: 434091933782652564}
   - component: {fileID: 6490058568209514262}
-  - component: {fileID: 9081709590647632130}
   m_Layer: 0
   m_Name: Zipline
   m_TagString: Untagged
@@ -190,21 +189,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &9081709590647632130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5059174616793579684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dfd8b01f46cc15479af1166de06c0e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUpName: Zipline
-  startPoint: {fileID: 1034241873070272245}
-  endPoint: {fileID: 2876601237199434793}
 --- !u!1 &5930861391054580836
 GameObject:
   m_ObjectHideFlags: 0
