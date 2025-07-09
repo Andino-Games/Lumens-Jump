@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 465bde91221ef5a479f800c2ca98a348
+guid: c399291a63da0684f9226ad79df521b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5174558143886921992
-    second: Lumi_Death073_0
+      213: -2392299453732225776
+    second: 004 lumens plataforma variation plano negro_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.4634503, y: 0.3464912}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -72,12 +72,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lumi_Death073_0
+      name: 004 lumens plataforma variation plano negro_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 106
-        width: 290
-        height: 250
+        x: 0
+        y: 0
+        width: 1125
+        height: 2436
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8011cf34739bfc740800000000000000
-      internalID: 5174558143886921992
+      spriteID: 01dfdef5258dcced0800000000000000
+      internalID: -2392299453732225776
       vertices: []
       indices: 
       edges: []
@@ -152,7 +152,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lumi_Death073_0: 5174558143886921992
+      004 lumens plataforma variation plano negro_0: -2392299453732225776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

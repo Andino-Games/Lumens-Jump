@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: a21f22738a6ff1c4d8e4236a3ad439e6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5980767115013969781
+    second: 002 lumens plataforma variation plano medio_0
+  - first:
+      213: -1726885464674859569
+    second: 002 lumens plataforma variation plano medio_1
+  - first:
+      213: 1631163914870172606
+    second: 002 lumens plataforma variation plano medio_2
+  - first:
+      213: 8606204805880274895
+    second: 002 lumens plataforma variation plano medio_3
+  - first:
+      213: -4560436346293499454
+    second: 002 lumens plataforma variation plano medio_4
+  - first:
+      213: -2748398209300713664
+    second: 002 lumens plataforma variation plano medio_5
+  - first:
+      213: 7359244818444117851
+    second: 002 lumens plataforma variation plano medio_6
+  - first:
+      213: -6925743869986732448
+    second: 002 lumens plataforma variation plano medio_7
+  - first:
+      213: -9144790336454696534
+    second: 002 lumens plataforma variation plano medio_8
+  - first:
+      213: 2757472347859129986
+    second: 002 lumens plataforma variation plano medio_9
+  - first:
+      213: 7208661765591698159
+    second: 002 lumens plataforma variation plano medio_10
+  - first:
+      213: -7426537689129219330
+    second: 002 lumens plataforma variation plano medio_11
+  - first:
+      213: 5349966491568005222
+    second: 002 lumens plataforma variation plano medio_12
+  - first:
+      213: -4867744885053414628
+    second: 002 lumens plataforma variation plano medio_13
+  - first:
+      213: -6024199464993791725
+    second: 002 lumens plataforma variation plano medio_14
+  - first:
+      213: 4602816583407242676
+    second: 002 lumens plataforma variation plano medio_15
+  - first:
+      213: 7698928967514195993
+    second: 002 lumens plataforma variation plano medio_16
+  - first:
+      213: -3983310912088546272
+    second: 002 lumens plataforma variation plano medio_17
+  - first:
+      213: -9074489923071906699
+    second: 002 lumens plataforma variation plano medio_18
+  - first:
+      213: -7513742871185922982
+    second: 002 lumens plataforma variation plano medio_19
+  - first:
+      213: -4686422943597308942
+    second: 002 lumens plataforma variation plano medio_20
+  - first:
+      213: 5449721520962103556
+    second: 002 lumens plataforma variation plano medio_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_0
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 2178
+        width: 225
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 577debee004fff250800000000000000
+      internalID: 5980767115013969781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_1
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 2191
+        width: 192
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc5054eb1ded808e0800000000000000
+      internalID: -1726885464674859569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1924
+        width: 224
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebba54430fe03a610800000000000000
+      internalID: 1631163914870172606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_3
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1762
+        width: 155
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcfd0ce5ca16f6770800000000000000
+      internalID: 8606204805880274895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_4
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 1681
+        width: 168
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c945662e4316b0c0800000000000000
+      internalID: -4560436346293499454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_5
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1314
+        width: 245
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04faf49e36abbd9d0800000000000000
+      internalID: -2748398209300713664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_6
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 1484
+        width: 139
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57ee72eb2a412660800000000000000
+      internalID: 7359244818444117851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_7
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 1518
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0660a18f4a0d2ef90800000000000000
+      internalID: -6925743869986732448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_8
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 1209
+        width: 93
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa16132e3ad271180800000000000000
+      internalID: -9144790336454696534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_9
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 1145
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2861b1c9d72844620800000000000000
+      internalID: 2757472347859129986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_10
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 1191
+        width: 225
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea8804ceaf4a0460800000000000000
+      internalID: 7208661765591698159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_11
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 934
+        width: 189
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efa0768b153afe890800000000000000
+      internalID: -7426537689129219330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_12
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 1103
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6606722cd26ee3a40800000000000000
+      internalID: 5349966491568005222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 620
+        width: 187
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c13aa2541db427cb0800000000000000
+      internalID: -4867744885053414628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_14
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 787
+        width: 239
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31162f0118eb56ca0800000000000000
+      internalID: -6024199464993791725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_15
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 931
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd044cbb4d70ef30800000000000000
+      internalID: 4602816583407242676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_16
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 552
+        width: 188
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91806a3fa1718da60800000000000000
+      internalID: 7698928967514195993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_17
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 632
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024660774df68b8c0800000000000000
+      internalID: -3983310912088546272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_18
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 617
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57cef616e7fe01280800000000000000
+      internalID: -9074489923071906699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_19
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 0
+        width: 136
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a54e65d0ba2d9b790800000000000000
+      internalID: -7513742871185922982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_20
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 64
+        width: 273
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f354ab992b76feb0800000000000000
+      internalID: -4686422943597308942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 002 lumens plataforma variation plano medio_21
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 10
+        width: 108
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4096fb579dc41ab40800000000000000
+      internalID: 5449721520962103556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      002 lumens plataforma variation plano medio_0: 5980767115013969781
+      002 lumens plataforma variation plano medio_1: -1726885464674859569
+      002 lumens plataforma variation plano medio_10: 7208661765591698159
+      002 lumens plataforma variation plano medio_11: -7426537689129219330
+      002 lumens plataforma variation plano medio_12: 5349966491568005222
+      002 lumens plataforma variation plano medio_13: -4867744885053414628
+      002 lumens plataforma variation plano medio_14: -6024199464993791725
+      002 lumens plataforma variation plano medio_15: 4602816583407242676
+      002 lumens plataforma variation plano medio_16: 7698928967514195993
+      002 lumens plataforma variation plano medio_17: -3983310912088546272
+      002 lumens plataforma variation plano medio_18: -9074489923071906699
+      002 lumens plataforma variation plano medio_19: -7513742871185922982
+      002 lumens plataforma variation plano medio_2: 1631163914870172606
+      002 lumens plataforma variation plano medio_20: -4686422943597308942
+      002 lumens plataforma variation plano medio_21: 5449721520962103556
+      002 lumens plataforma variation plano medio_3: 8606204805880274895
+      002 lumens plataforma variation plano medio_4: -4560436346293499454
+      002 lumens plataforma variation plano medio_5: -2748398209300713664
+      002 lumens plataforma variation plano medio_6: 7359244818444117851
+      002 lumens plataforma variation plano medio_7: -6925743869986732448
+      002 lumens plataforma variation plano medio_8: -9144790336454696534
+      002 lumens plataforma variation plano medio_9: 2757472347859129986
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
