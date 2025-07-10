@@ -56,6 +56,7 @@ namespace Systems.Player
             _playerEffects?.PlayJumpEffect();
             _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
+            AudioManager.Instance.PlaySFX("Bounce", 1);
         }
 
         private void IncreaseDifficulty()

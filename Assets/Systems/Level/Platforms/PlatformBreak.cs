@@ -42,7 +42,7 @@ namespace Systems.Level.Platforms
         private IEnumerator Break()
         {
             yield return new WaitForSeconds(breakTime);
-
+            // AudioManager.Instance.PlaySFX("Platform", 1);
             DestroyPlatform();
         }
     }

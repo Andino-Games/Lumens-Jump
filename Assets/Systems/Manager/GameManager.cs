@@ -48,12 +48,14 @@ namespace Systems.Manager
         public void AddPoints(int pointsToAdd)
         {
             PersistentData.Instance.currentScore += pointsToAdd;
+            AudioManager.Instance.PlayUI("Score");
         }
         
         public void GameOver()
         {
             PersistentData.Instance.SaveHighScore();
             SceneManager.LoadScene("GameOverScene");
+            AudioManager.Instance.PlaySFX("Dead", 1);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Systems.PowerUps
             }
             
             _isActive = true;
-            
+            AudioManager.Instance.PlaySFX("Rocket_Start", 1);
             Time.timeScale = 0.25f;
             CameraManager.Instance.SetEffectCamera();
             PostProcessingManager.Instance.SetVignetteIntensity(0.6f, transitionTime);
@@ -50,6 +50,7 @@ namespace Systems.PowerUps
             _playerRigidbody.linearVelocity = Vector2.zero;
             _playerRigidbody.gravityScale = 0f;
             _playerRigidbody.AddForce(Vector2.up * thrust, ForceMode2D.Impulse);
+            //AudioManager.Instance.PlaySFX("Rocket_Lunch", 0.2f);
 
             yield return new WaitForSeconds(duration);
             PostProcessingManager.Instance.SetVignetteIntensity(0.3f, transitionTime * 2);
@@ -58,6 +59,7 @@ namespace Systems.PowerUps
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {
                 jetpackParticle.Stop();
+                AudioManager.Instance.PlaySFX("Rocket_End", 1);
             }
             
             _playerRigidbody.gravityScale = 1f;
