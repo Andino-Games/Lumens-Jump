@@ -1,3 +1,4 @@
+using Systems.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -58,7 +59,7 @@ namespace Systems.Player
             animator.SetTrigger("Jump");
             _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
-            AudioManager.Instance.PlaySFX("Bounce", 1);
+            AudioManager.Instance.PlaySfx("Bounce", 1);
         }
 
         private void IncreaseDifficulty()

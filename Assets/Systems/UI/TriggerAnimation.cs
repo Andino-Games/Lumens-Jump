@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class TriggerAnimation : MonoBehaviour
+namespace Systems.UI
 {
-    [SerializeField] private Animator _MainMenuAnimator;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class TriggerAnimation : MonoBehaviour
     {
-        if (collision.CompareTag("Handle")) 
+        [SerializeField] private Animator mainMenuAnimator;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            _MainMenuAnimator.SetBool("Activate", true);
+            if (collision.CompareTag("Handle")) 
+            {
+                mainMenuAnimator.SetBool("Activate", true);
+            }
         }
     }
 }

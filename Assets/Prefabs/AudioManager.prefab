@@ -49,55 +49,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds:
-  - name: Music
+  - clipName: Music
     clip: {fileID: 8300000, guid: 1ab022be686a1d745b8bd37557c535b2, type: 3}
     volume: 1
     pitch: 0
     loop: 1
   sfxSounds:
-  - name: Bounce
+  - clipName: Bounce
     clip: {fileID: 8300000, guid: 3bd42b52f8fc56843a06a736be91dfc2, type: 3}
     volume: 1
     pitch: 0
     loop: 0
-  - name: Dead
+  - clipName: Dead
     clip: {fileID: 8300000, guid: fd13747894399c74b98927fe86fabc45, type: 3}
     volume: 1
     pitch: 0
     loop: 0
-  - name: Rocket_End
+  - clipName: Rocket_End
     clip: {fileID: 8300000, guid: c89f0dd28d437e44ebe7682ab5b85d09, type: 3}
     volume: 1
     pitch: 0
     loop: 0
-  - name: Platform
+  - clipName: Platform
     clip: {fileID: 8300000, guid: 15cbfdcee596321458c7d212238c4763, type: 3}
     volume: 1
     pitch: 0
     loop: 0
-  - name: Rocket_Start
+  - clipName: Rocket_Start
     clip: {fileID: 8300000, guid: 629736f41baef6e49a4e68c1be6770b7, type: 3}
     volume: 1
     pitch: 0
     loop: 0
   ambSounds:
-  - name: Amb
+  - clipName: Amb
     clip: {fileID: 8300000, guid: 6bc93fd9c3af6f34880dd90d766c4756, type: 3}
     volume: 1
     pitch: 0
     loop: 1
   uiSounds:
-  - name: Score
+  - clipName: Score
     clip: {fileID: 8300000, guid: c710f42f25f1d714caa2d88cd9ebe31e, type: 3}
     volume: 1
     pitch: 0
     loop: 0
-  - name: Play_Button1
+  - clipName: Play_Button1
     clip: {fileID: 8300000, guid: e92a74c98fdad4143bf11735b17dff71, type: 3}
     volume: 1
     pitch: 0
     loop: 0
-  - name: Play_Button2
+  - clipName: Play_Button2
     clip: {fileID: 8300000, guid: a2173b28b8d96294d98e88333f0aa41e, type: 3}
     volume: 1
     pitch: 0

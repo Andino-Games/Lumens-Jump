@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Systems.Audio;
 using Systems.Manager;
 using UnityEngine;
 
@@ -33,7 +34,7 @@ namespace Systems.PowerUps
             }
             
             _isActive = true;
-            AudioManager.Instance.PlaySFX("Rocket_Start", 1);
+            AudioManager.Instance.PlaySfx("Rocket_Start", 1);
             Time.timeScale = 0.25f;
             CameraManager.Instance.SetEffectCamera();
             PostProcessingManager.Instance.SetVignetteIntensity(0.6f, transitionTime);
@@ -59,7 +60,7 @@ namespace Systems.PowerUps
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {
                 jetpackParticle.Stop();
-                AudioManager.Instance.PlaySFX("Rocket_End", 1);
+                AudioManager.Instance.PlaySfx("Rocket_End", 1);
             }
             
             _playerRigidbody.gravityScale = 1f;

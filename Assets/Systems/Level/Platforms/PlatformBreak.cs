@@ -1,4 +1,5 @@
 using System.Collections;
+using Systems.Audio;
 using Systems.Level.Data;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Systems.Level.Platforms
         [SerializeField] private GameObject platformObject;
 
         private Vector3 _destinationPosition;
+        private bool _isUsed;
         
         #region Platform Methods
 
@@ -33,7 +35,10 @@ namespace Systems.Level.Platforms
         protected override void OnUsedPlatform()
         {
             base.OnUsedPlatform();
-            
+            if (_isUsed)
+            {
+                return;
+            }
             StartCoroutine(Break());
         }
 
@@ -41,8 +46,10 @@ namespace Systems.Level.Platforms
 
         private IEnumerator Break()
         {
+            _isUsed = true;
+            AudioManager.Instance.PlaySfx("Platform", 1);
             yield return new WaitForSeconds(breakTime);
-            // AudioManager.Instance.PlaySFX("Platform", 1);
+            _isUsed = false;
             DestroyPlatform();
         }
     }

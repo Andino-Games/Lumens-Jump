@@ -1,3 +1,4 @@
+using Systems.Audio;
 using Systems.UI;
 using Systems.Utils;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace Systems.Manager
         {
             PersistentData.Instance.SaveHighScore();
             SceneManager.LoadScene("GameOverScene");
-            AudioManager.Instance.PlaySFX("Dead", 1);
+            AudioManager.Instance.PlaySfx("Dead", 1);
         }
     }
 }
