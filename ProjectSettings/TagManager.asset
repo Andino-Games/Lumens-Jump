@@ -8,6 +8,8 @@ TagManager:
   - CinemachineCamera
   - Platform
   - DestroyPlatform
+  - FxTemporaire
+  - Handle
   layers:
   - Default
   - TransparentFX

@@ -953,6 +953,10 @@ PrefabInstance:
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1603404358}
+    - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: cameraBounds
       value: 
       objectReference: {fileID: 1955375099}
@@ -2334,6 +2338,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUps:
   - {fileID: 1603404354}
+--- !u!95 &1603404358 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8225695861327171105, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+  m_PrefabInstance: {fileID: 711998420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1641056092
 GameObject:
   m_ObjectHideFlags: 0

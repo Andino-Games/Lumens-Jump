@@ -10,6 +10,7 @@ namespace Systems.Player
         public float maxJumpForce = 15f;
         public LayerMask groundLayer;
         public Transform groundCheck;
+        public Animator animator;
 
         [Header("Game Difficulty")]
         public float difficultyMultiplier = 1.02f;
@@ -54,6 +55,7 @@ namespace Systems.Player
         void Jump()
         {
             _playerEffects?.PlayJumpEffect();
+            animator.SetTrigger("Jump");
             _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
             AudioManager.Instance.PlaySFX("Bounce", 1);
