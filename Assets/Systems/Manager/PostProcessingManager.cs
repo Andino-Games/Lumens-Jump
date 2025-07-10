@@ -6,9 +6,9 @@ namespace Systems.Manager
 {
     public class PostProcessingManager : Singleton<PostProcessingManager>
     {
-        // Reference to global volume
         [SerializeField] private UnityEngine.Rendering.Volume globalVolume;
         [SerializeField] private UnityEngine.Rendering.Universal.Vignette vignetteEffect;
+        [SerializeField] private UnityEngine.Rendering.Universal.ChromaticAberration chromaticAberrationEffect;
 
         private void Start()
         {
@@ -21,6 +21,11 @@ namespace Systems.Manager
             if (!globalVolume.profile.TryGet(out vignetteEffect))
             {
                 Debug.LogError("Vignette effect is not found in the global volume profile.");
+            }
+            
+            if (!globalVolume.profile.TryGet(out chromaticAberrationEffect))
+            {
+                Debug.LogError("Chromatic Aberration effect is not found in the global volume profile.");
             }
         }
 
@@ -53,7 +58,36 @@ namespace Systems.Manager
         }
 
         #endregion
+
+        #region Chromatic Aberration Effect
+
+        public void SetChromaticAberrationIntensity(float intensity, float duration)
+        {
+            StartCoroutine(FadeChromaticAberration(intensity, duration));
+        }
         
+        private IEnumerator FadeChromaticAberration(float targetIntensity, float duration)
+        {
+            if (!chromaticAberrationEffect)
+            {
+                yield break;
+            }
+
+            float startIntensity = chromaticAberrationEffect.intensity.value;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / duration);
+                chromaticAberrationEffect.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, t);
+                yield return null;
+            }
+
+            chromaticAberrationEffect.intensity.value = targetIntensity;
+        }
+
+        #endregion
         
     }
 }

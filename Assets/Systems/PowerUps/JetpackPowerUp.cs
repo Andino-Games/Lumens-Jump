@@ -37,6 +37,7 @@ namespace Systems.PowerUps
             Time.timeScale = 0.25f;
             CameraManager.Instance.SetEffectCamera();
             PostProcessingManager.Instance.SetVignetteIntensity(0.6f, transitionTime);
+            PostProcessingManager.Instance.SetChromaticAberrationIntensity(0.6f, transitionTime);
             yield return new WaitForSeconds(transitionTime);
             Time.timeScale = 1f;
             PostProcessingManager.Instance.SetVignetteIntensity(0.45f, transitionTime * 2);
@@ -52,6 +53,7 @@ namespace Systems.PowerUps
 
             yield return new WaitForSeconds(duration);
             PostProcessingManager.Instance.SetVignetteIntensity(0.3f, transitionTime * 2);
+            PostProcessingManager.Instance.SetChromaticAberrationIntensity(0f, transitionTime * 2);
 
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {

@@ -14,39 +14,31 @@ namespace Systems.Player
         [Tooltip("The maximum distance the player can move on the X axis.")]
         [Range(1, 4)] public float maxX;
 
-        private Vector3 targetPosition;
-        private Rigidbody2D rb;
-        private PlayerEffects playerEffects;
-        private SpriteRenderer spriteRenderer;
+        private Vector3 _targetPosition;
+        private PlayerEffects _playerEffects;
+        private SpriteRenderer _spriteRenderer;
 
         void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
-            playerEffects = GetComponent<PlayerEffects>(); // Obtiene la referencia al script
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            GetComponent<Rigidbody2D>();
+            _playerEffects = GetComponent<PlayerEffects>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         void Update()
         {
-            float moveX = 0f;
             
-#if UNITY_EDITOR
-            moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime; 
-#else
-            moveX = joystick.Horizontal * speed * Time.deltaTime;
-#endif
-            targetPosition = transform.position + new Vector3(moveX, 0, 0);
+            float moveX = joystick.Horizontal * speed * Time.deltaTime;
+            _targetPosition = transform.position + new Vector3(moveX, 0, 0);
 
             Flip(moveX);
 
-            // Clamp posición para evitar salir del nivel
-            targetPosition.x = Mathf.Clamp(targetPosition.x, -maxX, maxX);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+            _targetPosition.x = Mathf.Clamp(_targetPosition.x, -maxX, maxX);
+            transform.position = Vector3.Lerp(transform.position, _targetPosition, smoothSpeed);
 
-            // Si el jugador se está moviendo, activa feedback de movimiento
             if (Mathf.Abs(moveX) > 0.05f)
             {
-                playerEffects?.PlayMoveEffect();
+                _playerEffects?.PlayMoveEffect();
             }
         }
 
@@ -54,11 +46,11 @@ namespace Systems.Player
         {
             if (horizontalMovement > 0)
             {
-                spriteRenderer.flipX = false;
+                _spriteRenderer.flipX = false;
             }
             else if (horizontalMovement < 0)
             {
-                spriteRenderer.flipX = true;
+                _spriteRenderer.flipX = true;
             }
         }
     }

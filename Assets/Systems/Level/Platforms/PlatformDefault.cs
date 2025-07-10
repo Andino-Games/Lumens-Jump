@@ -1,5 +1,4 @@
 using Systems.Level.Data;
-using Systems.Utils;
 using UnityEngine;
 
 namespace Systems.Level.Platforms

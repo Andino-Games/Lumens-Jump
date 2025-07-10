@@ -70,21 +70,17 @@ namespace Systems.Player
         
         private void CameraFollowCheck()
         {
-            // Si la velocidad vertical es positiva  o cero, la cámara sigue al jugador.
             if (_rb.linearVelocity.y >= 0)
             {
                 if (playerCamera)
                 {
                     playerCamera.Follow = transform;
                 }
-                // También actualizamos la posición del "límite" inferior de la cámara mientras subimos.
                 if (cameraBounds)
                 {
                     cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
                 }
             }
-            // Si la velocidad es negativa (cayendo), la cámara deja de seguir al jugador.
-            // Esto permite que el jugador caiga fuera de la pantalla y active el "GameOverZone".
             else
             {
                 if (playerCamera)

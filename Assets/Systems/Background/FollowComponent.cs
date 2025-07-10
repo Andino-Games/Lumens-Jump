@@ -7,7 +7,7 @@ namespace Systems.Background
         [SerializeField] private Transform target;
         [SerializeField] private bool followX = true;
         [SerializeField] private bool followY = true;
-        [SerializeField] private bool biggestYPosition = false;
+        [SerializeField] private bool biggestYPosition;
 
         private float _previousYPosition;
         

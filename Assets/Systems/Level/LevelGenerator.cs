@@ -10,17 +10,17 @@ namespace Systems.Level
 {
     public class LevelGenerator : MonoBehaviour
     {
-        [Header("Referencias")]
+        [Header("References")]
         [SerializeField] private Transform playerTransform;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Transform platformHolder;
 
-        [Header("Prefabs y Pool")]
+        [Header("Prefabs and Pool")]
         [SerializeField] private List<Platform> platformPrefabs;
         [SerializeField] private int initialPoolCount = 10;
         [SerializeField] private int maxPoolCount = 50;
 
-        [Header("Generación")]
+        [Header("Generation Settings")]
         [SerializeField] private int initialSpawnCount = 6;
         [SerializeField] private float spawnYInterval = 2f;
         [SerializeField] private float spawnXInterval = 0.5f;
@@ -37,19 +37,19 @@ namespace Systems.Level
             
             if (!mainCamera)
             {
-                Debug.LogError("No se encontró la cámara principal. Asegúrate de que haya una cámara con la etiqueta 'MainCamera'.", this);
+                Debug.LogError("Main camera is not assigned in LevelGenerator.", this);
                 return;
             }
             
             if(!playerTransform)
             {
-                Debug.LogError("No se ha asignado el transform del jugador. Por favor, asígnalo en el inspector.", this);
+                Debug.LogError("Player transform is not assigned in LevelGenerator.", this);
                 return;
             }
             
             if (platformPrefabs == null || platformPrefabs.Count == 0)
             {
-                Debug.LogError("No se han asignado prefabs de plataformas. Por favor, asígnalos en el inspector.", this);
+                Debug.LogError("Platform prefabs are not assigned in LevelGenerator.", this);
                 return;
             }
             
@@ -66,14 +66,12 @@ namespace Systems.Level
         {
             if (pool == null)
             {
-                // Elegir pool aleatoria
                 int idx = Random.Range(0, _pools.Count);
                 pool = _pools[idx];
             }
             
             Platform plat = pool.Get();
 
-            // Calcular PlatformData
             float spawnX = Random.Range(-spawnXInterval, spawnXInterval);
             
             PlatformData data = new PlatformData
@@ -84,10 +82,8 @@ namespace Systems.Level
             
             _nextSpawnY += spawnYInterval;
             
-            // Inicializar con datos
             plat.Initialize(pool, data);
             
-            // Generar PowerUp si corresponde
             Transform powerUpTransform = powerUpsGenerator.GeneratePowerUp();
             if (powerUpTransform)
             {
@@ -98,7 +94,6 @@ namespace Systems.Level
 
         private void InitializePools()
         {
-            // Para cada prefab creamos una pool y la precalentamos
             foreach (Platform prefab in platformPrefabs)
             {
                 ObjectPool<Platform> pool = new ObjectPool<Platform>(
@@ -127,7 +122,6 @@ namespace Systems.Level
                     maxSize:         maxPoolCount
                 );
 
-                // precalentamos al menos initialPoolCount instancias
                 for (int i = 0; i < initialPoolCount; i++)
                 {
                     Platform temp = pool.Get();
@@ -137,7 +131,6 @@ namespace Systems.Level
                 _pools.Add(pool);
             }
             
-            // Spawnear plataformas iniciales
             ObjectPool<Platform> defaultPool = _pools[0];
             _nextSpawnY = playerTransform.position.y + spawnYInterval - 0.5f;
             for (int i = 0; i < initialSpawnCount; i++)

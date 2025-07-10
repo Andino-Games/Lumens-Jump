@@ -13,7 +13,7 @@ namespace Systems.Manager
         {
             if (!defaultCamera || !effectCamera)
             {
-                Debug.LogError("Cinemachine cameras are not assigned in the CameraManager.");
+                Debug.LogError("CineMachine cameras are not assigned in the CameraManager.");
             }
         }
 

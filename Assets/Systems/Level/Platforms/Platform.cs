@@ -76,11 +76,5 @@ namespace Systems.Level.Platforms
         }
         
         #endregion
-        
-        private bool IsOverPlatform(Transform other, string otherTag)
-        {
-            return other.CompareTag(otherTag) && other.transform.position.y >= transform.position.y;
-        }
-        
     }
 }
