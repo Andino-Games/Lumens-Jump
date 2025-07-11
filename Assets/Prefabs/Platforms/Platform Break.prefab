@@ -52,8 +52,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  platformFeedbacks: {fileID: 2383542521023743540, guid: 814850abe0211e1439723d1796015c43, type: 3}
   platformObject: {fileID: 6774368163496126609}
+  breakEffectPrefab: {fileID: 564426064276888942, guid: 13e344e855ebf3a4fa8d2489d383655a, type: 3}
+  landedEffectPrefab: {fileID: 6739448359451499383, guid: 10477845f4b619b41ad6b44339255327, type: 3}
 --- !u!1001 &7142168070344731484
 PrefabInstance:
   m_ObjectHideFlags: 0

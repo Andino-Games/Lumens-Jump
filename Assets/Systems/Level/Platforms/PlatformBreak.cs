@@ -12,22 +12,26 @@ namespace Systems.Level.Platforms
         [SerializeField] private LayerMask playerLayer;
         [SerializeField] private GameObject platformObject;
 
+        [Header("Effects")]
+        [SerializeField] private GameObject breakEffectPrefab;
+        [SerializeField] private GameObject landedEffectPrefab;
+
         private Vector3 _destinationPosition;
         private bool _isUsed;
-        
+
         #region Platform Methods
 
         protected override void OnCreatedPlatform(PlatformData platformData)
         {
             base.OnCreatedPlatform(platformData);
-            
+
             _destinationPosition = platformData.position;
-            
+
             int randomSign = Random.Range(0, 2) == 0 ? -1 : 1;
             Vector3 position = _destinationPosition + new Vector3(randomSign * 6, 0, 0);
-            
+
             transform.position = position;
-            
+
             LeanTween.move(gameObject, _destinationPosition, 1f)
                 .setEase(LeanTweenType.easeInOutSine);
         }
@@ -48,7 +52,9 @@ namespace Systems.Level.Platforms
         {
             _isUsed = true;
             AudioManager.Instance.PlaySfx("Platform", 1);
+            Instantiate(landedEffectPrefab, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(breakTime);
+            Instantiate(breakEffectPrefab, transform.position, Quaternion.identity);
             _isUsed = false;
             DestroyPlatform();
         }
