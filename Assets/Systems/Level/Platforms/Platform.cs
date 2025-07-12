@@ -43,6 +43,12 @@ namespace Systems.Level.Platforms
             onPlatformUsed.RemoveAllListeners();
         }
 
+        public virtual void SetPowerUp(Transform powerUp)
+        {
+            powerUp.SetParent(_transform);
+            powerUp.localPosition = Vector3.zero + new Vector3(0, 0.5f, 0);
+         }
+
         protected void DestroyPlatform() 
         {
             OnDestroyedPlatform();

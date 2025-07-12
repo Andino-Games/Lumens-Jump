@@ -12,7 +12,6 @@ namespace Systems.Manager
         private bool _isPaused;
 
         [SerializeField] private HudController hudController;
-        [SerializeField] private GameObject initialGround;
 
         private void Start()
         {
@@ -56,7 +55,6 @@ namespace Systems.Manager
         {
             PersistentData.Instance.SaveHighScore();
             SceneManager.LoadScene("GameOverScene");
-            AudioManager.Instance.PlaySfx("Dead", 1);
         }
     }
 }

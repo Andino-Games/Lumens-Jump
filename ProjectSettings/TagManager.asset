@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - MovingPlataform
   - CinemachineCamera
-  - Platform
-  - DestroyPlatform
-  - FxTemporaire
-  - Handle
+  - DeathZone
   layers:
   - Default
   - TransparentFX

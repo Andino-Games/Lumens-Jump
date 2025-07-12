@@ -11,6 +11,8 @@ namespace Systems.Audio
         
         private void Start()
         {
+            DontDestroyOnLoad(gameObject);
+            
             PlayMusic("Music");
             PlayAmb("Amb");
         }

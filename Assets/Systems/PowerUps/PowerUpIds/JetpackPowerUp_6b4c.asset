@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d26226e19294be5b21d3ffd50c39826, type: 3}
-  m_Name: JetpackPowerUp_e412
+  m_Name: JetpackPowerUp_6b4c
   m_EditorClassIdentifier: 
-  id: JetpackPowerUp_e412
+  id: JetpackPowerUp_6b4c

@@ -90,8 +90,7 @@ namespace Systems.Level
             if (isPowerUpSpawned)
             {
                 Transform powerUpTransform = powerUpsGenerator.GeneratePowerUp();
-                powerUpTransform.SetParent(plat.transform);
-                powerUpTransform.localPosition = Vector3.zero + new Vector3(0f, 0.5f, 0f);
+                plat.SetPowerUp(powerUpTransform);
             }
         }
 

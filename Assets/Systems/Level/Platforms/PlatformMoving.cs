@@ -54,7 +54,13 @@ namespace Systems.Level.Platforms
             }
             MoveToNextPoint();
         }
-        
+
+        public override void SetPowerUp(Transform powerUp)
+        {
+            powerUp.SetParent(platform);
+            powerUp.localPosition = new Vector3(0, 0.5f, 0);
+        }
+
         #endregion
 
         void MoveToNextPoint()

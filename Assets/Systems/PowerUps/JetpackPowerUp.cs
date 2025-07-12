@@ -36,7 +36,7 @@ namespace Systems.PowerUps
             _isActive = true;
             AudioManager.Instance.PlaySfx("Rocket_Start", 1);
             Time.timeScale = 0.25f;
-            CameraManager.Instance.SetEffectCamera();
+            CameraManager.Instance.SetCamera("Jetpack");
             PostProcessingManager.Instance.SetVignetteIntensity(0.6f, transitionTime);
             PostProcessingManager.Instance.SetChromaticAberrationIntensity(0.6f, transitionTime);
             yield return new WaitForSeconds(transitionTime);
@@ -51,7 +51,6 @@ namespace Systems.PowerUps
             _playerRigidbody.linearVelocity = Vector2.zero;
             _playerRigidbody.gravityScale = 0f;
             _playerRigidbody.AddForce(Vector2.up * thrust, ForceMode2D.Impulse);
-            //AudioManager.Instance.PlaySFX("Rocket_Lunch", 0.2f);
 
             yield return new WaitForSeconds(duration);
             PostProcessingManager.Instance.SetVignetteIntensity(0.3f, transitionTime * 2);
@@ -67,7 +66,7 @@ namespace Systems.PowerUps
             _playerRigidbody.linearVelocity = Vector2.zero;
             
             Time.timeScale = 0.25f;
-            CameraManager.Instance.SetDefaultCamera();
+            CameraManager.Instance.SetCamera("Default");
 
             yield return new WaitForSeconds(transitionTime);
 

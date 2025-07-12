@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6448195218962586591}
   - component: {fileID: 5752292285718197046}
   - component: {fileID: 5139936292896744220}
+  - component: {fileID: -727197678009070663}
   m_Layer: 7
   m_Name: Trampoline
   m_TagString: Untagged
@@ -77,9 +78,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 6174489687846394989, guid: e49cf51ebd6eb7042846ff7992cf2682, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.104001164, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,3 +148,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-727197678009070663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004297097225129390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7b9da9e06e4a5b93e28fd0299155d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpComponentIds:
+  - {fileID: 11400000, guid: af8d01cf803f54940ab4efb462e2eb0e, type: 2}
