@@ -26,6 +26,7 @@ namespace Systems.Level
         [SerializeField] private float spawnXInterval = 0.5f;
 
         [Header("PowerUp Generator")]
+        [Range(0f,1f)][SerializeField] private float powerUpSpawnChance = 0.5f;
         [SerializeField] private PowerUpsGenerator powerUpsGenerator;
         
         private readonly List<ObjectPool<Platform>> _pools = new();
@@ -84,9 +85,11 @@ namespace Systems.Level
             
             plat.Initialize(pool, data);
             
-            Transform powerUpTransform = powerUpsGenerator.GeneratePowerUp();
-            if (powerUpTransform)
+            bool isPowerUpSpawned = Random.value < powerUpSpawnChance;
+            
+            if (isPowerUpSpawned)
             {
+                Transform powerUpTransform = powerUpsGenerator.GeneratePowerUp();
                 powerUpTransform.SetParent(plat.transform);
                 powerUpTransform.localPosition = Vector3.zero + new Vector3(0f, 0.5f, 0f);
             }

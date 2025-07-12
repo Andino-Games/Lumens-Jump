@@ -72,6 +72,7 @@ namespace Systems.PowerUps
             yield return new WaitForSeconds(transitionTime);
 
             Time.timeScale = 1f;
+            _isActive = false;
         }
 
     }
