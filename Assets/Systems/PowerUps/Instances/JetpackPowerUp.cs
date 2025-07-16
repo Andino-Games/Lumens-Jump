@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using Systems.Audio;
 using Systems.Manager;
+using Systems.PowerUps.Components;
 using UnityEngine;
 
-namespace Systems.PowerUps
+namespace Systems.PowerUps.Instances
 {
     public class JetpackPowerUp : PowerUpComponent
     {
+        private static readonly int Activate = Animator.StringToHash("Activate");
+        
         [SerializeField] private float transitionTime = 0.5f;
         [SerializeField] private float duration = 5f;
         [SerializeField] private float thrust = 10f;
@@ -16,7 +19,7 @@ namespace Systems.PowerUps
         private Rigidbody2D _playerRigidbody;
         private bool _isActive;
 
-        public override void SetUpComponents()
+        protected override void SetUpComponents()
         {
             _playerRigidbody = player.GetComponent<Rigidbody2D>();
 
@@ -26,12 +29,14 @@ namespace Systems.PowerUps
             }
         }
 
-        public override IEnumerator Execute()
+        protected override IEnumerator Execute()
         {
             if (_isActive)
             {
                 yield break;
             }
+            
+            powerUp.Animator.SetTrigger(Activate);
             
             _isActive = true;
             AudioManager.Instance.PlaySfx("Rocket_Start", 1);

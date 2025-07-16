@@ -2,7 +2,6 @@ using Systems.Audio;
 using Systems.UI;
 using Systems.Utils;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 namespace Systems.Manager 
@@ -16,6 +15,8 @@ namespace Systems.Manager
         private void Start()
         {
             Time.timeScale = 1f;
+            PersistentData.Instance.ResetScore();
+            PersistentData.Instance.LoadHighScore();
         }
         
         public void TogglePause()
@@ -35,26 +36,24 @@ namespace Systems.Manager
         {
             _isPaused = true;
             Time.timeScale = 0f; 
-            hudController.PausePanel();
         }
 
         private void ResumeGame()
         {
             _isPaused = false;
             Time.timeScale = 1f;
-            hudController.ResumeGame();
         }
         
-        public void AddPoints(int pointsToAdd)
+        public void AddPoints()
         {
-            PersistentData.Instance.currentScore += pointsToAdd;
+            PersistentData.Instance.AddPoints();
             AudioManager.Instance.PlayUI("Score");
         }
         
         public void GameOver()
         {
             PersistentData.Instance.SaveHighScore();
-            SceneManager.LoadScene("GameOverScene");
+            SceneManager.Instance.LoadScene("GameOverScene");
         }
     }
 }

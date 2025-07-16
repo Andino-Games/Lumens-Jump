@@ -1,15 +1,16 @@
 ﻿using System.Collections;
+using Systems.PowerUps.Components;
 
-namespace Systems.PowerUps
+namespace Systems.PowerUps.Instances
 {
     public class ZiplinePowerUp : PowerUpComponent
     {
-        public override void SetUpComponents()
+        protected override void SetUpComponents()
         {
             
         }
 
-        public override IEnumerator Execute()
+        protected override IEnumerator Execute()
         {
             yield break;
         }

@@ -1,3 +1,4 @@
+using System;
 using Systems.Utils;
 using UnityEngine;
 
@@ -5,27 +6,41 @@ namespace Systems.Manager
 {
     public class PersistentData : Singleton<PersistentData>
     {
-        public int currentScore;
-        public int highScore;
+        public Action<int> OnCurrentScoreChanged;
         
-        public void ResetScore()
+        private int _currentScore;
+        private int _highScore;
+
+        public int CurrentScore => _currentScore;
+        public int HighScore => _highScore;
+        
+        public int AddPoints()
         {
-            currentScore = 0;
+            _currentScore++;
+            OnCurrentScoreChanged?.Invoke(_currentScore);
+            return _currentScore;
         }
+        
+        public int LoadHighScore()
+        {
+            return PlayerPrefs.GetInt("Score", 0);
+        }
+        
+        public void ResetScore() => _currentScore = 0;
         
         public void SaveHighScore()
         {
-            if (currentScore > highScore)
+            if (_currentScore > _highScore)
             {
-                highScore = currentScore;
-                PlayerPrefs.SetInt("HighScore", highScore);
+                _highScore = _currentScore;
+                PlayerPrefs.SetInt("Score", _currentScore);
                 PlayerPrefs.Save();
             }
         }
-        
-        public void LoadHighScore()
+
+        private void Start()
         {
-            highScore = PlayerPrefs.GetInt("HighScore", PlayerPrefs.GetInt("HighScore", 0));
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

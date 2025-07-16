@@ -1,27 +1,32 @@
 ﻿using System.Collections;
 using Systems.Audio;
+using Systems.PowerUps.Components;
 using UnityEngine;
 
-namespace Systems.PowerUps
+namespace Systems.PowerUps.Instances
 {
     public class TrampolinePowerUp : PowerUpComponent
     {
-        public float jumpForce = 10f;
+        private static readonly int Activate = Animator.StringToHash("Activate");
+        
+        [SerializeField] private float jumpForce = 10f;
         
         private Rigidbody2D _playerRigidbody;
         private bool _isActive;
-        
-        public override void SetUpComponents()
+
+        protected override void SetUpComponents()
         {
             _playerRigidbody = player.GetComponent<Rigidbody2D>();
         }
 
-        public override IEnumerator Execute()
+        protected override IEnumerator Execute()
         {
             if (_isActive)
             {
                 yield break;
             }
+            
+            powerUp.Animator.SetTrigger(Activate);
             
             _isActive = true;
             _playerRigidbody.linearVelocity = Vector2.zero;

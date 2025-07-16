@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Systems.Utils
 {
@@ -54,14 +55,12 @@ namespace Systems.Utils
         {
             // check that we don't have a camera already at -100 (the lowest depth) which will cause issues
             Camera[] allCameras = FindObjectsByType<Camera>(FindObjectsSortMode.None);
-            foreach (Camera currentCamera in allCameras)
-            {             
-                if (Mathf.Approximately(currentCamera.depth, -100))
-                {
-                    Debug.LogError("Found " + currentCamera.name + " with a depth of -100. Will cause letter boxing issues. Please increase it's depth.");
-                }
+            
+            if (allCameras.FirstOrDefault(cam => cam.name == "Letter Boxer Camera"))
+            {
+                return;
             }
-
+            
             // create a camera to render the background used for matte bars
             _letterBoxerCamera = new GameObject().AddComponent<Camera>();
             _letterBoxerCamera.backgroundColor = matteColor;
