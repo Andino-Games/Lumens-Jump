@@ -1,4 +1,6 @@
-﻿using Systems.Manager;
+﻿using System;
+using Systems.Manager;
+using Systems.UI.MouseClick;
 using TMPro;
 using UnityEngine;
 
@@ -6,32 +8,33 @@ namespace Systems.UI
 {
     public class HudController : MonoBehaviour
     {
+        private static readonly int AddPoints = Animator.StringToHash("AddPoints");
+
+        [Header("Points Elements")]
         [SerializeField] private TextMeshProUGUI pointsText;
-        
-        [Header("Pause Menu")]
-        [SerializeField] private GameObject pausePanel;
-        
-        private void Update()
+        [SerializeField] private Animator pointsTextAnimator;
+
+        private void Start()
+        {
+            MouseClicks.Instance.gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            PersistentData.Instance.OnCurrentScoreChanged += UpdatePointsText;
+        }
+
+        private void OnDisable()
+        {
+            PersistentData.Instance.OnCurrentScoreChanged -= UpdatePointsText;
+        }
+
+        private void UpdatePointsText(int value)
         {
             if (pointsText)
             {
-                pointsText.text = PersistentData.Instance.currentScore.ToString();
-            }
-        }
-
-        public void PausePanel()
-        {
-            if (pausePanel)
-            {
-                pausePanel.SetActive(true);
-            }
-        }
-
-        public void ResumeGame()
-        {
-            if (pausePanel)
-            {
-                pausePanel.SetActive(false);
+                pointsTextAnimator.SetTrigger(AddPoints);
+                pointsText.text = value.ToString();
             }
         }
 

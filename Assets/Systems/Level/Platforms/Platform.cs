@@ -1,5 +1,4 @@
 ﻿using Systems.Level.Data;
-using Systems.Manager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
@@ -12,6 +11,7 @@ namespace Systems.Level.Platforms
         
         private ObjectPool<Platform> _pool;
         private PlatformData _platformData;
+        private GameObject _powerUp;
         
         public void Initialize(ObjectPool<Platform> pool, PlatformData platformData)
         {
@@ -31,11 +31,8 @@ namespace Systems.Level.Platforms
 
         protected virtual void OnUsedPlatform()
         {
-            if (!_platformData.hasBeenUsed)
-            {
-                _platformData.hasBeenUsed = true;
-                onPlatformUsed.Invoke();
-            }
+            _platformData.hasBeenUsed = true;
+            onPlatformUsed.Invoke();
         }
 
         protected virtual void OnDestroyedPlatform()
@@ -45,19 +42,23 @@ namespace Systems.Level.Platforms
 
         public virtual void SetPowerUp(Transform powerUp)
         {
+            _powerUp = powerUp.gameObject;
             powerUp.SetParent(_transform);
             powerUp.localPosition = Vector3.zero + new Vector3(0, 0.5f, 0);
          }
 
         protected void DestroyPlatform() 
         {
+            if (_powerUp)
+            {
+                Destroy(_powerUp);
+            }
             OnDestroyedPlatform();
             _pool.Release(this);
         }
         
         #region Unity Events
 
-        private Transform _playerTransform;
         private Transform _transform;
 
         private void Awake()
@@ -65,19 +66,21 @@ namespace Systems.Level.Platforms
             _transform = transform;
         }
 
-        private void Start()
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            _playerTransform = GameInstances.Instance.player.transform;
+            if (other.CompareTag("Player") && !_platformData.hasBeenUsed)
+            {
+                OnUsedPlatform();
+            }
+
+            if (other.CompareTag("DestroyPlatform"))
+            {
+                DestroyPlatform();
+            }
         }
 
         private void Update()
         {
-
-            if (_playerTransform.position.y > _transform.position.y)
-            {
-                OnUsedPlatform();
-            }
-            
             OnUpdatePlatform();
         }
         

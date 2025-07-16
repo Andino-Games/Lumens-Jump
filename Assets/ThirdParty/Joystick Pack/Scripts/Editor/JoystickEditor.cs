@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Joystick), true)]
-public class JoystickEditor : Editor
+public class JoystickEditor : UnityEditor.Editor
 {
     private SerializedProperty handleRange;
     private SerializedProperty deadZone;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Systems.PowerUps.Components;
 using UnityEngine;
 
 namespace Systems.PowerUps

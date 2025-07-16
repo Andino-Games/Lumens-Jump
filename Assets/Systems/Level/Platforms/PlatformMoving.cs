@@ -57,6 +57,8 @@ namespace Systems.Level.Platforms
 
         public override void SetPowerUp(Transform powerUp)
         {
+            base.SetPowerUp(powerUp);
+            
             powerUp.SetParent(platform);
             powerUp.localPosition = new Vector3(0, 0.5f, 0);
         }

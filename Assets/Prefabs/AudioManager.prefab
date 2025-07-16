@@ -80,6 +80,21 @@ MonoBehaviour:
     volume: 1
     pitch: 0
     loop: 0
+  - clipName: Rocket_Start
+    clip: {fileID: 8300000, guid: 629736f41baef6e49a4e68c1be6770b7, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+  - clipName: Cordel_Break
+    clip: {fileID: 8300000, guid: 2b833d0fab10e00408a6d04039758510, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+  - clipName: Light_Switch
+    clip: {fileID: 8300000, guid: 613c7566cf2537149a4e1a439e794024, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
   ambSounds:
   - clipName: Amb
     clip: {fileID: 8300000, guid: 6bc93fd9c3af6f34880dd90d766c4756, type: 3}

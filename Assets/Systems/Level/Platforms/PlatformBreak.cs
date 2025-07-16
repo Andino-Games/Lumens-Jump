@@ -13,8 +13,8 @@ namespace Systems.Level.Platforms
         [SerializeField] private GameObject platformObject;
 
         [Header("Effects")]
-        [SerializeField] private GameObject breakEffectPrefab;
-        [SerializeField] private GameObject landedEffectPrefab;
+        [SerializeField] private ParticleSystem landedEffect;
+        [SerializeField] private ParticleSystem breakEffect;
 
         private Vector3 _destinationPosition;
         private bool _isUsed;
@@ -24,6 +24,10 @@ namespace Systems.Level.Platforms
         protected override void OnCreatedPlatform(PlatformData platformData)
         {
             base.OnCreatedPlatform(platformData);
+            _isUsed = false;
+            
+            landedEffect.Stop();
+            breakEffect.Stop();
 
             _destinationPosition = platformData.position;
 
@@ -51,10 +55,11 @@ namespace Systems.Level.Platforms
         private IEnumerator Break()
         {
             _isUsed = true;
-            AudioManager.Instance.PlaySfx("Platform", 1);
-            Instantiate(landedEffectPrefab, transform.position, Quaternion.identity);
+            landedEffect.Play();
             yield return new WaitForSeconds(breakTime);
-            Instantiate(breakEffectPrefab, transform.position, Quaternion.identity);
+            breakEffect.Play();
+            AudioManager.Instance.PlaySfx("Platform", 1);
+            yield return new WaitForSeconds(breakTime);
             _isUsed = false;
             DestroyPlatform();
         }

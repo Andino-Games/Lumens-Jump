@@ -6,6 +6,8 @@ namespace Systems.Player
 {
     public class PlayerJump : MonoBehaviour
     {
+        private static readonly int Jump1 = Animator.StringToHash("Jump");
+
         [Header("Jump Config")]
         public float jumpForce = 7f;
         public float maxJumpForce = 15f;
@@ -56,7 +58,7 @@ namespace Systems.Player
         void Jump()
         {
             _playerEffects?.PlayJumpEffect();
-            animator.SetTrigger("Jump");
+            animator.SetTrigger(Jump1);
             _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
             AudioManager.Instance.PlaySfx("Bounce", 1);

@@ -1,4 +1,5 @@
 ﻿using Systems.Manager;
+using Systems.UI.MouseClick;
 using TMPro;
 using UnityEngine;
 
@@ -6,23 +7,24 @@ namespace Systems.UI
 {
     public class GameOverController : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI finalScoreText;
-        [SerializeField] private TextMeshProUGUI highScoreText;
+        [SerializeField] private TMP_Text finalScoreText;
+        [SerializeField] private TMP_Text highScoreText;
 
         private void Start()
         {
             ShowFinalScore();
+            MouseClicks.Instance.gameObject.SetActive(true);
         }
 
         private void ShowFinalScore()
         {
             if (finalScoreText)
             {
-                finalScoreText.text = "Final Score: " + PersistentData.Instance.currentScore;
+                finalScoreText.text = PersistentData.Instance.CurrentScore.ToString();
             }
             if (highScoreText)
             {
-                highScoreText.text = "High Score: " + PersistentData.Instance.highScore;
+                highScoreText.text = PersistentData.Instance.HighScore.ToString();
             }
         }
     }

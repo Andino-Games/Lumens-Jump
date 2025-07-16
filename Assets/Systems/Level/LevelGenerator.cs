@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 using Systems.Level.Platforms;
 using Systems.Manager;
 using Systems.PowerUps;
+using Systems.PowerUps.Instances;
 
 namespace Systems.Level
 {
@@ -59,7 +60,7 @@ namespace Systems.Level
         
         private void OnPlatformUsed()
         {
-            GameManager.Instance.AddPoints(1);
+            GameManager.Instance.AddPoints();
             Spawn();
         }
         

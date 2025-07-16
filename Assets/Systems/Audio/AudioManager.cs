@@ -12,9 +12,6 @@ namespace Systems.Audio
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
-            
-            PlayMusic("Music");
-            PlayAmb("Amb");
         }
         
         public void PlayMusic(string clipName)
@@ -49,6 +46,21 @@ namespace Systems.Audio
                 sfxSource.pitch = pitch;
                 sfxSource.PlayOneShot(s2.clip, s2.volume);
                 //sfxSource.pitch = 1f;
+            }
+        }
+        
+        public void PlaySfx(string clipName)
+        {
+            Sound s2 = Array.Find(sfxSounds, x => x.clipName == clipName);
+
+            if (s2 == null)
+            {
+                Debug.Log("Sound Not Found");
+            }
+
+            else
+            {
+                sfxSource.PlayOneShot(s2.clip, s2.volume);
             }
         }
 
