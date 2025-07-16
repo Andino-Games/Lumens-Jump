@@ -7,6 +7,8 @@ TagManager:
   - CinemachineCamera
   - DeathZone
   - Cordel
+  - DestroyPlatform
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -43,6 +45,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BlurRender
+    uniqueID: 123518149
     locked: 0
   m_RenderingLayers:
   - Default
