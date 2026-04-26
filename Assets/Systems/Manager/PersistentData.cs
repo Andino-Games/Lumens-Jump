@@ -21,12 +21,20 @@ namespace Systems.Manager
             return _currentScore;
         }
         
+        
+        /// Carga el récord guardado localmente y actualiza la variable interna.
+        
         public int LoadHighScore()
         {
-            return PlayerPrefs.GetInt("Score", 0);
+            
+            _highScore = PlayerPrefs.GetInt("Score", 0);
+            return _highScore;
         }
         
         public void ResetScore() => _currentScore = 0;
+        
+        
+        /// Compara el puntaje actual con el récord y guarda si es mayor.
         
         public void SaveHighScore()
         {
@@ -41,6 +49,8 @@ namespace Systems.Manager
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
+            // Inicializamos la carga de datos al arrancar el sistema.
+            LoadHighScore();
         }
     }
 }
