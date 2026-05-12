@@ -17,6 +17,8 @@ namespace Systems.Manager
             Time.timeScale = 1f;
             PersistentData.Instance.ResetScore();
             PersistentData.Instance.LoadHighScore();
+
+            AdsManager.Instance.RunGameplayTimer(true);
         }
         
         public void TogglePause()
@@ -52,8 +54,19 @@ namespace Systems.Manager
         
         public void GameOver()
         {
-            PersistentData.Instance.SaveHighScore();
-            SceneManager.Instance.LoadScene("GameOverScene");
+            bool doOfferRevive = AdsManager.Instance.CanOfferRevive();
+
+            if(doOfferRevive == true)
+            {
+                AdsManager.Instance.ShowRewardedAd();
+            }
+            else
+            {
+                PersistentData.Instance.SaveHighScore();
+                SceneManager.Instance.LoadScene("GameOverScene");
+
+
+            }
         }
     }
 }
