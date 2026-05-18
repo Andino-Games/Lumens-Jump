@@ -15,6 +15,13 @@ namespace Systems.Utils
                     _instance = FindAnyObjectByType<T>();
                 }
 
+                if (!_instance)
+                {
+                    var scriptName = typeof(T).Name;
+                    var prefabLocation = $"Singletons/{scriptName}";
+                    _instance = Instantiate(Resources.Load<GameObject>(prefabLocation)).GetComponent<T>();
+                }
+
                 return _instance;
             }
 
