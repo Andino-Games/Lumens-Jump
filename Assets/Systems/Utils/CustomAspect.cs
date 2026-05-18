@@ -54,7 +54,7 @@ namespace Systems.Utils
         private void AddLetterBoxingCamera()
         {
             // check that we don't have a camera already at -100 (the lowest depth) which will cause issues
-            Camera[] allCameras = FindObjectsByType<Camera>(FindObjectsSortMode.None);
+            Camera[] allCameras = FindObjectsByType<Camera>();
             
             if (allCameras.FirstOrDefault(cam => cam.name == "Letter Boxer Camera"))
             {
