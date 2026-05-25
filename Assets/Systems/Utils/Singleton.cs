@@ -4,7 +4,29 @@ namespace Systems.Utils
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        public static T Instance { get; private set; }
+        private static T _instance;
+
+        public static T Instance
+        {
+            get
+            {
+                if (!_instance)
+                {
+                    _instance = FindAnyObjectByType<T>();
+                }
+
+                if (!_instance)
+                {
+                    var scriptName = typeof(T).Name;
+                    var prefabLocation = $"Singletons/{scriptName}";
+                    _instance = Instantiate(Resources.Load<GameObject>(prefabLocation)).GetComponent<T>();
+                }
+
+                return _instance;
+            }
+
+            private set => _instance = value;
+        }
 
         protected virtual void Awake()
         {

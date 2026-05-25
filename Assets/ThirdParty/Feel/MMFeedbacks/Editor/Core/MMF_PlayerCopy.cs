@@ -51,7 +51,7 @@ namespace MoreMountains.Feedbacks
 
 		private static void StoreRuntimeChanges()
 		{
-			foreach (MMF_Player player in Object.FindObjectsByType<MMF_Player>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(p => p.KeepPlayModeChanges))
+			foreach (MMF_Player player in Object.FindObjectsByType<MMF_Player>(FindObjectsInactive.Include).Where(p => p.KeepPlayModeChanges))
 			{
 				MMF_PlayerCopy.StoreRuntimeChanges(player);
 			}
@@ -59,7 +59,7 @@ namespace MoreMountains.Feedbacks
 
 		private static void ApplyRuntimeChanges()
 		{
-			foreach (MMF_Player player in Object.FindObjectsByType<MMF_Player>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(MMF_PlayerCopy.RuntimeChanges.ContainsKey))
+			foreach (MMF_Player player in Object.FindObjectsByType<MMF_Player>(FindObjectsInactive.Include).Where(MMF_PlayerCopy.RuntimeChanges.ContainsKey))
 			{
 				MMF_PlayerCopy.ApplyRuntimeChanges(player);
 			}
@@ -129,7 +129,7 @@ namespace MoreMountains.Feedbacks
 			player.FeedbacksList.Clear();
 			foreach (MMF_Feedback feedback in MMF_PlayerCopy.RuntimeChanges[player])
 			{
-				player.AddFeedback(feedback);
+				player.AddFeedback(feedback, true);
 			}
 			playerSerialized.ApplyModifiedProperties();
 			PrefabUtility.RecordPrefabInstancePropertyModifications(player);
