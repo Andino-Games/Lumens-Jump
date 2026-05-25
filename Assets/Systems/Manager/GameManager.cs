@@ -1,3 +1,4 @@
+using System;
 using Systems.Audio;
 using Systems.UI;
 using Systems.Utils;
@@ -18,7 +19,7 @@ namespace Systems.Manager
             PersistentData.Instance.ResetScore();
             PersistentData.Instance.LoadHighScore();
 
-            AdsManager.Instance.RunGameplayTimer(true);
+            AdsManager.Instance.RunGameplayTimer();
         }
         
         public void TogglePause()
@@ -58,14 +59,19 @@ namespace Systems.Manager
 
             if(doOfferRevive == true)
             {
-                AdsManager.Instance.ShowRewardedAd();
+                Action onRewarded = () => SceneManager.Instance.LoadScene("GameScene");
+                AdsManager.Instance.ShowRewardedAd(onRewarded);
             }
             else
             {
+                if (AdsManager.Instance.CanShowAd() == true)
+                {
+                    AdsManager.Instance.ShowInterstitialAd();
+                }
+
                 PersistentData.Instance.SaveHighScore();
                 SceneManager.Instance.LoadScene("GameOverScene");
-
-
+                AdsManager.Instance.ResetRevive();
             }
         }
     }

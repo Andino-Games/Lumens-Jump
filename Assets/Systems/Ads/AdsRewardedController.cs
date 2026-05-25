@@ -4,16 +4,18 @@ using System;
 
 public class AdsRewardedController
 {
+    private bool wasRewardGranted;
     private LevelPlayRewardedAd ad;
 
     private Action onRewardGranted;
 
     public AdsRewardedController(string rewardedKey)
     {
+        wasRewardGranted = false;
         ad = new LevelPlayRewardedAd(rewardedKey);
 
         ad.OnAdRewarded += OnRewarded;
-        ad.OnAdClosed += info => LoadAd();
+        ad.OnAdClosed += OnClosed;
 
         ad.OnAdLoaded += info => Debug.Log("[Rewarded] Cargado");
         ad.OnAdLoadFailed += err => Debug.LogWarning($"[Rewarded] Error al cargar: {err}");
@@ -47,8 +49,17 @@ public class AdsRewardedController
     {
         Debug.Log($"[Rewarded] Recompensa: {reward.Name} x{reward.Amount}");
 
+        wasRewardGranted = true;
+
         onRewardGranted?.Invoke();
         onRewardGranted = null;
+    }
+
+    private void OnClosed(LevelPlayAdInfo info)
+    {
+        wasRewardGranted = false;
+
+        LoadAd();
     }
 
     public void LoadAd() => ad.LoadAd();

@@ -15,14 +15,16 @@ public class GameplayTimerController : MonoBehaviour
         }
     }
 
-    public void StartOver()
-    {
-        currentTime = 0f;
-        SetIsRunning(true);
-    }
+    //public void StartOver()
+    //{
+    //    currentTime = 0f;
+    //    SetIsRunning(true);
+    //}
 
     public void SetIsRunning(bool isGameplayRunning)
     {
         this.isGameplayRunning = isGameplayRunning;
     }
+
+    public void ResetTimer() => currentTime = 0f;
 }

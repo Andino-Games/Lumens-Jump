@@ -10,7 +10,11 @@ public class AdsInterstitialController
     {
         ad = new LevelPlayInterstitialAd(interstitialKey);
 
-        ad.OnAdClosed += info => LoadAd();
+        ad.OnAdClosed += info =>
+        {
+            LoadAd();
+            Debug.Log("Closing add");
+        };
 
         ad.OnAdLoaded += info => Debug.Log("[Interstitial] Cargado");
         ad.OnAdLoadFailed += err => Debug.LogWarning($"[Interstitial] Error al cargar: {err}");

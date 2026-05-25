@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AdsManager : Singleton<AdsManager>
 {
-    const float TIME_BETWEEN_ADS = 120f;
+    const float TIME_BETWEEN_ADS = 1f;
 
     [SerializeField] GameplayTimerController timerController;
     [SerializeField] AdsConfiguration adsConfiguration;
@@ -24,6 +24,8 @@ public class AdsManager : Singleton<AdsManager>
         LevelPlay.OnInitSuccess += LevelPlay_OnInitSuccess;
 
         LevelPlay.Init(adsConfiguration.AppKey);
+
+        ResetRevive();
     }
 
     private void LevelPlay_OnInitSuccess(LevelPlayConfiguration obj)
@@ -41,13 +43,13 @@ public class AdsManager : Singleton<AdsManager>
 
     public void RunGameplayTimer(bool startOver = false)
     {
-        if (startOver == true)
-        {
-            canOfferRevive = true;
-            timerController.StartOver();
-
-            return;
-        }
+        //if (startOver == true)
+        //{
+        //    ResetRevive();
+        //    timerController.StartOver();
+        //
+        //    return;
+        //}
 
         timerController.SetIsRunning(true);
     }
@@ -85,17 +87,20 @@ public class AdsManager : Singleton<AdsManager>
             Debug.Log("[Ads] Can't show ad: time between ads not reached");
         }
 
+        Debug.Log($"[Ads] Time between ads: {timerController.CurrentTime}");
+
         return result;
     }
 
-    public void ShowRewardedAd()
+    public void ShowRewardedAd(Action onRewarded)
     {
-        rewarded.ShowAdd(null);
+        rewarded.ShowAdd(onRewarded);
     }
 
     public void ShowInterstitialAd()
     {
         interstitial.ShowAdd();
+        timerController.ResetTimer();
     }
 
     public void ResetRevive() => canOfferRevive = true;
