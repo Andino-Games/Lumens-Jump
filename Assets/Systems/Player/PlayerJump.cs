@@ -1,7 +1,6 @@
 using Systems.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
-using Systems.Manager; // Asegúrate de que este using esté presente
 
 namespace Systems.Player
 {
@@ -22,28 +21,16 @@ namespace Systems.Player
 
         [Header("Camera Config")]
         public CinemachineCamera playerCamera;
-        public Transform cameraBounds; // Este será el Transform que moveremos
-
-        [Header("Camera Rising")]
-        [Tooltip("Velocidad mínima constante a la que la cámara sube, obligando al jugador a subir.")]
-        public float cameraRisingSpeed = 0.5f;
-        [Tooltip("Velocidad máxima de ascenso de la cámara.")]
-        public float maxCameraRisingSpeed = 2f;
-        [Tooltip("Aceleración del ascenso por segundo.")]
-        public float cameraRisingAcceleration = 0.01f;
+        public Transform cameraBounds;
 
         private float _timeSinceStart;
         private Rigidbody2D _rb;
         private PlayerEffects _playerEffects;
-        private float _currentCameraRisingSpeed; // Velocidad actual de ascenso autónomo de la cámara
-        private float _highestPlayerY; // La posición Y más alta alcanzada por el jugador
 
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             _playerEffects = GetComponent<PlayerEffects>();
-            _currentCameraRisingSpeed = cameraRisingSpeed; // Inicializar con la velocidad base
-            _highestPlayerY = transform.position.y; // Inicializar con la posición Y actual del jugador
         }
 
         void Update()
@@ -56,16 +43,7 @@ namespace Systems.Player
                 _timeSinceStart = 0;
             }
             
-            CameraFollowCheck(); // La lógica de seguimiento de cámara se mueve aquí
-
-            // La detección de Game Over por caída la moveremos al RisingDeathZone
-            // if (CameraManager.Instance != null && GameManager.Instance != null)
-            // {
-            //     if (transform.position.y < CameraManager.Instance.GetCameraY() - CameraManager.Instance.GetDeathOffset())
-            //     {
-            //         GameManager.Instance.GameOver();
-            //     }
-            // }
+            CameraFollowCheck();
         }
         
         private void OnTriggerEnter2D(Collider2D collision)
@@ -95,50 +73,28 @@ namespace Systems.Player
             _rb.gravityScale *= difficultyMultiplier;
         }
         
+        
         private void CameraFollowCheck()
         {
-            // Ascenso autónomo constante de cameraBounds
-            if (cameraBounds)
+            if (_rb.linearVelocity.y >= 0)
             {
-                // La cámara siempre sube a una velocidad mínima constante
-                float autonomousRise = _currentCameraRisingSpeed * Time.deltaTime;
-                float newBoundsY = cameraBounds.position.y + autonomousRise;
-
-                // Acelerar gradualmente la velocidad de ascenso autónomo
-                _currentCameraRisingSpeed = Mathf.Min(
-                    _currentCameraRisingSpeed + cameraRisingAcceleration * Time.deltaTime,
-                    maxCameraRisingSpeed);
-
-                // Si el jugador sube más rápido, la cámara lo sigue (comportamiento original)
-                // Actualizar la posición Y más alta del jugador
-                if (transform.position.y > _highestPlayerY)
+                if (playerCamera)
                 {
-                    _highestPlayerY = transform.position.y;
+                    playerCamera.Follow = transform;
                 }
-
-                // Tomar el valor mayor: el ascenso autónomo o la posición más alta del jugador
-                // Esto asegura que la cámara siempre suba, pero también siga al jugador si este la supera.
-                newBoundsY = Mathf.Max(newBoundsY, _highestPlayerY);
-
-                cameraBounds.position = new Vector3(
-                    cameraBounds.position.x,
-                    newBoundsY,
-                    cameraBounds.position.z);
+                if (cameraBounds)
+                {
+                    cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
+                }
             }
-
-            // Cámara de Cinemachine sigue al jugador solo cuando sube
-            // Esto es para el 'Follow' de Cinemachine, no para el movimiento de cameraBounds
-            if (playerCamera)
+            else
             {
-                if (_rb.linearVelocity.y >= 0)
+                if (playerCamera)
                 {
-                    playerCamera.Follow = transform; // Sigue al jugador
-                }
-                else
-                {
-                    playerCamera.Follow = null; // Deja de seguir al jugador (se queda en cameraBounds)
+                    playerCamera.Follow = null;
                 }
             }
         }
+        
     }
 }
