@@ -1,6 +1,7 @@
 using Systems.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
+using Systems.Level; // Necesario para RisingDeathZone
 
 namespace Systems.Player
 {
@@ -23,14 +24,26 @@ namespace Systems.Player
         public CinemachineCamera playerCamera;
         public Transform cameraBounds;
 
+        [Header("Camera Rising")]
+        [Tooltip("Referencia al RisingDeathZone para sincronizar la velocidad de ascenso.")]
+        public RisingDeathZone risingDeathZone;
+
+        [Tooltip("Offset de velocidad sobre la DeathZone. " +
+                 "Si es 0, la cámara sube al mismo ritmo. " +
+                 "Si es positivo, la cámara sube un poco más rápido que el piso.")]
+        public float cameraSpeedOffset = 0.1f;
+
         private float _timeSinceStart;
         private Rigidbody2D _rb;
         private PlayerEffects _playerEffects;
+        private float _cameraBoundsY; // Almacena la posición Y que cameraBounds debe seguir
 
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             _playerEffects = GetComponent<PlayerEffects>();
+            // Inicializar _cameraBoundsY con la posición actual de cameraBounds si existe, de lo contrario 0.
+            _cameraBoundsY = cameraBounds ? cameraBounds.position.y : 0f;
         }
 
         void Update()
@@ -73,28 +86,41 @@ namespace Systems.Player
             _rb.gravityScale *= difficultyMultiplier;
         }
         
-        
         private void CameraFollowCheck()
         {
-            if (_rb.linearVelocity.y >= 0)
+            // --- Ascenso autónomo de cameraBounds ---
+            if (cameraBounds)
             {
-                if (playerCamera)
+                // Velocidad base: sincronizada con la DeathZone + offset
+                float risingSpeed = (risingDeathZone ? risingDeathZone.CurrentSpeed : 0f) 
+                                    + cameraSpeedOffset;
+                _cameraBoundsY += risingSpeed * Time.deltaTime;
+
+                // Si el jugador sube más alto, la cámara lo sigue (comportamiento original)
+                // Esto asegura que la cámara no se quede atrás si el jugador es muy rápido
+                if (transform.position.y > _cameraBoundsY)
                 {
-                    playerCamera.Follow = transform;
+                    _cameraBoundsY = transform.position.y;
                 }
-                if (cameraBounds)
-                {
-                    cameraBounds.position = new Vector3(cameraBounds.position.x, transform.position.y, cameraBounds.position.z);
-                }
+
+                // Aplicar la posición calculada a cameraBounds
+                cameraBounds.position = new Vector3(
+                    cameraBounds.position.x, _cameraBoundsY, cameraBounds.position.z);
             }
-            else
+
+            // --- Cinemachine follow: sin cambios en lógica ---
+            // Cinemachine sigue al jugador solo cuando sube, de lo contrario se queda en cameraBounds
+            if (playerCamera)
             {
-                if (playerCamera)
+                if (_rb.linearVelocity.y >= 0)
                 {
-                    playerCamera.Follow = null;
+                    playerCamera.Follow = transform; // Sigue al jugador
+                }
+                else
+                {
+                    playerCamera.Follow = null; // Deja de seguir al jugador (se queda en la posición de cameraBounds)
                 }
             }
         }
-        
     }
 }
