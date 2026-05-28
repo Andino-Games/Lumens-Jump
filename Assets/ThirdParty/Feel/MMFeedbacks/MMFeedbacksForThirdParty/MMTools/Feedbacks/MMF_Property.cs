@@ -15,6 +15,7 @@ namespace MoreMountains.Feedbacks
 	              "It also works on scriptable objects. Drag an object, select a property, and setup your feedback " +
 	              "to update that property over time.")]
 	[MovedFrom(false, null, "MoreMountains.Feedbacks.MMTools")]
+	[System.Serializable]
 	[FeedbackPath("GameObject/Property")]
 	public class MMF_Property : MMF_Feedback
 	{
@@ -26,6 +27,7 @@ namespace MoreMountains.Feedbacks
 		#if UNITY_EDITOR
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.GameObjectColor; } }
 		public override bool EvaluateRequiresSetup() { return (Target == null); }
+		public override string RequiredTargetText { get { return Target != null ? Target.TargetObject.name+" - "+Target.TargetPropertyName : "";  } }
 		public override string RequiresSetupText { get { return "This feedback requires that a Target be set to be able to work properly. You can set one below."; } }
 		#endif
 		public override bool HasRandomness => true;
