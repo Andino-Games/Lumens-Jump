@@ -21,9 +21,14 @@ namespace Systems.Level
         [SerializeField] private float acceleration = 0.015f;
 
         [Header("Seguridad")]
-        [Tooltip("Distancia máxima que la DeathZone puede estar por debajo del jugador. " +
-                 "Evita que suba demasiado rápido y mate injustamente.")]
-        [SerializeField] private float maxDistanceBelowPlayer = 10f;
+        [Tooltip("Distancia de seguridad mínima que la DeathZone debe mantener por debajo del jugador. " +
+                 "Evita que la zona suba demasiado rápido y alcance al jugador.")]
+        [SerializeField] private float safetyDistance = 4f;
+
+        [Tooltip("Distancia máxima permitida por debajo del jugador. " +
+                 "Si el jugador sube más allá de esta distancia, la DeathZone es arrastrada hacia arriba " +
+                 "para que no quede rezagada.")]
+        [SerializeField] private float maxDistanceBelowPlayer = 12f;
 
         [Tooltip("Referencia al Transform del jugador.")]
         [SerializeField] private Transform playerTransform;
@@ -35,6 +40,7 @@ namespace Systems.Level
         private float _currentSpeed;
         private float _elapsedTime;
         private bool _isActive;
+        private bool _gameOverTriggered;
 
         /// <summary>
         /// Velocidad actual de ascenso. Otros sistemas pueden leerla para sincronizarse.
@@ -45,6 +51,7 @@ namespace Systems.Level
         {
             _currentSpeed = risingSpeed;
             _isActive = false; // No activa al inicio, espera el delay
+            _gameOverTriggered = false;
             if (playerTransform == null)
             {
                 Debug.LogError("Player Transform not assigned to RisingDeathZone.", this);
@@ -61,28 +68,45 @@ namespace Systems.Level
                 _isActive = true;
             }
 
-            // Ascenso constante
-            transform.position += Vector3.up * (_currentSpeed * Time.deltaTime);
+            // 1. Ascenso autónomo constante tentativo
+            float targetY = transform.position.y + (_currentSpeed * Time.deltaTime);
 
             // Aceleración gradual
             _currentSpeed = Mathf.Min(_currentSpeed + acceleration * Time.deltaTime, maxRisingSpeed);
 
-            // Seguridad: no superar al jugador más allá del margen permitido
+            // 2. Ajustes basados en la posición del jugador
             if (playerTransform)
             {
-                float maxY = playerTransform.position.y - maxDistanceBelowPlayer;
-                if (transform.position.y > maxY)
+                // Si el jugador subió mucho, arrastrar la DeathZone hacia arriba para no rezagarse
+                float minRequiredY = playerTransform.position.y - maxDistanceBelowPlayer;
+                if (targetY < minRequiredY)
                 {
-                    transform.position = new Vector3(
-                        transform.position.x, maxY, transform.position.z);
+                    targetY = minRequiredY;
                 }
+
+                // Seguridad: no dejar que suba demasiado cerca del jugador (distancia mínima de seguridad)
+                float maxAllowedY = playerTransform.position.y - safetyDistance;
+                if (targetY > maxAllowedY)
+                {
+                    targetY = maxAllowedY;
+                }
+            }
+
+            // 3. REGLA DE ORO: La DeathZone NUNCA puede bajar. Solo puede subir o quedarse quieta.
+            if (targetY > transform.position.y)
+            {
+                transform.position = new Vector3(
+                    transform.position.x, targetY, transform.position.z);
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (_gameOverTriggered) return;
+
             if (other.CompareTag("Player"))
             {
+                _gameOverTriggered = true;
                 // El jugador ha tocado la DeathZone, activar Game Over
                 if (GameManager.Instance != null)
                 {

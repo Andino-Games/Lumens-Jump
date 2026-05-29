@@ -997,7 +997,7 @@ PrefabInstance:
     - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: risingDeathZone
       value: 
-      objectReference: {fileID: 1391241956}
+      objectReference: {fileID: 1943443151}
     - target: {fileID: 3364080409062560796, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1362,6 +1362,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalVolume: {fileID: 1057436174}
+  defaultColorFilter: {r: 1, g: 1, b: 1, a: 1}
+  defaultVignetteIntensity: 0.3
+  defaultChromaticAberration: 0
 --- !u!4 &1013695997
 Transform:
   m_ObjectHideFlags: 0
@@ -1987,7 +1990,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391241953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95131009b06c7df4da407cf959a2dfb1, type: 3}
   m_Name: 
@@ -1995,6 +1998,7 @@ MonoBehaviour:
   risingSpeed: 0.3
   maxRisingSpeed: 2.5
   acceleration: 0.015
+  safetyDistance: 4
   maxDistanceBelowPlayer: 10
   playerTransform: {fileID: 711998421}
   startDelay: 3
@@ -2782,12 +2786,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870274316}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.14794302, y: -2.2877007, z: 0}
   m_LocalScale: {x: 15, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1943443149}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1870274319
 BoxCollider2D:
@@ -2819,7 +2823,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3164,6 +3168,7 @@ GameObject:
   - component: {fileID: 1943443150}
   - component: {fileID: 1943443151}
   - component: {fileID: 1943443152}
+  - component: {fileID: 1943443153}
   m_Layer: 0
   m_Name: DeathZone
   m_TagString: DeathZone
@@ -3179,14 +3184,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943443148}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.05818004, y: -2.83, z: 0.0011475002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1391241954}
   - {fileID: 339138631}
-  m_Father: {fileID: 0}
+  - {fileID: 1870274318}
+  m_Father: {fileID: 1955375099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1943443150
 MonoBehaviour:
@@ -3195,7 +3201,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943443148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a4bf42df9a54b2797bce63f82a59e2c, type: 3}
   m_Name: 
@@ -3219,6 +3225,7 @@ MonoBehaviour:
   risingSpeed: 0.3
   maxRisingSpeed: 2.5
   acceleration: 0.015
+  safetyDistance: 4
   maxDistanceBelowPlayer: 10
   playerTransform: {fileID: 711998421}
   startDelay: 3
@@ -3268,6 +3275,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1943443153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943443148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95131009b06c7df4da407cf959a2dfb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Systems.Level.RisingDeathZone
+  risingSpeed: 0.3
+  maxRisingSpeed: 2.5
+  acceleration: 0.015
+  safetyDistance: 4
+  maxDistanceBelowPlayer: 10
+  playerTransform: {fileID: 711998421}
+  startDelay: 3
 --- !u!1 &1955375097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,7 +3323,8 @@ Transform:
   m_LocalPosition: {x: 0.05818004, y: 2.83, z: -0.0011475002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1943443149}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1955375100
@@ -3798,11 +3825,9 @@ SceneRoots:
   - {fileID: 1175300497}
   - {fileID: 1523311681}
   - {fileID: 711998420}
-  - {fileID: 1943443149}
   - {fileID: 1015160609}
   - {fileID: 1936051390}
   - {fileID: 1717461419}
-  - {fileID: 1870274318}
   - {fileID: 2093766724}
   - {fileID: 124394442}
   - {fileID: 1932264859}

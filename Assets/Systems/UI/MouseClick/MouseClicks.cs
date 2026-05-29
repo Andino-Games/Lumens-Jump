@@ -1,4 +1,4 @@
-﻿using Systems.Utils;
+using Systems.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +58,17 @@ namespace Systems.UI.MouseClick
                 IClickUp clickable = _mouseClickObject.GetComponent<IClickUp>();
                 clickable?.OnClickUp();
                 _mouseClickObject = null;
+            }
+
+            // Siempre obtener la cámara principal activa en cada clic.
+            // La cámara puede cambiar entre escenas sin ser destruida (ej. GameScene preservada),
+            // lo que haría que ScreenToWorldPoint apunte a coordenadas incorrectas.
+            _camera = Camera.main;
+
+            if (_camera == null)
+            {
+                Debug.LogWarning("MouseClicks: No active Main Camera found to process click.");
+                return;
             }
 
             Vector2 mousePosition = _mouseClickPositionAction.ReadValue<Vector2>();

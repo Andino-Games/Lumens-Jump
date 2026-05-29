@@ -96,8 +96,7 @@ namespace Systems.Player
                                     + cameraSpeedOffset;
                 _cameraBoundsY += risingSpeed * Time.deltaTime;
 
-                // Si el jugador sube más alto, la cámara lo sigue (comportamiento original)
-                // Esto asegura que la cámara no se quede atrás si el jugador es muy rápido
+                // Si el jugador sube más alto que la posición autónoma, la cámara lo sigue
                 if (transform.position.y > _cameraBoundsY)
                 {
                     _cameraBoundsY = transform.position.y;
@@ -108,17 +107,21 @@ namespace Systems.Player
                     cameraBounds.position.x, _cameraBoundsY, cameraBounds.position.z);
             }
 
-            // --- Cinemachine follow: sin cambios en lógica ---
-            // Cinemachine sigue al jugador solo cuando sube, de lo contrario se queda en cameraBounds
+            // --- Cinemachine follow ---
+            // CLAVE: Solo seguir al jugador si está subiendo Y está por encima de cameraBounds.
+            // Si el jugador está por debajo de cameraBounds, NO lo sigue — así la cámara
+            // no "baja" al jugador y este eventualmente sale del viewport y muere.
             if (playerCamera)
             {
-                if (_rb.linearVelocity.y >= 0)
+                bool isPlayerAboveBounds = transform.position.y >= _cameraBoundsY - 0.5f;
+                
+                if (_rb.linearVelocity.y >= 0 && isPlayerAboveBounds)
                 {
-                    playerCamera.Follow = transform; // Sigue al jugador
+                    playerCamera.Follow = transform;
                 }
                 else
                 {
-                    playerCamera.Follow = null; // Deja de seguir al jugador (se queda en la posición de cameraBounds)
+                    playerCamera.Follow = null;
                 }
             }
         }

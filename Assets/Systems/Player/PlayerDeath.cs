@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Systems.Audio;
 using Systems.Manager;
 using UnityEngine;

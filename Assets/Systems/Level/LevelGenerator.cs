@@ -61,7 +61,20 @@ namespace Systems.Level
         private void OnPlatformUsed()
         {
             GameManager.Instance.AddPoints();
-            Spawn();
+        }
+
+        private void Update()
+        {
+            if (playerTransform == null) return;
+
+            // Maintain a buffer of platforms ahead of the player's Y position.
+            // (initialSpawnCount + 2) * spawnYInterval ensures there are plenty of platforms ahead of the player.
+            float lookaheadDistance = (initialSpawnCount + 2) * spawnYInterval;
+            
+            while (_nextSpawnY < playerTransform.position.y + lookaheadDistance)
+            {
+                Spawn();
+            }
         }
         
         private void Spawn(ObjectPool<Platform> pool = null)
