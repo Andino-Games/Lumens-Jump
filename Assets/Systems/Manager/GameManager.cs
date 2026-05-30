@@ -59,8 +59,7 @@ namespace Systems.Manager
 
             if(doOfferRevive == true)
             {
-                Action onRewarded = () => SceneManager.Instance.LoadScene("GameScene");
-                AdsManager.Instance.ShowRewardedAd(onRewarded);
+                SceneManager.Instance.LoadScene("GameOverScene");
             }
             else
             {
@@ -71,7 +70,7 @@ namespace Systems.Manager
 
                 PersistentData.Instance.SaveHighScore();
                 SceneManager.Instance.LoadScene("GameOverScene");
-                AdsManager.Instance.ResetRevive();
+                //AdsManager.Instance.ResetRevive();
             }
         }
     }

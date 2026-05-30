@@ -103,5 +103,9 @@ public class AdsManager : Singleton<AdsManager>
         timerController.ResetTimer();
     }
 
-    public void ResetRevive() => canOfferRevive = true;
+    public void ResetRevive() 
+    { 
+        canOfferRevive = true;
+        PlayerPrefs.SetInt("ShowRevive", 1);
+    }
 }
