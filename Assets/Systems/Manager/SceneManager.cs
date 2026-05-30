@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Systems.Audio;
 using Systems.Utils;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -20,7 +21,6 @@ namespace Systems.Manager
             new List<AsyncOperationHandle<SceneInstance>>();
 
         private AsyncOperationHandle<SceneInstance>? _currentSceneHandle;
-        private bool _bootSceneCleaned;
         private bool _isLoading;
 
         private void Start()
@@ -59,6 +59,46 @@ namespace Systems.Manager
                 return;
             }
             StartCoroutine(LoadSceneRoutine(sceneName));
+        }
+
+        /// <summary>
+        /// Reinicia el juego completo recargando IntroScene desde cero.
+        /// Equivale a cerrar y abrir la aplicación.
+        /// Los scores se preservan (PersistentData usa PlayerPrefs).
+        /// </summary>
+        public static bool IsRestarting { get; private set; }
+
+        public void RestartGame()
+        {
+            StopAllCoroutines();
+            _isLoading = false;
+
+            // Restaurar el tiempo a velocidad normal
+            Time.timeScale = 1f;
+
+            // Detener todo el audio del juego anterior
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.sfxSource.Stop();
+            AudioManager.Instance.ambSource.Stop();
+
+            // Marcar como restart para que IntroPass salte la animación
+            IsRestarting = true;
+
+            // Liberar handles de Addressables para evitar memory leaks
+            if (_currentSceneHandle.HasValue && _currentSceneHandle.Value.IsValid())
+                Addressables.UnloadSceneAsync(_currentSceneHandle.Value);
+            _currentSceneHandle = null;
+
+            foreach (var h in _loadedSceneHandles)
+            {
+                if (h.IsValid())
+                    Addressables.UnloadSceneAsync(h);
+            }
+            _loadedSceneHandles.Clear();
+
+            // Recargar la escena de arranque (IntroScene, build index 0)
+            // Esto descarga TODAS las escenas y arranca el flujo desde cero
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
         private IEnumerator LoadSceneRoutine(string sceneName)
@@ -124,24 +164,9 @@ namespace Systems.Manager
                     yield return unloadOp;
             }
 
-            // --- PASO 3: Limpiar la escena nativa de arranque (IntroScene) ---
-            CleanupBootSceneIfNeeded();
-
             _isLoading = false;
+            IsRestarting = false;
             onScenesLoaded?.Invoke();
-        }
-
-        private void CleanupBootSceneIfNeeded()
-        {
-            if (_bootSceneCleaned) return;
-
-            var bootScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("IntroScene");
-            if (bootScene.isLoaded)
-            {
-                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(bootScene);
-                Debug.Log("IntroScene cleaned up successfully.");
-                _bootSceneCleaned = true;
-            }
         }
 
         private void OnDestroy()

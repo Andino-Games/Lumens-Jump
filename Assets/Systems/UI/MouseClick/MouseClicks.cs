@@ -1,6 +1,7 @@
 using Systems.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement; // Necesario para gestionar escenas
 
 namespace Systems.UI.MouseClick
 {
@@ -11,8 +12,8 @@ namespace Systems.UI.MouseClick
         private InputAction _mouseClickAction;
         private InputAction _mouseClickPositionAction;
         private Camera _camera;
-        
-        public Vector2 PointerPosition => _mouseClickPositionAction.ReadValue<Vector2>();
+
+        public Vector2 PointerPosition => _mouseClickPositionAction != null ? _mouseClickPositionAction.ReadValue<Vector2>() : Vector2.zero;
         
         private GameObject _mouseClickObject;
 
@@ -24,26 +25,55 @@ namespace Systems.UI.MouseClick
 
         private void LoadActions()
         {
+            if (inputActions == null) return;
             _mouseClickAction = inputActions.FindAction("UI/Click", true);
             _mouseClickPositionAction = inputActions.FindAction("UI/ClickPosition", true);
         }
 
         private void OnEnable()
         {
-            _camera = Camera.main;
-            
             LoadActions();
             
-            _mouseClickAction.performed += OnClickDown;
-            _mouseClickAction.canceled += OnClickUp;
+            // Suscribirse a los eventos de input
+            if (_mouseClickAction != null)
+            {
+                _mouseClickAction.performed += OnClickDown;
+                _mouseClickAction.canceled += OnClickUp;
+            }
+            
+            // Suscribirse al evento de carga de escena
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
+            // Activar las acciones la primera vez
+            EnableInputActions();
         }
         
         private void OnDisable()
         {
-            LoadActions();
+            // Desuscribirse de los eventos de input
+            if (_mouseClickAction != null)
+            {
+                _mouseClickAction.performed -= OnClickDown;
+                _mouseClickAction.canceled -= OnClickUp;
+            }
             
-            _mouseClickAction.performed -= OnClickDown;
-            _mouseClickAction.canceled -= OnClickUp;
+            // Desuscribirse del evento de carga de escena
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+        
+        // Se ejecuta cada vez que se carga una nueva escena
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            // SOLUCIÓN: Reactivar las acciones de input para asegurar que
+            // el sistema escuche los clics en la nueva escena.
+            EnableInputActions();
+        }
+
+        // Centraliza la activación de acciones para ser reutilizado
+        private void EnableInputActions()
+        {
+            if (_mouseClickAction != null) _mouseClickAction.Enable();
+            if (_mouseClickPositionAction != null) _mouseClickPositionAction.Enable();
         }
 
         private void Start()
@@ -55,14 +85,13 @@ namespace Systems.UI.MouseClick
         {
             if (_mouseClickObject)
             {
-                IClickUp clickable = _mouseClickObject.GetComponent<IClickUp>();
-                clickable?.OnClickUp();
+                if (_mouseClickObject.TryGetComponent(out IClickUp clickable))
+                {
+                    clickable.OnClickUp();
+                }
                 _mouseClickObject = null;
             }
 
-            // Siempre obtener la cámara principal activa en cada clic.
-            // La cámara puede cambiar entre escenas sin ser destruida (ej. GameScene preservada),
-            // lo que haría que ScreenToWorldPoint apunte a coordenadas incorrectas.
             _camera = Camera.main;
 
             if (_camera == null)

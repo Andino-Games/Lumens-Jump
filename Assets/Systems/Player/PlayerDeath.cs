@@ -40,10 +40,10 @@ namespace Systems.Player
             _rigidbody2D.linearVelocity = Vector2.zero;
             _playerEffects.PlayerDeathEffect();
             Time.timeScale = 0.25f;
-            CameraManager.Instance.SetCamera("Dead");
+            try { CameraManager.Instance.SetCamera("Dead"); } catch { }
             AudioManager.Instance.PlaySfx("Dead", 1);
-            PostProcessingManager.Instance.SetColorAdjustments(deathColor, 0.5f);
-            PostProcessingManager.Instance.SetVignetteIntensity(1f, 0.5f);
+            try { PostProcessingManager.Instance.SetColorAdjustments(deathColor, 0.5f); } catch { }
+            try { PostProcessingManager.Instance.SetVignetteIntensity(1f, 0.5f); } catch { }
             yield return new WaitForSeconds(0.5f);
             Time.timeScale = 1f;
             onGameOver.Invoke();

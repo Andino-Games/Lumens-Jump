@@ -1,4 +1,4 @@
-﻿using Systems.Audio;
+using Systems.Audio;
 using Systems.Manager;
 using Systems.UI.MouseClick;
 using UnityEngine;
@@ -19,7 +19,7 @@ namespace Systems.UI
         
         public void ShowMainMenu()
         {
-            SceneManager.Instance.LoadScene("MainMenuScene");
+            SceneManager.Instance.RestartGame();
         }
 
         public void PlayUISfx(string sfxName)

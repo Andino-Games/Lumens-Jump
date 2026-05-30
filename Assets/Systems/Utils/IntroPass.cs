@@ -1,4 +1,4 @@
-﻿using Systems.Manager;
+using Systems.Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +13,14 @@ namespace Systems.Utils
         private void Start()
         {
             versionText.text = "v." + Application.version;
+            
+            // Si es un restart desde GameOver, saltar la intro y cargar el menú directamente
+            if (SceneManager.IsRestarting)
+            {
+                ChangeToMenuScene();
+                return;
+            }
+            
             Invoke(nameof(ChangeToMenuScene), 6.5f);
         }
         
