@@ -17,14 +17,14 @@ public class AdsRewardedController
         ad.OnAdRewarded += OnRewarded;
         ad.OnAdClosed += OnClosed;
 
-        ad.OnAdLoaded += info => Debug.Log("[Rewarded] Cargado");
-        ad.OnAdLoadFailed += err => Debug.LogWarning($"[Rewarded] Error al cargar: {err}");
-        ad.OnAdDisplayed += info => Debug.Log("[Rewarded] Mostrando");
-        ad.OnAdDisplayFailed += (err, info) => Debug.LogWarning($"[Rewarded] Error al mostrar: {err}");
+        ad.OnAdLoaded += info => Debug.Log("[Rewarded] Loading");
+        ad.OnAdLoadFailed += err => Debug.LogWarning($"[Rewarded] Error loafing: {err}");
+        ad.OnAdDisplayed += info => Debug.Log("[Rewarded] Showing");
+        ad.OnAdDisplayFailed += (err, info) => Debug.LogWarning($"[Rewarded] Error showing: {err}");
         
-        // Opcionales:
+        // Optionals:
         ad.OnAdClicked += info => Debug.Log("[Rewarded] Click");
-        ad.OnAdInfoChanged += info => Debug.Log("[Rewarded] Info actualizada");
+        ad.OnAdInfoChanged += info => Debug.Log("[Rewarded] Info updated");
 
         LoadAd();
     }
@@ -33,7 +33,7 @@ public class AdsRewardedController
     {
         if (ad.IsAdReady() == false)
         {
-            Debug.LogWarning("[Rewarded] El anuncio no está listo aún");
+            Debug.LogWarning("[Rewarded] Ad is not ready yet");
             LoadAd();
 
             return;
@@ -42,12 +42,12 @@ public class AdsRewardedController
         onRewardGranted = onReward;
         ad.ShowAd("Revive");
 
-        Debug.LogWarning("[Rewarded] Mostrando anuncio");
+        Debug.LogWarning("[Rewarded] Showing ad");
     }
 
     private void OnRewarded(LevelPlayAdInfo info, LevelPlayReward reward)
     {
-        Debug.Log($"[Rewarded] Recompensa: {reward.Name} x{reward.Amount}");
+        Debug.Log($"[Rewarded] Reward: {reward.Name} x{reward.Amount}");
 
         wasRewardGranted = true;
 

@@ -16,14 +16,14 @@ public class AdsInterstitialController
             Debug.Log("Closing add");
         };
 
-        ad.OnAdLoaded += info => Debug.Log("[Interstitial] Cargado");
-        ad.OnAdLoadFailed += err => Debug.LogWarning($"[Interstitial] Error al cargar: {err}");
-        ad.OnAdDisplayed += info => Debug.Log("[Interstitial] Mostrando");
-        ad.OnAdDisplayFailed += (err, info) => Debug.LogWarning($"[Interstitial] Error al mostrar: {err}");
+        ad.OnAdLoaded += info => Debug.Log("[Interstitial] Loading");
+        ad.OnAdLoadFailed += err => Debug.LogWarning($"[Interstitial] Error loading: {err}");
+        ad.OnAdDisplayed += info => Debug.Log("[Interstitial] Showing");
+        ad.OnAdDisplayFailed += (err, info) => Debug.LogWarning($"[Interstitial] Error showing: {err}");
 
         // Opcionales:
         ad.OnAdClicked += info => Debug.Log("[Interstitial] Click");
-        ad.OnAdInfoChanged += info => Debug.Log("[Interstitial] Info actualizada");
+        ad.OnAdInfoChanged += info => Debug.Log("[Interstitial] Info updated");
 
         LoadAd();
     }
@@ -32,7 +32,7 @@ public class AdsInterstitialController
     {
         if (ad.IsAdReady() == false)
         {
-            Debug.LogWarning("[Interstitial] El anuncio no está listo aún");
+            Debug.LogWarning("[Interstitial] Ad is not ready yet");
             LoadAd();
 
             return;
@@ -40,7 +40,7 @@ public class AdsInterstitialController
 
         ad.ShowAd("Must");
 
-        Debug.LogWarning("[Interstitial] Mostrando anuncio");
+        Debug.LogWarning("[Interstitial] Showing ad");
     }
 
     public void LoadAd() => ad.LoadAd();

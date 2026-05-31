@@ -30,7 +30,7 @@ public class AdsManager : Singleton<AdsManager>
 
     private void LevelPlay_OnInitSuccess(LevelPlayConfiguration obj)
     {
-        Debug.Log("[Ads] SDK inicializado correctamente");
+        Debug.Log("[Ads] SDK initialized properly");
 
         rewarded = new AdsRewardedController(adsConfiguration.RewardedKey);
         interstitial = new AdsInterstitialController(adsConfiguration.InterstitialKey);
@@ -38,19 +38,11 @@ public class AdsManager : Singleton<AdsManager>
 
     private void LevelPlay_OnInitFailed(LevelPlayInitError error)
     {
-        Debug.LogError($"[Ads] Error de inicialización: {error.ErrorMessage}");
+        Debug.LogError($"[Ads] Initialization error: {error.ErrorMessage}");
     }
 
     public void RunGameplayTimer(bool startOver = false)
     {
-        //if (startOver == true)
-        //{
-        //    ResetRevive();
-        //    timerController.StartOver();
-        //
-        //    return;
-        //}
-
         timerController.SetIsRunning(true);
     }
 
