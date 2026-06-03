@@ -53,25 +53,33 @@ namespace Systems.Manager
             AudioManager.Instance.PlayUI("Score");
         }
         
-        public void GameOver()
+        public void GameOver(bool activate)
         {
-            bool doOfferRevive = AdsManager.Instance.CanOfferRevive();
-
+            bool doOfferRevive = AdsManager.Instance.CanOfferRevive(activate);
+            
             if(doOfferRevive == true)
             {
-                SceneManager.Instance.LoadScene("GameOverScene");
+                // SceneManager.Instance.LoadScene("GameOverScene");
+                Debug.Log("Ofreciendo revivir");
             }
             else
             {
-                if (AdsManager.Instance.CanShowAd() == true)
-                {
-                    AdsManager.Instance.ShowInterstitialAd();
-                }
-
-                PersistentData.Instance.SaveHighScore();
-                SceneManager.Instance.LoadScene("GameOverScene");
-                //AdsManager.Instance.ResetRevive();
+                AllGameOver();
+                
+                
             }
+        }
+
+        private void AllGameOver()
+        {
+            if (AdsManager.Instance.CanShowAd() == true)
+            {
+                AdsManager.Instance.ShowInterstitialAd();
+            }
+
+            PersistentData.Instance.SaveHighScore();
+            // SceneManager.Instance.LoadScene("GameOverScene");
+            //AdsManager.Instance.ResetRevive();
         }
     }
 }

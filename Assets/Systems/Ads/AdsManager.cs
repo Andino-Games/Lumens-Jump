@@ -1,4 +1,5 @@
 using System;
+using Systems.Manager;
 using Systems.Utils;
 using Unity.Services.LevelPlay;
 using UnityEditor.PackageManager;
@@ -17,6 +18,18 @@ public class AdsManager : Singleton<AdsManager>
     private AdsInterstitialController interstitial;
 
     public Action OnOfferRevive;
+    [SerializeField] private bool testMode = true;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); 
+            return;
+        }
+
+        
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
@@ -51,19 +64,21 @@ public class AdsManager : Singleton<AdsManager>
         timerController.SetIsRunning(false);
     }
 
-    public bool CanOfferRevive()
+    public bool CanOfferRevive(bool activate)
     {
-        bool result = false;
+        bool rewardedReady = rewarded != null || testMode;
+    
+        Debug.Log($"[Ads] CanOfferRevive. activate={activate}, canOfferRevive={canOfferRevive}, rewardedReady={rewardedReady}");
 
-        if (canOfferRevive == true)
+        if (activate && canOfferRevive && rewardedReady)
         {
             canOfferRevive = false;
             timerController.SetIsRunning(false);
-
+            OnOfferRevive?.Invoke();
             return true;
         }
 
-        return result;
+        return false;
     }
 
     public bool CanShowAd()
@@ -83,16 +98,51 @@ public class AdsManager : Singleton<AdsManager>
 
         return result;
     }
+    // public void AlPresionarBotonRevivir()
+    // {
+    //     Debug.Log("[Ads] Jugadora presionó revivir. Intentando mostrar anuncio premiado...");
+    //
+    //     ShowRewardedAd(() => 
+    //     {
+    //         Debug.Log("[Ads] ¡Anuncio visto con éxito! Reviviendo al jugador...");
+    //     
+    //         RunGameplayTimer();
+    //
+    //     });
+    // }
 
     public void ShowRewardedAd(Action onRewarded)
     {
-        rewarded.ShowAdd(onRewarded);
+        if (testMode)
+        {
+            Debug.Log("[Ads] TEST MODE: simulando anuncio visto");
+            onRewarded?.Invoke(); // simula que el jugador vio el ad
+            return;
+        }
+
+        if (rewarded != null)
+        {
+            rewarded.ShowAdd(onRewarded);
+        }
+        else
+        {
+            Debug.LogError("[Ads] rewarded es null, SDK no inicializado");
+            GameManager.Instance.GameOver(false);
+        }
     }
 
     public void ShowInterstitialAd()
     {
-        interstitial.ShowAdd();
-        timerController.ResetTimer();
+        if (interstitial != null)
+        {
+            Debug.Log("[Ads] Mostrando Anuncio Intersticial...");
+            interstitial.ShowAdd();
+            timerController.ResetTimer();
+        }
+        else
+        {
+            Debug.LogWarning("[Ads] No se pudo mostrar Intersticial porque el SDK no está listo o no hay internet.");
+        }
     }
 
     public void ResetRevive() 

@@ -14,7 +14,7 @@ namespace Systems.UI
 
         public void StartGame()
         {
-            SceneManager.Instance.LoadScene("GameScene");
+            SceneManager.Instance.LoadScene("GameScene_Test");
             AdsManager.Instance.ResetRevive();
         }
         
