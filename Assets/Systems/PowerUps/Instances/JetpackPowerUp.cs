@@ -42,14 +42,14 @@ namespace Systems.PowerUps.Instances
             AudioManager.Instance.PlaySfx("Rocket_Start", 1);
             Time.timeScale = 0.25f;
             
-            try { CameraManager.Instance.SetCamera("Jetpack"); } catch { }
-            try { PostProcessingManager.Instance.SetVignetteIntensity(0.6f, transitionTime); } catch { }
-            try { PostProcessingManager.Instance.SetChromaticAberrationIntensity(0.6f, transitionTime); } catch { }
+            CameraManager.Instance?.SetCamera("Jetpack");
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.6f, transitionTime);
+            PostProcessingManager.Instance?.SetChromaticAberrationIntensity(0.6f, transitionTime);
             
             yield return new WaitForSeconds(transitionTime);
             Time.timeScale = 1f;
             
-            try { PostProcessingManager.Instance.SetVignetteIntensity(0.45f, transitionTime * 2); } catch { }
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.45f, transitionTime * 2);
             
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {
@@ -62,8 +62,8 @@ namespace Systems.PowerUps.Instances
 
             yield return new WaitForSeconds(duration);
             
-            try { PostProcessingManager.Instance.SetVignetteIntensity(0.3f, transitionTime * 2); } catch { }
-            try { PostProcessingManager.Instance.SetChromaticAberrationIntensity(0f, transitionTime * 2); } catch { }
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, transitionTime * 2);
+            PostProcessingManager.Instance?.SetChromaticAberrationIntensity(0f, transitionTime * 2);
 
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {
@@ -75,7 +75,7 @@ namespace Systems.PowerUps.Instances
             _playerRigidbody.linearVelocity = Vector2.zero;
             
             Time.timeScale = 0.25f;
-            try { CameraManager.Instance.SetCamera("Default"); } catch { }
+            CameraManager.Instance?.SetCamera("Default");
 
             yield return new WaitForSeconds(transitionTime);
 

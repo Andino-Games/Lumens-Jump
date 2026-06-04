@@ -63,6 +63,8 @@ namespace Systems.Level
             GameManager.Instance.AddPoints();
         }
 
+        private const int MaxSpawnsPerFrame = 3;
+
         private void Update()
         {
             if (playerTransform == null) return;
@@ -71,7 +73,8 @@ namespace Systems.Level
             // (initialSpawnCount + 2) * spawnYInterval ensures there are plenty of platforms ahead of the player.
             float lookaheadDistance = (initialSpawnCount + 2) * spawnYInterval;
             
-            while (_nextSpawnY < playerTransform.position.y + lookaheadDistance)
+            // Limitar spawns por frame para evitar spikes de rendimiento
+            for (int i = 0; i < MaxSpawnsPerFrame && _nextSpawnY < playerTransform.position.y + lookaheadDistance; i++)
             {
                 Spawn();
             }

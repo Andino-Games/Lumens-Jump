@@ -20,44 +20,37 @@ namespace Systems.UI.MouseClick
         protected override void Awake()
         {
             base.Awake();
-            LoadActions();
+            // Solo la instancia real del Singleton debe inicializarse.
+            // Los duplicados son destruidos por base.Awake() y no necesitan LoadActions.
+            if (Instance == this) LoadActions();
         }
 
         private void LoadActions()
         {
-            if (inputActions == null) return;
             _mouseClickAction = inputActions.FindAction("UI/Click", true);
             _mouseClickPositionAction = inputActions.FindAction("UI/ClickPosition", true);
         }
 
         private void OnEnable()
         {
+            // Solo la instancia Singleton activa debe suscribirse a eventos
+            if (Instance != this) return;
+            
             LoadActions();
             
-            // Suscribirse a los eventos de input
-            if (_mouseClickAction != null)
-            {
-                _mouseClickAction.performed += OnClickDown;
-                _mouseClickAction.canceled += OnClickUp;
-            }
+            _mouseClickAction.performed += OnClickDown;
+            _mouseClickAction.canceled += OnClickUp;
             
-            // Suscribirse al evento de carga de escena
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
-            // Activar las acciones la primera vez
             EnableInputActions();
         }
         
         private void OnDisable()
         {
-            // Desuscribirse de los eventos de input
-            if (_mouseClickAction != null)
-            {
-                _mouseClickAction.performed -= OnClickDown;
-                _mouseClickAction.canceled -= OnClickUp;
-            }
+            if (Instance != this) return;
             
-            // Desuscribirse del evento de carga de escena
+            _mouseClickAction.performed -= OnClickDown;
+            _mouseClickAction.canceled -= OnClickUp;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
         
@@ -69,11 +62,10 @@ namespace Systems.UI.MouseClick
             EnableInputActions();
         }
 
-        // Centraliza la activación de acciones para ser reutilizado
         private void EnableInputActions()
         {
-            if (_mouseClickAction != null) _mouseClickAction.Enable();
-            if (_mouseClickPositionAction != null) _mouseClickPositionAction.Enable();
+            _mouseClickAction.Enable();
+            _mouseClickPositionAction.Enable();
         }
 
         private void Start()

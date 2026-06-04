@@ -108,14 +108,7 @@ namespace Systems.Level
             {
                 _gameOverTriggered = true;
                 // El jugador ha tocado la DeathZone, activar Game Over
-                if (GameManager.Instance != null)
-                {
-                    GameManager.Instance.GameOver();
-                }
-                else
-                {
-                    Debug.LogWarning("GameManager.Instance not found when player hit DeathZone.");
-                }
+                GameManager.Instance.GameOver();
             }
         }
 
