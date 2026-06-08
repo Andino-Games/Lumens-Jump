@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Systems.Utils
 {
@@ -19,7 +19,15 @@ namespace Systems.Utils
                 {
                     var scriptName = typeof(T).Name;
                     var prefabLocation = $"Singletons/{scriptName}";
-                    _instance = Instantiate(Resources.Load<GameObject>(prefabLocation)).GetComponent<T>();
+                    var prefab = Resources.Load<GameObject>(prefabLocation);
+                    if (prefab != null)
+                    {
+                        _instance = Instantiate(prefab).GetComponent<T>();
+                    }
+                    else
+                    {
+                        Debug.LogError($"Singleton<{scriptName}>: No instance found in scene and no prefab at 'Resources/{prefabLocation}'.");
+                    }
                 }
 
                 return _instance;

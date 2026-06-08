@@ -61,7 +61,23 @@ namespace Systems.Level
         private void OnPlatformUsed()
         {
             GameManager.Instance.AddPoints();
-            Spawn();
+        }
+
+        private const int MaxSpawnsPerFrame = 3;
+
+        private void Update()
+        {
+            if (playerTransform == null) return;
+
+            // Maintain a buffer of platforms ahead of the player's Y position.
+            // (initialSpawnCount + 2) * spawnYInterval ensures there are plenty of platforms ahead of the player.
+            float lookaheadDistance = (initialSpawnCount + 2) * spawnYInterval;
+            
+            // Limitar spawns por frame para evitar spikes de rendimiento
+            for (int i = 0; i < MaxSpawnsPerFrame && _nextSpawnY < playerTransform.position.y + lookaheadDistance; i++)
+            {
+                Spawn();
+            }
         }
         
         private void Spawn(ObjectPool<Platform> pool = null)

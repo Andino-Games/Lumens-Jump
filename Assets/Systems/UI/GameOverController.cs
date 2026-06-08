@@ -1,4 +1,4 @@
-﻿using Systems.Manager;
+using Systems.Manager;
 using Systems.UI.MouseClick;
 using TMPro;
 using UnityEngine;
