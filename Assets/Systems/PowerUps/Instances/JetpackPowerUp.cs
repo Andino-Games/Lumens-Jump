@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Systems.Audio;
 using Systems.Manager;
@@ -41,12 +41,15 @@ namespace Systems.PowerUps.Instances
             _isActive = true;
             AudioManager.Instance.PlaySfx("Rocket_Start", 1);
             Time.timeScale = 0.25f;
-            CameraManager.Instance.SetCamera("Jetpack");
-            PostProcessingManager.Instance.SetVignetteIntensity(0.6f, transitionTime);
-            PostProcessingManager.Instance.SetChromaticAberrationIntensity(0.6f, transitionTime);
+            
+            CameraManager.Instance?.SetCamera("Jetpack");
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.6f, transitionTime);
+            PostProcessingManager.Instance?.SetChromaticAberrationIntensity(0.6f, transitionTime);
+            
             yield return new WaitForSeconds(transitionTime);
             Time.timeScale = 1f;
-            PostProcessingManager.Instance.SetVignetteIntensity(0.45f, transitionTime * 2);
+            
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.45f, transitionTime * 2);
             
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {
@@ -58,8 +61,9 @@ namespace Systems.PowerUps.Instances
             _playerRigidbody.AddForce(Vector2.up * thrust, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(duration);
-            PostProcessingManager.Instance.SetVignetteIntensity(0.3f, transitionTime * 2);
-            PostProcessingManager.Instance.SetChromaticAberrationIntensity(0f, transitionTime * 2);
+            
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, transitionTime * 2);
+            PostProcessingManager.Instance?.SetChromaticAberrationIntensity(0f, transitionTime * 2);
 
             foreach (ParticleSystem jetpackParticle in jetpackParticles)
             {
@@ -71,7 +75,7 @@ namespace Systems.PowerUps.Instances
             _playerRigidbody.linearVelocity = Vector2.zero;
             
             Time.timeScale = 0.25f;
-            CameraManager.Instance.SetCamera("Default");
+            CameraManager.Instance?.SetCamera("Default");
 
             yield return new WaitForSeconds(transitionTime);
 

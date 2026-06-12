@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Systems.Utils;
 using Unity.Cinemachine;
@@ -38,6 +38,9 @@ namespace Systems.Manager
         {
             foreach (CamerasType cameraType in cameras)
             {
+                // Proteger contra cámaras destruidas de escenas descargadas
+                if (cameraType.camera == null) continue;
+                
                 if (cameraType.cameraName.Equals(cameraName, StringComparison.OrdinalIgnoreCase))
                 {
                     cameraType.camera.gameObject.SetActive(true);

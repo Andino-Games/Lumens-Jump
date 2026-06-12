@@ -29,6 +29,12 @@ namespace Systems.UI.Cordel
         {
             if (_isDragging)
             {
+                // Refrescar la cámara en cada frame para manejar transiciones de escena
+                if (_mainCamera == null)
+                    _mainCamera = Camera.main;
+                
+                if (_mainCamera == null) return;
+                
                 Vector2 pointerPosition = MouseClicks.Instance.PointerPosition;
                 Vector2 pointerWorldPosition = _mainCamera.ScreenToWorldPoint(pointerPosition);
                 
