@@ -867,7 +867,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;LEVELPLAY_DEPENDENCIES_INSTALLED
     Standalone: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
