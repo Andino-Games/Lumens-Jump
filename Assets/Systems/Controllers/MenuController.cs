@@ -15,11 +15,15 @@ namespace Systems.UI
         public void StartGame()
         {
             SceneManager.Instance.LoadScene("GameScene");
+
+            AdsManager.Instance.ResetRevive();
         }
         
         public void ShowMainMenu()
         {
             SceneManager.Instance.RestartGame();
+
+            AdsManager.Instance.ResetRevive();
         }
 
         public void PlayUISfx(string sfxName)
