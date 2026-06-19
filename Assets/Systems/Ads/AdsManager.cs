@@ -23,7 +23,7 @@ public class AdsManager : Singleton<AdsManager>
         LevelPlay.OnInitFailed += LevelPlay_OnInitFailed;
         LevelPlay.OnInitSuccess += LevelPlay_OnInitSuccess;
 
-        LevelPlay.Init(adsConfiguration.AppKey);
+        // LevelPlay.Init(adsConfiguration.AppKey);
 
         ResetRevive();
     }
@@ -32,8 +32,8 @@ public class AdsManager : Singleton<AdsManager>
     {
         Debug.Log("[Ads] SDK initialized properly");
 
-        rewarded = new AdsRewardedController(adsConfiguration.RewardedKey);
-        interstitial = new AdsInterstitialController(adsConfiguration.InterstitialKey);
+        // rewarded = new AdsRewardedController(adsConfiguration.RewardedKey);
+        // interstitial = new AdsInterstitialController(adsConfiguration.InterstitialKey);
     }
 
     private void LevelPlay_OnInitFailed(LevelPlayInitError error)
