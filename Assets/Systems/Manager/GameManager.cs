@@ -1,5 +1,7 @@
 using System;
 using Systems.Audio;
+using Systems.Level;
+using Systems.Player;
 using Systems.UI;
 using Systems.Utils;
 using UnityEngine;
@@ -12,6 +14,9 @@ namespace Systems.Manager
         private bool _isPaused;
 
         [SerializeField] private HudController hudController;
+        [SerializeField] private PlayerDeath playerDeath;
+        [SerializeField] private PlayerJump playerJump;
+        [SerializeField] private RisingDeathZone deathZone;
 
         private void Start()
         {
@@ -20,6 +25,8 @@ namespace Systems.Manager
             PersistentData.Instance.LoadHighScore();
 
             AdsManager.Instance.RunGameplayTimer();
+
+            hudController.SetRevivePanelActive(false);
         }
         
         public void TogglePause()
@@ -45,6 +52,8 @@ namespace Systems.Manager
         {
             _isPaused = false;
             Time.timeScale = 1f;
+
+            hudController.SetRevivePanelActive(false);
         }
         
         public void AddPoints()
@@ -55,11 +64,22 @@ namespace Systems.Manager
         
         public void GameOver()
         {
+            playerJump.isFollowActive = false;
+
             bool doOfferRevive = AdsManager.Instance.CanOfferRevive();
 
-            if(doOfferRevive == true)
+            if (doOfferRevive == true)
             {
-                SceneManager.Instance.LoadScene("GameOverScene");
+                //PauseGame();
+                hudController.SetRevivePanelActive(true);
+
+                CameraManager.Instance?.SetCamera("Default");
+                PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
+                PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
+
+                //SceneManager.Instance.LoadScene("GameOverScene");
+
+                Debug.Log("[GameManager] Offer revive");
             }
             else
             {
@@ -70,8 +90,31 @@ namespace Systems.Manager
 
                 PersistentData.Instance.SaveHighScore();
                 SceneManager.Instance.LoadScene("GameOverScene");
-                //AdsManager.Instance.ResetRevive();
+
+                Debug.Log("[GameManager] Game Over Scene");
             }
+        }
+
+        public void ShowReviveAd()
+        {
+            Action onRewarded = () => 
+            {
+                ResumeGame();
+                playerDeath.ResetGame();
+                deathZone.HandleResetZone();
+                playerJump.isFollowActive = true;
+            };
+
+            AdsManager.Instance.ShowRewardedAd(onRewarded);
+
+            Debug.Log("[GameManager] Show Revive Ad");
+        }
+
+        public void SkipRevive()
+        {
+            SceneManager.Instance.LoadScene("GameOverScene");
+            
+            Debug.Log("[GameManager] Skip Revive");
         }
     }
 }

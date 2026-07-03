@@ -14,6 +14,9 @@ namespace Systems.UI
         [SerializeField] private TextMeshProUGUI pointsText;
         [SerializeField] private Animator pointsTextAnimator;
 
+        [Header("Revive")]
+        [SerializeField] private GameObject revivePanel;
+
         private void Start()
         {
             MouseClicks.Instance.gameObject.SetActive(false);
@@ -38,5 +41,9 @@ namespace Systems.UI
             }
         }
 
+        public void SetRevivePanelActive(bool newActive)
+        {
+            revivePanel.SetActive(newActive);
+        }
     }
 }

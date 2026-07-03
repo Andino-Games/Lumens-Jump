@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e7c19be76e33c4fb7621aa5f166626, type: 3}
   m_Name: AdsConfiguration
   m_EditorClassIdentifier: Assembly-CSharp::AdsConfiguration
-  appKey: test_app_key
-  rewardedKey: test_rewarded_key
-  interstitialKey: test_interstitial_key
+  appKey: 26f8606bd
+  rewardedKey: cq5jv7j3ccu0qzc6
+  interstitialKey: dc96bcu70nekqjzt
