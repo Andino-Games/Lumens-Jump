@@ -739,6 +739,8 @@ MonoBehaviour:
   pointsText: {fileID: 1216549185}
   pointsTextAnimator: {fileID: 1879730882}
   revivePanel: {fileID: 6917667183774084008}
+  gameplayPanel: {fileID: 1879730880}
+  joystickPanel: {fileID: 793595393}
 --- !u!4 &576719926
 Transform:
   m_ObjectHideFlags: 0
@@ -1713,6 +1715,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+--- !u!1 &793595393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+  m_PrefabInstance: {fileID: 793595392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &852092360 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -1723,7 +1730,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
   m_PrefabInstance: {fileID: 793595392}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 793595393}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
