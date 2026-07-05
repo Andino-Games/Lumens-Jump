@@ -167,7 +167,7 @@ MonoBehaviour:
       m_MinBound: 0.01
       m_MaxBound: 1
   m_AddedScalerViaScan:
-  - {fileID: 1726697850552810087}
+  - {fileID: 8009215481658064097}
   m_ActiveScalerProfile:
     rid: -2
   m_scalerProfileList:
@@ -326,7 +326,7 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
---- !u!114 &1726697850552810087
+--- !u!114 &8009215481658064097
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
