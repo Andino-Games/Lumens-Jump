@@ -17,6 +17,7 @@ namespace Systems.UI
 
         private void Start()
         {
+            /*
             bool doShowRevive = PlayerPrefs.GetInt("ShowRevive") != 0;
 
             if (doShowRevive == true)
@@ -27,6 +28,9 @@ namespace Systems.UI
             {
                 ShowFinalScore();
             }
+            */
+
+            ShowFinalScore();
 
             MouseClicks.Instance.gameObject.SetActive(true);
         }
@@ -65,12 +69,6 @@ namespace Systems.UI
         {
             gameOverPanel?.SetActive(false);
             revivePanel?.SetActive(false);
-        }
-
-        public void ShowReviveAd()
-        {
-            Action onRewarded = () => SceneManager.Instance.LoadScene("GameScene");
-            AdsManager.Instance.ShowRewardedAd(onRewarded);
         }
     }
 }

@@ -38,6 +38,8 @@ namespace Systems.Player
         private PlayerEffects _playerEffects;
         private float _cameraBoundsY; // Almacena la posición Y que cameraBounds debe seguir
 
+        public bool isFollowActive;
+
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -88,6 +90,8 @@ namespace Systems.Player
         
         private void CameraFollowCheck()
         {
+            if (isFollowActive == false) return;
+
             // --- Ascenso autónomo de cameraBounds ---
             if (cameraBounds)
             {

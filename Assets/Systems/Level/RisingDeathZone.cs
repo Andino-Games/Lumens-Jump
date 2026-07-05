@@ -1,5 +1,6 @@
 using UnityEngine;
-using Systems.Manager; // Para acceder a GameManager.Instance.GameOver()
+using Systems.Manager;
+using System.Collections; // Para acceder a GameManager.Instance.GameOver()
 
 namespace Systems.Level
 {
@@ -10,6 +11,8 @@ namespace Systems.Level
     /// </summary>
     public class RisingDeathZone : MonoBehaviour
     {
+        [SerializeField] private Collider2D _collider;
+
         [Header("Velocidad de Ascenso")]
         [Tooltip("Velocidad inicial de subida en unidades/segundo.")]
         [SerializeField] private float risingSpeed = 0.3f;
@@ -36,7 +39,7 @@ namespace Systems.Level
         [Header("Inicio Retrasado")]
         [Tooltip("Segundos de gracia antes de que la zona comience a subir.")]
         [SerializeField] private float startDelay = 3f;
-
+        
         private float _currentSpeed;
         private float _elapsedTime;
         private bool _isActive;
@@ -107,8 +110,8 @@ namespace Systems.Level
             if (other.CompareTag("Player"))
             {
                 _gameOverTriggered = true;
-                // El jugador ha tocado la DeathZone, activar Game Over
-                GameManager.Instance.GameOver();
+                SetActive(false);
+                _collider.enabled = false;
             }
         }
 
@@ -116,5 +119,21 @@ namespace Systems.Level
         /// Permite pausar/reanudar el ascenso (útil para PowerUps como Jetpack).
         /// </summary>
         public void SetActive(bool active) => _isActive = active;
+
+
+        public void HandleResetZone()
+        {
+            StartCoroutine(ResetCorroutine());
+        }
+
+        private IEnumerator ResetCorroutine()
+        {
+            _gameOverTriggered = false;
+            SetActive(true);
+
+            yield return new WaitForSeconds(1f);
+
+            _collider.enabled = true;
+        }
     }
 }

@@ -1,12 +1,11 @@
 using System;
 using Systems.Utils;
 using Unity.Services.LevelPlay;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class AdsManager : Singleton<AdsManager>
 {
-    const float TIME_BETWEEN_ADS = 1f;
+    const float TIME_BETWEEN_ADS = 120f;
 
     [SerializeField] GameplayTimerController timerController;
     [SerializeField] AdsConfiguration adsConfiguration;
@@ -24,6 +23,8 @@ public class AdsManager : Singleton<AdsManager>
         LevelPlay.OnInitSuccess += LevelPlay_OnInitSuccess;
 
         LevelPlay.Init(adsConfiguration.AppKey);
+
+        LevelPlay.LaunchTestSuite();
 
         ResetRevive();
     }
