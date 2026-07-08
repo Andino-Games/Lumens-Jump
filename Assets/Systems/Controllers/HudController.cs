@@ -3,6 +3,7 @@ using Systems.Manager;
 using Systems.UI.MouseClick;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Systems.UI
 {
@@ -18,6 +19,11 @@ namespace Systems.UI
         [SerializeField] private GameObject gameplayPanel;
         [SerializeField] private GameObject joystickPanel;
         [SerializeField] private GameObject revivePanel;
+
+        [Header("Pause")]
+        [SerializeField] private Image pause;
+        [SerializeField] private Color unactiveColor;
+        [SerializeField] private Color activeColor;
 
         private void Start()
         {
@@ -48,6 +54,35 @@ namespace Systems.UI
             revivePanel.SetActive(newActive);
             gameplayPanel.SetActive(!newActive);
             joystickPanel.SetActive(!newActive);
+        }
+
+        public void SetPause(bool? newActive)
+        {
+            if(pause == null)
+            {
+                return;
+            }
+
+            pause.gameObject.SetActive(true);
+
+            var b = pause.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+
+            if (newActive == true)
+            {
+                b.color = unactiveColor;
+                b.text = ">";
+                pause.color = activeColor;
+            }
+            else if(newActive == false)
+            {
+                b.color = activeColor;
+                b.text = "ll";
+                pause.color = unactiveColor;
+            }
+            else
+            {
+                pause.gameObject.SetActive(false);
+            }
         }
     }
 }
