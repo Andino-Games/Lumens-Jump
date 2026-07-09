@@ -4387,7 +4387,7 @@ MonoBehaviour:
   safetyDistance: 4
   maxDistanceBelowPlayer: 10
   playerTransform: {fileID: 711998421}
-  startDelay: 3
+  startDelay: 0
 --- !u!1 &1955375097
 GameObject:
   m_ObjectHideFlags: 0
