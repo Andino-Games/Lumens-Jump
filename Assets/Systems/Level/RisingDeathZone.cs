@@ -55,6 +55,16 @@ namespace Systems.Level
             _currentSpeed = risingSpeed;
             _isActive = false; // No activa al inicio, espera el delay
             _gameOverTriggered = false;
+            
+            if (_collider == null)
+            {
+                _collider = GetComponent<Collider2D>();
+                if (_collider == null)
+                {
+                    Debug.LogError("RisingDeathZone: No Collider2D found on this GameObject or assigned in inspector.", this);
+                }
+            }
+
             if (playerTransform == null)
             {
                 Debug.LogError("Player Transform not assigned to RisingDeathZone.", this);
@@ -111,7 +121,10 @@ namespace Systems.Level
             {
                 _gameOverTriggered = true;
                 SetActive(false);
-                _collider.enabled = false;
+                if (_collider != null)
+                {
+                    _collider.enabled = false;
+                }
             }
         }
 
@@ -133,7 +146,10 @@ namespace Systems.Level
 
             yield return new WaitForSeconds(1f);
 
-            _collider.enabled = true;
+            if (_collider != null)
+            {
+                _collider.enabled = true;
+            }
         }
     }
 }

@@ -534,8 +534,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 606599739627164240, guid: 35df393d12aa78541b28774e94ab343d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1412963002}
   m_SourcePrefab: {fileID: 100100000, guid: 35df393d12aa78541b28774e94ab343d, type: 3}
+--- !u!1 &661421703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 606599739627164240, guid: 35df393d12aa78541b28774e94ab343d, type: 3}
+  m_PrefabInstance: {fileID: 661421702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1099785546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -897,6 +905,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1039,12 +1048,20 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -459013385616370329, guid: 35df393d12aa78541b28774e94ab343d, type: 3}
   m_PrefabInstance: {fileID: 661421702}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 661421703}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb8f8df33316da242b1bdd90b80c9ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &1412963002
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661421703}
+  m_Enabled: 1
 --- !u!1 &1542893876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1218,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565433165}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1565433167
 Camera:
   m_ObjectHideFlags: 0

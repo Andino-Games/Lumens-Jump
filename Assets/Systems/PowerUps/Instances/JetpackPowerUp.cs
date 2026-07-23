@@ -42,7 +42,7 @@ namespace Systems.PowerUps.Instances
             AudioManager.Instance.PlaySfx("Rocket_Start", 1);
             Time.timeScale = 0.25f;
             
-            CameraManager.Instance?.SetCamera("Jetpack");
+            if (CameraManager.HasInstance) CameraManager.Instance.SetCamera("Jetpack");
             PostProcessingManager.Instance?.SetVignetteIntensity(0.6f, transitionTime);
             PostProcessingManager.Instance?.SetChromaticAberrationIntensity(0.6f, transitionTime);
             
@@ -75,7 +75,7 @@ namespace Systems.PowerUps.Instances
             _playerRigidbody.linearVelocity = Vector2.zero;
             
             Time.timeScale = 0.25f;
-            CameraManager.Instance?.SetCamera("Default");
+            if (CameraManager.HasInstance) CameraManager.Instance.SetCamera("Default");
 
             yield return new WaitForSeconds(transitionTime);
 

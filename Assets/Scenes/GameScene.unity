@@ -434,7 +434,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513506888}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &513506890
 Camera:
   m_ObjectHideFlags: 0
@@ -738,9 +738,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsText: {fileID: 1216549185}
   pointsTextAnimator: {fileID: 1879730882}
-  revivePanel: {fileID: 6917667183774084008}
   gameplayPanel: {fileID: 1879730880}
   joystickPanel: {fileID: 793595393}
+  revivePanel: {fileID: 6917667183774084008}
 --- !u!4 &576719926
 Transform:
   m_ObjectHideFlags: 0
