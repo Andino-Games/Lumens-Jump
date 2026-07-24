@@ -5,6 +5,7 @@ using Systems.Player;
 using Systems.UI;
 using Systems.Utils;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 
 namespace Systems.Manager 
@@ -40,6 +41,8 @@ namespace Systems.Manager
             {
                 ResumeGame();
             }
+
+            hudController.SetPause(_isPaused);
         }
 
         private void PauseGame()
@@ -52,8 +55,6 @@ namespace Systems.Manager
         {
             _isPaused = false;
             Time.timeScale = 1f;
-
-            hudController.SetRevivePanelActive(false);
         }
         
         public void AddPoints()
@@ -66,18 +67,17 @@ namespace Systems.Manager
         {
             playerJump.isFollowActive = false;
 
+            hudController.SetPause(null);
+
             bool doOfferRevive = AdsManager.Instance.CanOfferRevive();
 
             if (doOfferRevive == true)
             {
-                //PauseGame();
                 hudController.SetRevivePanelActive(true);
 
                 CameraManager.Instance?.SetCamera("Default");
                 PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
                 PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
-
-                //SceneManager.Instance.LoadScene("GameOverScene");
 
                 Debug.Log("[GameManager] Offer revive");
             }
@@ -103,6 +103,7 @@ namespace Systems.Manager
                 playerDeath.ResetGame();
                 deathZone.HandleResetZone();
                 playerJump.isFollowActive = true;
+                hudController.SetRevivePanelActive(false);
             };
 
             AdsManager.Instance.ShowRewardedAd(onRewarded);
