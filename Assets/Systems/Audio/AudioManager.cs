@@ -30,6 +30,8 @@ namespace Systems.Audio
                 musicSource.loop = s.loop;
                 musicSource.Play();
             }
+
+            Debug.Log("[Audio Manager] Playing music: " + clipName);
         }
 
         public void PlaySfx(string clipName, float pitch)
@@ -100,6 +102,9 @@ namespace Systems.Audio
         public void ToggleMusic()
         {
             musicSource.mute = !musicSource.mute;
+
+            Debug.Log("[Audio Manager] music toggled: " + musicSource.mute);
+
         }
         public void ToggleSfx()
         {

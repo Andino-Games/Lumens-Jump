@@ -24,6 +24,9 @@ namespace Systems.UI
             SceneManager.Instance.RestartGame();
 
             AdsManager.Instance.ResetRevive();
+
+            AudioManager.Instance.PlayAmb("Amb");
+            AudioManager.Instance.PlayMusic("Music");
         }
 
         public void PlayUISfx(string sfxName)
