@@ -29,7 +29,7 @@ namespace Systems.Level.Platforms
             _platformData.hasBeenUsed = false;
         }
 
-        protected virtual void OnUsedPlatform()
+        public virtual void OnUsedPlatform()
         {
             _platformData.hasBeenUsed = true;
             onPlatformUsed.Invoke();
@@ -76,6 +76,15 @@ namespace Systems.Level.Platforms
             if (other.CompareTag("DestroyPlatform"))
             {
                 DestroyPlatform();
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                //OnUsedPlatform();
+                Debug.Log("[Platform] Collision");
             }
         }
 
