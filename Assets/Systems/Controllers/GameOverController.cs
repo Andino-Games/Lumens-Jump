@@ -13,23 +13,9 @@ namespace Systems.UI
 
         [Header("Panels")]
         [SerializeField] private GameObject gameOverPanel;
-        [SerializeField] private GameObject revivePanel;
 
         private void Start()
         {
-            /*
-            bool doShowRevive = PlayerPrefs.GetInt("ShowRevive") != 0;
-
-            if (doShowRevive == true)
-            {
-                ShowRevive();
-            }
-            else
-            {
-                ShowFinalScore();
-            }
-            */
-
             ShowFinalScore();
 
             MouseClicks.Instance.gameObject.SetActive(true);
@@ -53,22 +39,9 @@ namespace Systems.UI
             }
         }
 
-        private void ShowRevive()
-        {
-            HidePanels();
-
-            if (revivePanel)
-            {
-                revivePanel.SetActive(true);
-            }
-
-            PlayerPrefs.SetInt("ShowRevive", 0);
-        }
-
         private void HidePanels()
         {
             gameOverPanel?.SetActive(false);
-            revivePanel?.SetActive(false);
         }
     }
 }
