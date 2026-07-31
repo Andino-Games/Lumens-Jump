@@ -1,0 +1,16 @@
+.custom-label {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: rgb(68, 138, 255);
+}
+
+.title {
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    white-space: pre-wrap;
+    font-size: 20px;
+    color: rgb(53, 229, 0);
+}
