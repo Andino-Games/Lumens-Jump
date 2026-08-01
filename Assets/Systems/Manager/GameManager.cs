@@ -117,5 +117,11 @@ namespace Systems.Manager
             
             Debug.Log("[GameManager] Skip Revive");
         }
+
+        public void GoMainMenu()
+        {
+            SceneManager.Instance.LoadScene("MainMenuScene");
+            ResumeGame();
+        }
     }
 }
