@@ -813,7 +813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 865443834}
         m_TargetAssemblyTypeName: Systems.Manager.GameManager, Assembly-CSharp
-        m_MethodName: SkipRevive
+        m_MethodName: GoMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

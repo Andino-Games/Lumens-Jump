@@ -1,7 +1,8 @@
 using Systems.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
-using Systems.Level; // Necesario para RisingDeathZone
+using Systems.Level;
+using Systems.Level.Platforms; // Necesario para RisingDeathZone
 
 namespace Systems.Player
 {
@@ -67,6 +68,15 @@ namespace Systems.Player
                 _rb.linearVelocityY <= 0 && collision.transform.position.y <= groundCheck.position.y)
             {
                 Jump();
+
+                if (collision.transform.parent != null)
+                {
+                    Platform platform = collision.transform.parent.GetComponent<Platform>();
+                    if (platform is PlatformBreak)
+                    {
+                        (platform as PlatformBreak).BreakLand();
+                    }
+                }
             }
         }
 

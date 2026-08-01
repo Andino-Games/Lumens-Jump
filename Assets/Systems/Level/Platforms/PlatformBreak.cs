@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using Systems.Audio;
 using Systems.Level.Data;
 using UnityEngine;
@@ -40,27 +41,28 @@ namespace Systems.Level.Platforms
                 .setEase(LeanTweenType.easeInOutSine);
         }
 
-        protected override void OnUsedPlatform()
+        public override void OnUsedPlatform()
         {
             base.OnUsedPlatform();
             if (_isUsed)
             {
                 return;
             }
-            StartCoroutine(Break());
         }
 
         #endregion
 
-        private IEnumerator Break()
+        public void BreakLand()
         {
-            _isUsed = true;
             landedEffect.Play();
-            yield return new WaitForSeconds(breakTime);
-            breakEffect.Play();
             AudioManager.Instance.PlaySfx("Platform", 1);
-            yield return new WaitForSeconds(breakTime);
-            _isUsed = false;
+
+            Invoke(nameof(BreakDestroy), breakTime);
+        }
+
+        public void BreakDestroy()
+        {
+            breakEffect.Play();
             DestroyPlatform();
         }
     }

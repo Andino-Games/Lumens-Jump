@@ -51,7 +51,7 @@ MonoBehaviour:
   onPlatformUsed:
     m_PersistentCalls:
       m_Calls: []
-  breakTime: 1.5
+  breakTime: 0.1
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
