@@ -75,7 +75,10 @@ namespace Systems.Manager
             {
                 hudController.SetRevivePanelActive(true);
 
-                CameraManager.Instance?.SetCamera("Default");
+            if (CameraManager.HasInstance)
+            {
+                CameraManager.Instance.SetCamera("Default");
+            }
                 PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
                 PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
 

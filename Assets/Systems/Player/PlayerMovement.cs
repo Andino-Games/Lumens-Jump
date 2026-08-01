@@ -27,8 +27,8 @@ namespace Systems.Player
 
         void Update()
         {
-            
             float moveX = joystick.Horizontal * speed * Time.deltaTime;
+
             _targetPosition = transform.position + new Vector3(moveX, 0, 0);
 
             Flip(moveX);

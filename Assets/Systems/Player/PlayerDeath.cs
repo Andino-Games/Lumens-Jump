@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using Systems.Audio;
 using Systems.Manager;
 using UnityEngine;
@@ -44,7 +44,7 @@ namespace Systems.Player
             _rigidbody2D.linearVelocity = Vector2.zero;
             _playerEffects.PlayerDeathEffect();
             Time.timeScale = 0.25f;
-            CameraManager.Instance?.SetCamera("Dead");
+            if (CameraManager.HasInstance) CameraManager.Instance.SetCamera("Dead");
             AudioManager.Instance?.PlaySfx("Dead", 1);
             PostProcessingManager.Instance?.SetColorAdjustments(deathColor, 0.5f);
             PostProcessingManager.Instance?.SetVignetteIntensity(1f, 0.5f);
@@ -55,7 +55,7 @@ namespace Systems.Player
 
         public void ResetGame()
         {
-            Debug.Log("¡Reviviendo al jugador de forma exitosa!");
+            Debug.Log("ï¿½Reviviendo al jugador de forma exitosa!");
 
             Time.timeScale = 1f;
             _isDead = false;

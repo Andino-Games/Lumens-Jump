@@ -6,6 +6,16 @@ namespace Systems.Utils
     {
         private static T _instance;
 
+        public static bool HasInstance
+        {
+            get
+            {
+                if (_instance) return true;
+                _instance = FindAnyObjectByType<T>();
+                return _instance != null;
+            }
+        }
+
         public static T Instance
         {
             get
