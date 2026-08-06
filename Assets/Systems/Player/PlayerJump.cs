@@ -84,6 +84,10 @@ namespace Systems.Player
         {
             _playerEffects?.PlayJumpEffect();
             animator.SetTrigger(Jump1);
+            if (_rb.gravityScale != 0)
+            {
+                _rb.gravityScale = 1f;
+            }
             _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
             AudioManager.Instance.PlaySfx("Bounce", 1);

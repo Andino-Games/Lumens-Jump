@@ -19,6 +19,8 @@ namespace Systems.PowerUps.Instances
         private Rigidbody2D _playerRigidbody;
         private bool _isActive;
 
+        public bool IsActive => _isActive;
+
         protected override void SetUpComponents()
         {
             _playerRigidbody = player.GetComponent<Rigidbody2D>();

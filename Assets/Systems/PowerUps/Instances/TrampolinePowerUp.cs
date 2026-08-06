@@ -29,6 +29,10 @@ namespace Systems.PowerUps.Instances
             powerUp.Animator.SetTrigger(Activate);
             
             _isActive = true;
+            if (_playerRigidbody.gravityScale != 0)
+            {
+                _playerRigidbody.gravityScale = 1f;
+            }
             _playerRigidbody.linearVelocity = Vector2.zero;
             _playerRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             AudioManager.Instance.PlaySfx("Rocket_Start", 1);

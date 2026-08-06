@@ -1717,6 +1717,10 @@ PrefabInstance:
       propertyPath: moveFeedback
       value: 
       objectReference: {fileID: 1765252715}
+    - target: {fileID: 1361289187821544643, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: jumpForce
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2486889664249670375, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: anim
       value: 
@@ -1730,9 +1734,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 865443834}
     - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: jumpForce
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: cameraBounds
       value: 
       objectReference: {fileID: 1955375099}
+    - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: maxJumpForce
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: playerCamera
       value: 
@@ -1749,10 +1761,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4841318170524466739, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841318170524466739, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841318170524466739, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: jetpack
+      value: 
+      objectReference: {fileID: 994784608}
     - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 852092361}
+    - target: {fileID: 5779436213759859445, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899621857611879200, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8615648123826762830, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2450,6 +2490,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5779436213759859445, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
   m_PrefabInstance: {fileID: 711998420}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &994784608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2263037650108032925, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+  m_PrefabInstance: {fileID: 711998420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7758e3d670e84659915e2f3a3e554473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1013695995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,7 +5057,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5674,7 +5725,7 @@ MonoBehaviour:
   safetyDistance: 4
   maxDistanceBelowPlayer: 10
   playerTransform: {fileID: 711998421}
-  startDelay: 0
+  startDelay: 3
 --- !u!1 &1955375097
 GameObject:
   m_ObjectHideFlags: 0
