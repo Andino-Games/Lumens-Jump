@@ -64,8 +64,10 @@ namespace Systems.Player
         private void DoFall(bool newDoFall) 
         {
             var rb = GetComponent<Rigidbody2D>();
+
             if(rb.gravityScale != 0)
             {
+                rb.linearVelocity = Vector2.zero;
                 rb.gravityScale = newDoFall ? 3f : 1f;
             }
         }

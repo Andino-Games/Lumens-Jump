@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2152913304016848988}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
-  speed: 16
+  speed: 10
+  jetpack: {fileID: 2263037650108032925}
   smoothSpeed: 0.4
   maxX: 3
 --- !u!114 &2810495931398700595
@@ -104,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c7f69d27a9f14408e1cded137e8251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
-  maxJumpForce: 15
+  jumpForce: 9
+  maxJumpForce: 14
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -115,6 +116,9 @@ MonoBehaviour:
   difficultyIncreaseRate: 5
   playerCamera: {fileID: 0}
   cameraBounds: {fileID: 0}
+  risingDeathZone: {fileID: 0}
+  cameraSpeedOffset: 0.1
+  isFollowActive: 1
 --- !u!114 &143687389296906411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +136,7 @@ MonoBehaviour:
   deathFeedback: {fileID: 0}
 --- !u!212 &8675016604435989511
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,6 +155,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,9 +178,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 8468647218015473857, guid: 49b1d0d6ab564a640b483cf74c74731f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -183,7 +192,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2486889664249670375
 MonoBehaviour:
@@ -197,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54932e2713814548bde383f12588e2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 8225695861327171105}
+  reviveJumpForce: 15
   onGameOver:
     m_PersistentCalls:
       m_Calls:
@@ -294,7 +304,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.55, y: 2.6312842}
+  m_Size: {x: 1, y: 2.6312842}
   m_EdgeRadius: 0
 --- !u!50 &4841318170524466739
 Rigidbody2D:
@@ -320,8 +330,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 5
 --- !u!114 &2263037650108032925
 MonoBehaviour:
@@ -339,7 +349,7 @@ MonoBehaviour:
   powerUpComponentId: {fileID: 11400000, guid: 59932858544f74c4bb0e84eed5774c52, type: 2}
   isEnabled: 1
   powerUp: {fileID: 0}
-  transitionTime: 0.5
+  transitionTime: 0.3
   duration: 5
   thrust: 10
   jetpackParticles:
@@ -361,7 +371,7 @@ MonoBehaviour:
   powerUpComponentId: {fileID: 11400000, guid: af8d01cf803f54940ab4efb462e2eb0e, type: 2}
   isEnabled: 1
   powerUp: {fileID: 0}
-  jumpForce: 10
+  jumpForce: 12
 --- !u!1001 &3885395770766545654
 PrefabInstance:
   m_ObjectHideFlags: 0
