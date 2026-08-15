@@ -29,8 +29,6 @@ namespace Systems.UI
         private void Start()
         {
             MouseClicks.Instance.gameObject.SetActive(false);
-
-            SetPause(false);
         }
 
         private void OnEnable()
@@ -57,16 +55,11 @@ namespace Systems.UI
             revivePanel.SetActive(newActive);
             gameplayPanel.SetActive(!newActive);
             joystickPanel.SetActive(!newActive);
-            pausePanel.SetActive(!newActive);
+            pausePanel.SetActive(false);
         }
 
         public void SetPause(bool? newActive)
         {
-            if(pause == null)
-            {
-                return;
-            }
-
             var b = pause.gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
             if (newActive == true)
@@ -89,7 +82,7 @@ namespace Systems.UI
             }
             else
             {
-                pause.gameObject.SetActive(false);
+                pausePanel.SetActive(false);
                 pause.gameObject.SetActive(false);
             }
         }
