@@ -94,18 +94,18 @@ namespace Systems.UI
 
             if (newActive == true)
             {
-                b.color = unactiveColor;
+                
                 b.text = ">";
-                pause.color = activeColor;
+                
 
                 pausePanel.SetActive(true);
                 pause.gameObject.SetActive(false);
             }
             else if(newActive == false)
             {
-                b.color = activeColor;
+                
                 b.text = "ll";
-                pause.color = unactiveColor;
+                
 
                 pausePanel.SetActive(false);
                 pause.gameObject.SetActive(true);

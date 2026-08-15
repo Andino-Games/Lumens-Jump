@@ -142,7 +142,6 @@ namespace Systems.Level
         private IEnumerator ResetCorroutine()
         {
             _gameOverTriggered = false;
-            SetActive(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -150,6 +149,7 @@ namespace Systems.Level
             {
                 _collider.enabled = true;
             }
+            SetActive(true);
         }
     }
 }
