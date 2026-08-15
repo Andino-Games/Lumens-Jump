@@ -29,8 +29,6 @@ namespace Systems.UI
 
         [Header("Pause")]
         [SerializeField] private Image pause;
-        [SerializeField] private Color unactiveColor;
-        [SerializeField] private Color activeColor;
 
         private float reviveTimer;
 
@@ -94,19 +92,15 @@ namespace Systems.UI
 
             if (newActive == true)
             {
-                
-                b.text = ">";
-                
+                b.text = ">";   
 
                 pausePanel.SetActive(true);
                 pause.gameObject.SetActive(false);
             }
             else if(newActive == false)
             {
-                
                 b.text = "ll";
                 
-
                 pausePanel.SetActive(false);
                 pause.gameObject.SetActive(true);
             }
