@@ -6,12 +6,14 @@ using UnityEngine;
 public class AdsManager : Singleton<AdsManager>
 {
     const float TIME_BETWEEN_ADS = 120f;
+    const int REPLACE_INTERSTITIAL_THRESHOLD = 2;
 
     [SerializeField] GameplayTimerController timerController;
     [SerializeField] AdsConfiguration adsConfiguration;
 
+    private int interstitialCount;
     private bool canOfferRevive;
-    
+
     private AdsRewardedController rewarded;
     private AdsInterstitialController interstitial;
 
@@ -42,7 +44,7 @@ public class AdsManager : Singleton<AdsManager>
         Debug.LogError($"[Ads] Initialization error: {error.ErrorMessage}");
     }
 
-    public void RunGameplayTimer(bool startOver = false)
+    public void RunGameplayTimer()
     {
         timerController.SetIsRunning(true);
     }
@@ -85,20 +87,32 @@ public class AdsManager : Singleton<AdsManager>
         return result;
     }
 
-    public void ShowRewardedAd(Action onRewarded)
+    public bool CanReplaceInterstitial()
     {
-        rewarded.ShowAdd(onRewarded);
+        if (interstitialCount >= REPLACE_INTERSTITIAL_THRESHOLD)
+        {
+            interstitialCount = 0;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void ShowRewardedAd(Action onRewarded, Action onDismiss)
+    {
+        rewarded.ShowAdd(onRewarded, onDismiss);
     }
 
     public void ShowInterstitialAd()
     {
         interstitial.ShowAdd();
         timerController.ResetTimer();
+        interstitialCount++;
     }
 
     public void ResetRevive() 
     { 
         canOfferRevive = true;
-        PlayerPrefs.SetInt("ShowRevive", 1);
     }
 }

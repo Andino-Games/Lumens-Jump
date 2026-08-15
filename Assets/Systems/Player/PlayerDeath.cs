@@ -55,9 +55,8 @@ namespace Systems.Player
 
         public void ResetGame()
         {
-            Debug.Log("�Reviviendo al jugador de forma exitosa!");
+            Debug.Log("Reviviendo al jugador de forma exitosa!");
 
-            Time.timeScale = 1f;
             _isDead = false;
 
             _rigidbody2D.gravityScale = 1f;
