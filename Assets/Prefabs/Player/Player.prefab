@@ -116,9 +116,11 @@ MonoBehaviour:
   difficultyIncreaseRate: 5
   playerCamera: {fileID: 0}
   cameraBounds: {fileID: 0}
+  maxPositionYOffset: 7
   risingDeathZone: {fileID: 0}
   cameraSpeedOffset: 0.1
   isFollowActive: 1
+  jetpack: {fileID: 2263037650108032925}
 --- !u!114 &143687389296906411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +296,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.028996706, y: 0.55280375}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4886288, y: 0.289911}
@@ -304,7 +306,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.6312842}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &4841318170524466739
 Rigidbody2D:

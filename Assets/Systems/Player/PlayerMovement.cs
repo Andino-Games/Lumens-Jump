@@ -68,7 +68,7 @@ namespace Systems.Player
             if(rb.gravityScale != 0)
             {
                 rb.linearVelocity = Vector2.zero;
-                rb.gravityScale = newDoFall ? 3f : 1f;
+                rb.gravityScale = newDoFall ? 4f : 1f;
             }
         }
     }

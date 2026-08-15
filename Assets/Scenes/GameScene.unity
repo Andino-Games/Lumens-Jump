@@ -1200,8 +1200,6 @@ MonoBehaviour:
   duration: 4.5
   counter: {fileID: 1325726998}
   pause: {fileID: 1443390189}
-  unactiveColor: {r: 0.13725491, g: 0.13725491, b: 0.13725491, a: 1}
-  activeColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
 --- !u!4 &576719926
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,18 +1741,6 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 852092361}
-    - target: {fileID: 5899621857611879200, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899621857611879200, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899621857611879200, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 8615648123826762830, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5003,7 +4989,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -1}
+  m_Offset: {x: 0, y: -5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5013,7 +4999,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 9}
   m_EdgeRadius: 0
 --- !u!50 &1870274320
 Rigidbody2D:
@@ -5668,8 +5654,8 @@ MonoBehaviour:
   risingSpeed: 0.5
   maxRisingSpeed: 2.5
   acceleration: 0.015
-  safetyDistance: 4
-  maxDistanceBelowPlayer: 10
+  safetyDistance: 10
+  maxDistanceBelowPlayer: 20
   playerTransform: {fileID: 711998421}
   startDelay: 3
 --- !u!1 &1955375097
