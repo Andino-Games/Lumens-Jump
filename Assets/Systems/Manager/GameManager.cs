@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 using Systems.Audio;
 using Systems.Level;
 using Systems.Player;
@@ -18,6 +19,11 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
+
+        private void Awake()
+        {
+            hudController.OnReviveTimeEnded += SkipRevive;
+        }
 
         private void Start()
         {
@@ -68,40 +74,42 @@ namespace Systems.Manager
             playerJump.isFollowActive = false;
 
             hudController.SetPause(null);
+            AdsManager.Instance.StopGameplayTimer();
 
-            bool doOfferRevive = AdsManager.Instance.CanOfferRevive();
+            bool canOfferRevive = AdsManager.Instance.CanOfferRevive();
 
-            if (doOfferRevive == true)
+            if (canOfferRevive == true)
             {
-                hudController.SetRevivePanelActive(true);
+                float reviveThreshold = 0.4f;
+                int highscore = PersistentData.Instance.LoadHighScore();
+                int currentScore = PersistentData.Instance.CurrentScore;
 
-            if (CameraManager.HasInstance)
-            {
-                CameraManager.Instance.SetCamera("Default");
-            }
-                PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
-                PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
-
-                Debug.Log("[GameManager] Offer revive");
+                if (currentScore >= highscore * reviveThreshold)
+                {
+                    OfferRevive();
+                }
+                else if (AdsManager.Instance.CanReplaceInterstitial())
+                {
+                    OfferRevive();
+                }
+                else
+                {
+                    GoGameOver();
+                }
             }
             else
             {
-                if (AdsManager.Instance.CanShowAd() == true)
-                {
-                    AdsManager.Instance.ShowInterstitialAd();
-                }
-
-                PersistentData.Instance.SaveHighScore();
-                SceneManager.Instance.LoadScene("GameOverScene");
-
-                Debug.Log("[GameManager] Game Over Scene");
+                GoGameOver();
             }
         }
 
         public void ShowReviveAd()
         {
+            hudController.SetRevivePanelActive(false);
+
             Action onRewarded = () => 
             {
+                AdsManager.Instance.RunGameplayTimer();
                 ResumeGame();
                 playerDeath.ResetGame();
                 deathZone.HandleResetZone();
@@ -109,7 +117,12 @@ namespace Systems.Manager
                 hudController.SetRevivePanelActive(false);
             };
 
-            AdsManager.Instance.ShowRewardedAd(onRewarded);
+            Action onDismiss = () =>
+            {
+                GoGameOver();
+            };
+
+            AdsManager.Instance.ShowRewardedAd(onRewarded, onDismiss);
 
             Debug.Log("[GameManager] Show Revive Ad");
         }
@@ -125,6 +138,34 @@ namespace Systems.Manager
         {
             SceneManager.Instance.LoadScene("MainMenuScene");
             ResumeGame();
+        }
+
+        public void GoGameOver() 
+        {
+            if (AdsManager.Instance.CanShowAd() == true)
+            {
+                AdsManager.Instance.ShowInterstitialAd();
+            }
+
+            PersistentData.Instance.SaveHighScore();
+            SceneManager.Instance.LoadScene("GameOverScene");
+
+            Debug.Log("[GameManager] Game Over Scene");
+        }
+
+        private void OfferRevive()
+        {
+            //  Show Revive Panel
+            hudController.SetRevivePanelActive(true);
+
+            if (CameraManager.HasInstance)
+            {
+                CameraManager.Instance.SetCamera("Default");
+            }
+            PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
+
+            Debug.Log("[GameManager] Offer revive");
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using Systems.Manager;
 using Systems.UI.MouseClick;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace Systems.UI
@@ -21,10 +23,18 @@ namespace Systems.UI
         [SerializeField] private GameObject revivePanel;
         [SerializeField] private GameObject pausePanel;
 
+        [Header("Revive")]
+        [SerializeField] private float duration;
+        [SerializeField] private Image counter;
+
         [Header("Pause")]
         [SerializeField] private Image pause;
         [SerializeField] private Color unactiveColor;
         [SerializeField] private Color activeColor;
+
+        private float reviveTimer;
+
+        public Action OnReviveTimeEnded;
 
         private void Start()
         {
@@ -39,6 +49,26 @@ namespace Systems.UI
         private void OnDisable()
         {
             PersistentData.Instance.OnCurrentScoreChanged -= UpdatePointsText;
+        }
+
+        private void FixedUpdate()
+        {
+            if(revivePanel.activeSelf == true)
+            {
+                counter.fillAmount = 1 - (reviveTimer / duration);
+
+                reviveTimer += Time.fixedDeltaTime;
+
+                if (reviveTimer >= duration) 
+                {
+                    revivePanel.SetActive(false);
+
+                    reviveTimer = 0f;
+                    counter.fillAmount = 1f;
+
+                    OnReviveTimeEnded?.Invoke();
+                }
+            }
         }
 
         private void UpdatePointsText(int value)

@@ -8,6 +8,7 @@ public class AdsRewardedController
     private LevelPlayRewardedAd ad;
 
     private Action onRewardGranted;
+    private Action onAdDismissed;
 
     public AdsRewardedController(string rewardedKey)
     {
@@ -18,7 +19,7 @@ public class AdsRewardedController
         ad.OnAdClosed += OnClosed;
 
         ad.OnAdLoaded += info => Debug.Log("[Rewarded] Loading");
-        ad.OnAdLoadFailed += err => Debug.LogWarning($"[Rewarded] Error loafing: {err}");
+        ad.OnAdLoadFailed += err => Debug.LogWarning($"[Rewarded] Error loading: {err}");
         ad.OnAdDisplayed += info => Debug.Log("[Rewarded] Showing");
         ad.OnAdDisplayFailed += (err, info) => Debug.LogWarning($"[Rewarded] Error showing: {err}");
         
@@ -29,7 +30,7 @@ public class AdsRewardedController
         LoadAd();
     }
 
-    public void ShowAdd(Action onReward)
+    public void ShowAdd(Action onReward, Action onDismiss)
     {
         if (ad.IsAdReady() == false)
         {
@@ -39,7 +40,10 @@ public class AdsRewardedController
             return;
         }
 
+        wasRewardGranted = false;
+        onAdDismissed = onDismiss;
         onRewardGranted = onReward;
+
         ad.ShowAd("Revive");
 
         Debug.LogWarning("[Rewarded] Showing ad");
@@ -52,14 +56,26 @@ public class AdsRewardedController
         wasRewardGranted = true;
 
         onRewardGranted?.Invoke();
+        
         onRewardGranted = null;
     }
 
     private void OnClosed(LevelPlayAdInfo info)
     {
-        wasRewardGranted = false;
-
         LoadAd();
+        CheckRewardAfterDelay();
+    }
+
+    private async void CheckRewardAfterDelay()
+    {
+        await System.Threading.Tasks.Task.Delay(1500); // ventana de gracia
+        if (wasRewardGranted == false)
+        {
+            Debug.Log("[Rewarded] Cerrado sin completar");
+            onAdDismissed?.Invoke();
+        }
+        onAdDismissed = null;
+        onRewardGranted = null;
     }
 
     public void LoadAd() => ad.LoadAd();
