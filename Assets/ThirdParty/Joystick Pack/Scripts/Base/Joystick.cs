@@ -36,6 +36,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] protected RectTransform handle = null;
     protected RectTransform baseRect = null;
 
+    [SerializeField] protected TutorialController tutorial;
+
     protected Canvas canvas;
     protected Camera cam;
 
@@ -50,6 +52,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         DeadZone = deadZone;
         baseRect = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+        tutorial = FindAnyObjectByType<TutorialController>();
+
         if (canvas == null)
             Debug.LogError("The Joystick is not placed inside a canvas");
 
@@ -145,6 +149,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchoredPosition = Vector3.zero;
 
         OnPointerUpEnded?.Invoke();
+
+        if (tutorial != null)
+        {
+            tutorial.ShowFallInstruction();
+        }
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

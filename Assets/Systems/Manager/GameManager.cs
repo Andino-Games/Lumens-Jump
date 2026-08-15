@@ -18,6 +18,7 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
+        [SerializeField] private TutorialController tutorialController;
 
         private void Start()
         {
@@ -28,6 +29,9 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
+            tutorialController.HideTutorial();
+
+            Invoke(nameof(ShowTutorial), 0.5f);
         }
         
         public void TogglePause()
@@ -73,12 +77,14 @@ namespace Systems.Manager
 
             if (doOfferRevive == true)
             {
+                tutorialController.HideTutorial();
                 hudController.SetRevivePanelActive(true);
 
-            if (CameraManager.HasInstance)
-            {
-                CameraManager.Instance.SetCamera("Default");
-            }
+                if (CameraManager.HasInstance)
+                {
+                    CameraManager.Instance.SetCamera("Default");
+                }
+
                 PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
                 PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
 
@@ -100,13 +106,14 @@ namespace Systems.Manager
 
         public void ShowReviveAd()
         {
+            //   Revive Lambda function, only called when rewarded by an ad
             Action onRewarded = () => 
             {
                 ResumeGame();
                 playerDeath.ResetGame();
                 deathZone.HandleResetZone();
-                playerJump.isFollowActive = true;
                 hudController.SetRevivePanelActive(false);
+                playerJump.isFollowActive = true;
             };
 
             AdsManager.Instance.ShowRewardedAd(onRewarded);
@@ -125,6 +132,11 @@ namespace Systems.Manager
         {
             SceneManager.Instance.LoadScene("MainMenuScene");
             ResumeGame();
+        }
+
+        private void ShowTutorial()
+        {
+            tutorialController.SetMovementActive(true);
         }
     }
 }
