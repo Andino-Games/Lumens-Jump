@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 using Systems.Audio;
 using Systems.Level;
 using Systems.Player;
@@ -18,7 +19,11 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
-        [SerializeField] private TutorialController tutorialController;
+
+        private void Awake()
+        {
+            hudController.OnReviveTimeEnded += SkipRevive;
+        }
 
         private void Start()
         {
@@ -29,9 +34,6 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
-            tutorialController.HideTutorial();
-
-            Invoke(nameof(ShowTutorial), 0.5f);
         }
         
         public void TogglePause()
@@ -72,51 +74,55 @@ namespace Systems.Manager
             playerJump.isFollowActive = false;
 
             hudController.SetPause(null);
+            AdsManager.Instance.StopGameplayTimer();
 
-            bool doOfferRevive = AdsManager.Instance.CanOfferRevive();
+            bool canOfferRevive = AdsManager.Instance.CanOfferRevive();
 
-            if (doOfferRevive == true)
+            if (canOfferRevive == true)
             {
-                tutorialController.HideTutorial();
-                hudController.SetRevivePanelActive(true);
+                float reviveThreshold = 0.4f;
+                int highscore = PersistentData.Instance.LoadHighScore();
+                int currentScore = PersistentData.Instance.CurrentScore;
 
-                if (CameraManager.HasInstance)
+                if (currentScore >= highscore * reviveThreshold)
                 {
-                    CameraManager.Instance.SetCamera("Default");
+                    OfferRevive();
                 }
-
-                PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
-                PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
-
-                Debug.Log("[GameManager] Offer revive");
+                else if (AdsManager.Instance.CanReplaceInterstitial())
+                {
+                    OfferRevive();
+                }
+                else
+                {
+                    GoGameOver();
+                }
             }
             else
             {
-                if (AdsManager.Instance.CanShowAd() == true)
-                {
-                    AdsManager.Instance.ShowInterstitialAd();
-                }
-
-                PersistentData.Instance.SaveHighScore();
-                SceneManager.Instance.LoadScene("GameOverScene");
-
-                Debug.Log("[GameManager] Game Over Scene");
+                GoGameOver();
             }
         }
 
         public void ShowReviveAd()
         {
-            //   Revive Lambda function, only called when rewarded by an ad
+            hudController.SetRevivePanelActive(false);
+
             Action onRewarded = () => 
             {
+                AdsManager.Instance.RunGameplayTimer();
                 ResumeGame();
                 playerDeath.ResetGame();
                 deathZone.HandleResetZone();
-                hudController.SetRevivePanelActive(false);
                 playerJump.isFollowActive = true;
+                hudController.SetRevivePanelActive(false);
             };
 
-            AdsManager.Instance.ShowRewardedAd(onRewarded);
+            Action onDismiss = () =>
+            {
+                GoGameOver();
+            };
+
+            AdsManager.Instance.ShowRewardedAd(onRewarded, onDismiss);
 
             Debug.Log("[GameManager] Show Revive Ad");
         }
@@ -134,9 +140,32 @@ namespace Systems.Manager
             ResumeGame();
         }
 
-        private void ShowTutorial()
+        public void GoGameOver() 
         {
-            tutorialController.SetMovementActive(true);
+            if (AdsManager.Instance.CanShowAd() == true)
+            {
+                AdsManager.Instance.ShowInterstitialAd();
+            }
+
+            PersistentData.Instance.SaveHighScore();
+            SceneManager.Instance.LoadScene("GameOverScene");
+
+            Debug.Log("[GameManager] Game Over Scene");
+        }
+
+        private void OfferRevive()
+        {
+            //  Show Revive Panel
+            hudController.SetRevivePanelActive(true);
+
+            if (CameraManager.HasInstance)
+            {
+                CameraManager.Instance.SetCamera("Default");
+            }
+            PostProcessingManager.Instance?.SetColorAdjustments(Color.white, 0.05f);
+            PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
+
+            Debug.Log("[GameManager] Offer revive");
         }
     }
 }

@@ -1,8 +1,9 @@
 using Systems.Audio;
-using Unity.Cinemachine;
-using UnityEngine;
 using Systems.Level;
 using Systems.Level.Platforms; // Necesario para RisingDeathZone
+using Systems.PowerUps.Instances;
+using Unity.Cinemachine;
+using UnityEngine;
 
 namespace Systems.Player
 {
@@ -24,6 +25,7 @@ namespace Systems.Player
         [Header("Camera Config")]
         public CinemachineCamera playerCamera;
         public Transform cameraBounds;
+        public float maxPositionYOffset = 0f;
 
         [Header("Camera Rising")]
         [Tooltip("Referencia al RisingDeathZone para sincronizar la velocidad de ascenso.")]
@@ -40,6 +42,7 @@ namespace Systems.Player
         private float _cameraBoundsY; // Almacena la posición Y que cameraBounds debe seguir
 
         public bool isFollowActive;
+        [SerializeField] private JetpackPowerUp jetpack;
 
         void Start()
         {
@@ -115,7 +118,7 @@ namespace Systems.Player
                 _cameraBoundsY += risingSpeed * Time.deltaTime;
 
                 // Si el jugador sube más alto que la posición autónoma, la cámara lo sigue
-                if (transform.position.y > _cameraBoundsY)
+                if (transform.position.y > _cameraBoundsY + (jetpack.IsActive ? 0f : maxPositionYOffset))
                 {
                     _cameraBoundsY = transform.position.y;
                 }

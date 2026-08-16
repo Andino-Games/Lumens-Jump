@@ -149,7 +149,6 @@ namespace Systems.Level
             {
                 _collider.enabled = true;
             }
-
             SetActive(true);
         }
     }
