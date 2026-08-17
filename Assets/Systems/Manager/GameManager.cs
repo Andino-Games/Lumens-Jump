@@ -19,9 +19,12 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
+        [SerializeField] private TutorialController tutorialController;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             hudController.OnReviveTimeEnded += SkipRevive;
         }
 
@@ -34,8 +37,17 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
+
+            tutorialController.HideTutorial();
+
+            Invoke(nameof(ShowTutorial), 0.5f);
         }
-        
+
+        private void ShowTutorial()
+        {
+            tutorialController.SetMovementActive(true);
+        }
+
         public void TogglePause()
         {
             _isPaused = !_isPaused;
@@ -83,6 +95,8 @@ namespace Systems.Manager
                 float reviveThreshold = 0.4f;
                 int highscore = PersistentData.Instance.LoadHighScore();
                 int currentScore = PersistentData.Instance.CurrentScore;
+
+                tutorialController.HideTutorial();
 
                 if (currentScore >= highscore * reviveThreshold)
                 {

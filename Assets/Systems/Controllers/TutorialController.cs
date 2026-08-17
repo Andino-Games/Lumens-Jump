@@ -8,7 +8,6 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Transform tutorialPanel;
     [SerializeField] private Animator animator;
 
-    private bool? hasShownMovement = null;
     private TutorialPhase currentPhase;
 
     private void Awake()
@@ -18,8 +17,6 @@ public class TutorialController : MonoBehaviour
 
     public void SetMovementActive(bool newActive)
     {
-        Debug.Log("[Tutorial Controller] Set Movement Active (Has Shown Movement): " + hasShownMovement);
-
         tutorialPanel.gameObject.SetActive(newActive);
 
         if(newActive == true)
@@ -49,7 +46,7 @@ public class TutorialController : MonoBehaviour
     private IEnumerator FallIntructionCoroutine()
     {
         ShowContent(2);
-        Time.timeScale = 0.3f;
+        Time.timeScale = 0.1f;
 
         yield return new WaitForSecondsRealtime(2.7f);
 
