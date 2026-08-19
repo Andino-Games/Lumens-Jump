@@ -45,7 +45,7 @@ namespace Systems.Manager
 
         private void ShowTutorial()
         {
-            tutorialController.SetMovementActive(true);
+            tutorialController.ShowMovementInstruction(5f);
         }
 
         public void TogglePause()

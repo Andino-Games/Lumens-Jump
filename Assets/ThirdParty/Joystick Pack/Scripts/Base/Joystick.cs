@@ -152,7 +152,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
         if (tutorial != null)
         {
-            tutorial.ShowFallInstruction();
+            tutorial.ShowFallInstructionCoroutine();
         }
     }
 

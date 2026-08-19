@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutorialController : MonoBehaviour
@@ -13,6 +12,12 @@ public class TutorialController : MonoBehaviour
     private void Awake()
     {
         currentPhase = TutorialPhase.Unactive;
+    }
+
+    public void ShowMovementInstruction(float maxDuration)
+    {
+        SetMovementActive(true);
+        Invoke(nameof(ShowFallInstruction), maxDuration);
     }
 
     public void SetMovementActive(bool newActive)
@@ -29,12 +34,22 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    public void ShowFallInstruction()
+    public void ShowFallInstructionCoroutine()
     {
-        if (currentPhase == TutorialPhase.Movement) 
+        if (currentPhase == TutorialPhase.Movement || currentPhase == TutorialPhase.Fall) 
         {
-            Debug.Log("[Tutorial Controller] Show Fall Instruction");
+            ShowFallInstruction();            
             StartCoroutine(nameof(FallIntructionCoroutine));
+            Debug.Log("[Tutorial Controller] Show Fall Instruction Coroutine");
+        }
+    }
+
+    private void ShowFallInstruction()
+    {
+        if (currentPhase == TutorialPhase.Movement)
+        {
+            ShowContent(2);
+            Debug.Log("[Tutorial Controller] Show Fall Instruction");
         }
     }
 
@@ -45,7 +60,6 @@ public class TutorialController : MonoBehaviour
 
     private IEnumerator FallIntructionCoroutine()
     {
-        ShowContent(2);
         Time.timeScale = 0.1f;
 
         yield return new WaitForSecondsRealtime(2.7f);
