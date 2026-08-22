@@ -3,6 +3,7 @@ using Systems.Audio;
 using Systems.Manager;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 namespace Systems.Player
 {
@@ -11,7 +12,7 @@ namespace Systems.Player
         [SerializeField] private Animator anim;
         [SerializeField] private float reviveJumpForce;
 
-        public UnityEvent onGameOver;
+        public Action onGameOver;
         public Color deathColor;
 
         private PlayerEffects _playerEffects;
