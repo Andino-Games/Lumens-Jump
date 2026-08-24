@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class RankLabel : MonoBehaviour
 {
-    [SerializeField] new private TextMeshPro name;
+    [SerializeField] private TextMeshPro rank;
     [SerializeField] private TextMeshPro score;
 
     public void SetInfo(RankLabelInfo info)
     {
-        name.text = info.Name;
+        rank.text = info.Rank;
         score.text = info.Score;
     }
 }

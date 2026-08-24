@@ -7,6 +7,7 @@ using Systems.UI;
 using Systems.Utils;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+using System.Threading.Tasks;
 
 
 namespace Systems.Manager 
@@ -19,13 +20,11 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
-        [SerializeField] private TutorialController tutorialController;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
-            hudController.OnReviveTimeEnded += SkipRevive;
+            hudController.OnReviveTimeEnded += async () => await GameOver();
+            playerDeath.onGameOver += async () => await GameOver();
         }
 
         private void Start()
@@ -37,17 +36,8 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
-
-            tutorialController.HideTutorial();
-
-            Invoke(nameof(ShowTutorial), 0.5f);
         }
-
-        private void ShowTutorial()
-        {
-            tutorialController.ShowMovementInstruction(5f);
-        }
-
+        
         public void TogglePause()
         {
             _isPaused = !_isPaused;
@@ -81,7 +71,7 @@ namespace Systems.Manager
             AudioManager.Instance.PlayUI("Score");
         }
         
-        public void GameOver()
+        public async Task GameOver()
         {
             playerJump.isFollowActive = false;
 
@@ -96,8 +86,6 @@ namespace Systems.Manager
                 int highscore = PersistentData.Instance.LoadHighScore();
                 int currentScore = PersistentData.Instance.CurrentScore;
 
-                tutorialController.HideTutorial();
-
                 if (currentScore >= highscore * reviveThreshold)
                 {
                     OfferRevive();
@@ -108,12 +96,12 @@ namespace Systems.Manager
                 }
                 else
                 {
-                    GoGameOver();
+                    await GoGameOver();
                 }
             }
             else
             {
-                GoGameOver();
+                await GoGameOver();
             }
         }
 
@@ -131,9 +119,9 @@ namespace Systems.Manager
                 hudController.SetRevivePanelActive(false);
             };
 
-            Action onDismiss = () =>
+            Action onDismiss = async () =>
             {
-                GoGameOver();
+                await GoGameOver();
             };
 
             AdsManager.Instance.ShowRewardedAd(onRewarded, onDismiss);
@@ -141,9 +129,9 @@ namespace Systems.Manager
             Debug.Log("[GameManager] Show Revive Ad");
         }
 
-        public void SkipRevive()
+        public async void SkipRevive()
         {
-            SceneManager.Instance.LoadScene("GameOverScene");
+            await GoGameOver();
             
             Debug.Log("[GameManager] Skip Revive");
         }
@@ -154,14 +142,14 @@ namespace Systems.Manager
             ResumeGame();
         }
 
-        public void GoGameOver() 
+        public async Task GoGameOver() 
         {
             if (AdsManager.Instance.CanShowAd() == true)
             {
                 AdsManager.Instance.ShowInterstitialAd();
             }
 
-            PersistentData.Instance.SaveHighScore();
+            await PersistentData.Instance.SaveHighScore();
             SceneManager.Instance.LoadScene("GameOverScene");
 
             Debug.Log("[GameManager] Game Over Scene");
