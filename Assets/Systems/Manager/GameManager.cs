@@ -14,12 +14,15 @@ namespace Systems.Manager
 {
     public class GameManager : Singleton<GameManager>
     {
+        private const float MOVEMENT_INSTRUCTIONS_DURATION = 5f;
+
         private bool _isPaused;
 
         [SerializeField] private HudController hudController;
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
+        [SerializeField] private TutorialController tutorialController;
 
         private void Awake()
         {
@@ -36,8 +39,17 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
+
+            tutorialController.HideTutorial();
+
+            Invoke(nameof(ShowTutorial), 0.5f);
         }
-        
+
+        private void ShowTutorial()
+        {
+            tutorialController.ShowMovementInstruction(MOVEMENT_INSTRUCTIONS_DURATION);
+        }
+
         public void TogglePause()
         {
             _isPaused = !_isPaused;
@@ -85,6 +97,8 @@ namespace Systems.Manager
                 float reviveThreshold = 0.4f;
                 int highscore = PersistentData.Instance.LoadHighScore();
                 int currentScore = PersistentData.Instance.CurrentScore;
+
+                tutorialController.HideTutorial();
 
                 if (currentScore >= highscore * reviveThreshold)
                 {
@@ -168,6 +182,11 @@ namespace Systems.Manager
             PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
 
             Debug.Log("[GameManager] Offer revive");
+        }
+
+        public void UploadHighscore(int score)
+        {
+            PersistentData.Instance.UploadScore(score);
         }
     }
 }
