@@ -4,9 +4,15 @@ using System;
 [Serializable]
 public struct RankLabelInfo
 {
-    [SerializeField] private string name;
+    [SerializeField] private string rank;
     [SerializeField] private string score;
 
-    public string Name => name;
+    public RankLabelInfo(string rank, string score)
+    {
+        this.rank = rank;
+        this.score = score;
+    }
+
+    public string Rank => rank;
     public string Score => score;
 }

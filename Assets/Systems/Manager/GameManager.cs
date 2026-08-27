@@ -7,6 +7,7 @@ using Systems.UI;
 using Systems.Utils;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+using System.Threading.Tasks;
 
 
 namespace Systems.Manager 
@@ -22,7 +23,8 @@ namespace Systems.Manager
 
         private void Awake()
         {
-            hudController.OnReviveTimeEnded += SkipRevive;
+            hudController.OnReviveTimeEnded += async () => await GameOver();
+            playerDeath.onGameOver += async () => await GameOver();
         }
 
         private void Start()
@@ -69,7 +71,7 @@ namespace Systems.Manager
             AudioManager.Instance.PlayUI("Score");
         }
         
-        public void GameOver()
+        public async Task GameOver()
         {
             playerJump.isFollowActive = false;
 
@@ -94,12 +96,12 @@ namespace Systems.Manager
                 }
                 else
                 {
-                    GoGameOver();
+                    await GoGameOver();
                 }
             }
             else
             {
-                GoGameOver();
+                await GoGameOver();
             }
         }
 
@@ -117,9 +119,9 @@ namespace Systems.Manager
                 hudController.SetRevivePanelActive(false);
             };
 
-            Action onDismiss = () =>
+            Action onDismiss = async () =>
             {
-                GoGameOver();
+                await GoGameOver();
             };
 
             AdsManager.Instance.ShowRewardedAd(onRewarded, onDismiss);
@@ -127,11 +129,10 @@ namespace Systems.Manager
             Debug.Log("[GameManager] Show Revive Ad");
         }
 
-        public void SkipRevive()
+        public async void SkipRevive()
         {
-            GoGameOver(false);
-            AdsManager.Instance.AddReviveDismiss();
-
+            await GoGameOver();
+            
             Debug.Log("[GameManager] Skip Revive");
         }
 
@@ -141,17 +142,14 @@ namespace Systems.Manager
             ResumeGame();
         }
 
-        public void GoGameOver(bool showAd = true) 
+        public async Task GoGameOver() 
         {
-            if (showAd == true || AdsManager.Instance.CanSkipAd() == false)
+            if (AdsManager.Instance.CanShowAd() == true)
             {
-                if (AdsManager.Instance.CanShowAd() == true)
-                {
-                    AdsManager.Instance.ShowInterstitialAd();
-                }
+                AdsManager.Instance.ShowInterstitialAd();
             }
 
-            PersistentData.Instance.SaveHighScore();
+            await PersistentData.Instance.SaveHighScore();
             SceneManager.Instance.LoadScene("GameOverScene");
 
             Debug.Log("[GameManager] Game Over Scene");
