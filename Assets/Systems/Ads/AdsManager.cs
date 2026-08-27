@@ -5,14 +5,21 @@ using UnityEngine;
 
 public class AdsManager : Singleton<AdsManager>
 {
+    //  Time unit is seconds.
+    const float TIME_WITHOUT_ADS = 300f;
     const float TIME_BETWEEN_ADS = 120f;
+
+    //  
     const int REPLACE_INTERSTITIAL_THRESHOLD = 2;
+    const int FORCE_INTERSTITIAL_THRESHOLD = 2;
 
     [SerializeField] GameplayTimerController timerController;
     [SerializeField] AdsConfiguration adsConfiguration;
 
     private int interstitialCount;
+    private int reviveDismissedCount;
     private bool canOfferRevive;
+    private bool CanShowAds => PlayerPrefs.GetInt("CanShowAds") >= 100;
 
     private AdsRewardedController rewarded;
     private AdsInterstitialController interstitial;
@@ -52,10 +59,24 @@ public class AdsManager : Singleton<AdsManager>
     public void StopGameplayTimer()
     {
         timerController.SetIsRunning(false);
+
+        if (CanShowAds == false)
+        {
+            int timeWithoutAdsSpent = (int)((timerController.CurrentTime / TIME_WITHOUT_ADS) * 100);
+
+            PlayerPrefs.SetInt("CanShowAds", timeWithoutAdsSpent);
+
+            Debug.Log($"Time without ads spent: {timeWithoutAdsSpent}");
+        }
     }
 
     public bool CanOfferRevive()
     {
+        if (CanShowAds == false)
+        {
+            return false;
+        }
+
         bool result = false;
 
         if (canOfferRevive == true)
@@ -71,6 +92,11 @@ public class AdsManager : Singleton<AdsManager>
 
     public bool CanShowAd()
     {
+        if (CanShowAds == false)
+        {
+            return false;
+        }
+
         bool result = false;
 
         if (timerController.CurrentTime >= TIME_BETWEEN_ADS)
@@ -99,6 +125,18 @@ public class AdsManager : Singleton<AdsManager>
         return false;
     }
 
+    public bool CanSkipAd()
+    {
+        if (reviveDismissedCount >= FORCE_INTERSTITIAL_THRESHOLD)
+        {
+            reviveDismissedCount = 0;
+
+            return false;
+        }
+
+        return true;
+    }
+
     public void ShowRewardedAd(Action onRewarded, Action onDismiss)
     {
         rewarded.ShowAdd(onRewarded, onDismiss);
@@ -111,8 +149,6 @@ public class AdsManager : Singleton<AdsManager>
         interstitialCount++;
     }
 
-    public void ResetRevive() 
-    { 
-        canOfferRevive = true;
-    }
+    public void ResetRevive() => canOfferRevive = true;
+    public void AddReviveDismiss() => reviveDismissedCount++;
 }

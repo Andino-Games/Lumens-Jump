@@ -129,8 +129,9 @@ namespace Systems.Manager
 
         public void SkipRevive()
         {
-            SceneManager.Instance.LoadScene("GameOverScene");
-            
+            GoGameOver(false);
+            AdsManager.Instance.AddReviveDismiss();
+
             Debug.Log("[GameManager] Skip Revive");
         }
 
@@ -140,11 +141,14 @@ namespace Systems.Manager
             ResumeGame();
         }
 
-        public void GoGameOver() 
+        public void GoGameOver(bool showAd = true) 
         {
-            if (AdsManager.Instance.CanShowAd() == true)
+            if (showAd == true || AdsManager.Instance.CanSkipAd() == false)
             {
-                AdsManager.Instance.ShowInterstitialAd();
+                if (AdsManager.Instance.CanShowAd() == true)
+                {
+                    AdsManager.Instance.ShowInterstitialAd();
+                }
             }
 
             PersistentData.Instance.SaveHighScore();
