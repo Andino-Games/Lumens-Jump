@@ -19,7 +19,7 @@ public class AdsManager : Singleton<AdsManager>
     private int interstitialCount;
     private int reviveDismissedCount;
     private bool canOfferRevive;
-    private bool CanShowAds => PlayerPrefs.GetInt("CanShowAds") >= 100;
+    private bool CanShowAds => PlayerPrefs.GetInt("CanShowAds", 0) >= 100;
 
     private AdsRewardedController rewarded;
     private AdsInterstitialController interstitial;
@@ -62,11 +62,12 @@ public class AdsManager : Singleton<AdsManager>
 
         if (CanShowAds == false)
         {
-            int timeWithoutAdsSpent = (int)((timerController.CurrentTime / TIME_WITHOUT_ADS) * 100);
+            int timeWithoutadsSpent = PlayerPrefs.GetInt("CanShowAds", 0);
+            int timeWithoutAdsPercentage = (int)((timerController.CurrentTime / TIME_WITHOUT_ADS) * 100);
 
-            PlayerPrefs.SetInt("CanShowAds", timeWithoutAdsSpent);
+            PlayerPrefs.SetInt("CanShowAds", timeWithoutadsSpent + timeWithoutAdsPercentage);
 
-            Debug.Log($"Time without ads spent: {timeWithoutAdsSpent}");
+            Debug.Log($"Time without ads spent: {timeWithoutAdsPercentage + timeWithoutAdsPercentage}");
         }
     }
 
