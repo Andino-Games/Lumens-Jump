@@ -14,6 +14,8 @@ namespace Systems.Manager
 {
     public class GameManager : Singleton<GameManager>
     {
+        private const float REVIVE_THRESHOLD = 0.4f;
+
         private bool _isPaused;
 
         [SerializeField] private HudController hudController;
@@ -21,8 +23,16 @@ namespace Systems.Manager
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
 
+        //  Debugging
+        [SerializeField] private DeveloperUIController devUI;
+
         private void Awake()
         {
+            if (devUI != null)
+            {
+                AdsManager.Instance.ConnectDeveloperUI(devUI);
+            }
+
             hudController.OnReviveTimeEnded += async () => await GameOver();
             playerDeath.onGameOver += async () => await GameOver();
         }
@@ -82,11 +92,10 @@ namespace Systems.Manager
 
             if (canOfferRevive == true)
             {
-                float reviveThreshold = 0.4f;
                 int highscore = PersistentData.Instance.LoadHighScore();
                 int currentScore = PersistentData.Instance.CurrentScore;
 
-                if (currentScore >= highscore * reviveThreshold)
+                if (currentScore >= highscore * REVIVE_THRESHOLD)
                 {
                     OfferRevive();
                 }
@@ -121,7 +130,7 @@ namespace Systems.Manager
 
             Action onDismiss = async () =>
             {
-                await GoGameOver();
+                await GoGameOver(false);
             };
 
             AdsManager.Instance.ShowRewardedAd(onRewarded, onDismiss);
@@ -129,9 +138,10 @@ namespace Systems.Manager
             Debug.Log("[GameManager] Show Revive Ad");
         }
 
-        public async void SkipRevive()
+        public async Task SkipRevive()
         {
-            await GoGameOver();
+            await GoGameOver(false);
+            AdsManager.Instance.AddReviveDismiss();
             
             Debug.Log("[GameManager] Skip Revive");
         }
@@ -142,14 +152,18 @@ namespace Systems.Manager
             ResumeGame();
         }
 
-        public async Task GoGameOver() 
+        public async Task GoGameOver(bool showAd = true) 
         {
-            if (AdsManager.Instance.CanShowAd() == true)
+            if (showAd == true || AdsManager.Instance.CanSkipAd() == false)
             {
-                AdsManager.Instance.ShowInterstitialAd();
+                if (AdsManager.Instance.CanShowAd() == true)
+                {
+                    AdsManager.Instance.ShowInterstitialAd();
+                }
             }
 
             await PersistentData.Instance.SaveHighScore();
+            
             SceneManager.Instance.LoadScene("GameOverScene");
 
             Debug.Log("[GameManager] Game Over Scene");

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameplayTimerController : MonoBehaviour
@@ -5,21 +6,18 @@ public class GameplayTimerController : MonoBehaviour
     private float currentTime;
     private bool isGameplayRunning;
 
+    public Action<float> OnCurrentTimeUpdate;
+
     public float CurrentTime => currentTime;
 
     private void FixedUpdate()
     {
         if(isGameplayRunning == true)
         {
-            currentTime += Time.fixedDeltaTime;
+            currentTime += Time.fixedUnscaledDeltaTime;
+            OnCurrentTimeUpdate?.Invoke(currentTime);
         }
     }
-
-    //public void StartOver()
-    //{
-    //    currentTime = 0f;
-    //    SetIsRunning(true);
-    //}
 
     public void SetIsRunning(bool isGameplayRunning)
     {

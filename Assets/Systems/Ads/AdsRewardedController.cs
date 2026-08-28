@@ -21,7 +21,7 @@ public class AdsRewardedController
         ad.OnAdLoaded += info => Debug.Log("[Rewarded] Loading");
         ad.OnAdLoadFailed += err => Debug.LogWarning($"[Rewarded] Error loading: {err}");
         ad.OnAdDisplayed += info => Debug.Log("[Rewarded] Showing");
-        ad.OnAdDisplayFailed += (err, info) => Debug.LogWarning($"[Rewarded] Error showing: {err}");
+        ad.OnAdDisplayFailed += (err, info) => onAdDismissed?.Invoke();
         
         // Optionals:
         ad.OnAdClicked += info => Debug.Log("[Rewarded] Click");
