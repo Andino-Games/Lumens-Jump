@@ -118,7 +118,7 @@ public class AdsManager : Singleton<AdsManager>
             Debug.Log("[Ads] Can't show ad: time between ads not reached");
         }
 
-        Debug.Log($"[Ads] Time between ads: {timerController.CurrentTime}");
+        Debug.Log($"[Ads] Time between ads: {PersistentData.Instance.TimeBetweenAds}");
 
         return result;
     }
