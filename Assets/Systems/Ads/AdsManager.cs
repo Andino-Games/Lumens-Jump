@@ -1,4 +1,6 @@
 using System;
+using System.Xml.Serialization;
+using Systems.Manager;
 using Systems.Utils;
 using Unity.Services.LevelPlay;
 using UnityEngine;
@@ -6,7 +8,7 @@ using UnityEngine;
 public class AdsManager : Singleton<AdsManager>
 {
     //  Time unit is seconds.
-    const float TIME_WITHOUT_ADS = 300f;
+    const float TIME_WITHOUT_ADS = 240f;
     const float TIME_BETWEEN_ADS = 120f;
 
     //  
@@ -19,7 +21,7 @@ public class AdsManager : Singleton<AdsManager>
     private int interstitialCount;
     private int reviveDismissedCount;
     private bool canOfferRevive;
-    private bool CanShowAds => PlayerPrefs.GetInt("CanShowAds", 0) >= 100;
+    private bool didTimeWithoutAdsEnd => PersistentData.Instance.TimeWithoutAds >= 1;
 
     private AdsRewardedController rewarded;
     private AdsInterstitialController interstitial;
@@ -60,20 +62,27 @@ public class AdsManager : Singleton<AdsManager>
     {
         timerController.SetIsRunning(false);
 
-        if (CanShowAds == false)
+
+        if (didTimeWithoutAdsEnd == false)
         {
-            int timeWithoutadsSpent = PlayerPrefs.GetInt("CanShowAds", 0);
-            int timeWithoutAdsPercentage = (int)((timerController.CurrentTime / TIME_WITHOUT_ADS) * 100);
+            float timeWithoutAdsSpent = PersistentData.Instance.TimeWithoutAds;
+            float timeWithoutAdsPercentage = timerController.CurrentTime / TIME_WITHOUT_ADS;
 
-            PlayerPrefs.SetInt("CanShowAds", timeWithoutadsSpent + timeWithoutAdsPercentage);
+            PersistentData.Instance.TimeWithoutAds += timeWithoutAdsPercentage;
 
-            Debug.Log($"Time without ads spent: {timeWithoutAdsPercentage + timeWithoutAdsPercentage}");
+            Debug.Log($"Time without ads spent: {timeWithoutAdsSpent + timeWithoutAdsPercentage} | Percentage: {timeWithoutAdsPercentage} + Spent: {timeWithoutAdsSpent}");
         }
+        else
+        {
+            PersistentData.Instance.TimeBetweenAds += timerController.CurrentTime;
+        }
+
+        timerController.ResetTimer();
     }
 
     public bool CanOfferRevive()
     {
-        if (CanShowAds == false)
+        if (didTimeWithoutAdsEnd == false)
         {
             return false;
         }
@@ -93,14 +102,14 @@ public class AdsManager : Singleton<AdsManager>
 
     public bool CanShowAd()
     {
-        if (CanShowAds == false)
+        if (didTimeWithoutAdsEnd == false)
         {
             return false;
         }
 
         bool result = false;
 
-        if (timerController.CurrentTime >= TIME_BETWEEN_ADS)
+        if (PersistentData.Instance.TimeBetweenAds >= TIME_BETWEEN_ADS)
         {
             result = true;
         }
@@ -146,10 +155,16 @@ public class AdsManager : Singleton<AdsManager>
     public void ShowInterstitialAd()
     {
         interstitial.ShowAdd();
-        timerController.ResetTimer();
         interstitialCount++;
+
+        PersistentData.Instance.TimeBetweenAds = 0;
     }
 
     public void ResetRevive() => canOfferRevive = true;
     public void AddReviveDismiss() => reviveDismissedCount++;
+
+    public void ConnectDeveloperUI(DeveloperUIController devUI) 
+    { 
+        timerController.OnCurrentTimeUpdate += devUI.UpdateGameplayTimer;
+    }
 }

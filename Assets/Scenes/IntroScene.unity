@@ -1379,6 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetHighScore: 0
+  resetTimeWithoutAds: 0
 --- !u!4 &1713927171
 Transform:
   m_ObjectHideFlags: 0
