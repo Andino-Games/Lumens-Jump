@@ -14,7 +14,7 @@ namespace Systems.Manager
 {
     public class GameManager : Singleton<GameManager>
     {
-        private const float MOVEMENT_INSTRUCTIONS_DURATION = 5f;
+        private const float REVIVE_THRESHOLD = 0.4f;
 
         private bool _isPaused;
 
@@ -22,10 +22,17 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
-        [SerializeField] private TutorialController tutorialController;
+
+        //  Debugging
+        [SerializeField] private DeveloperUIController devUI;
 
         private void Awake()
         {
+            if (devUI != null)
+            {
+                AdsManager.Instance.ConnectDeveloperUI(devUI);
+            }
+
             hudController.OnReviveTimeEnded += async () => await GameOver();
             playerDeath.onGameOver += async () => await GameOver();
         }
@@ -39,17 +46,8 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
-
-            tutorialController.HideTutorial();
-
-            Invoke(nameof(ShowTutorial), 0.5f);
         }
-
-        private void ShowTutorial()
-        {
-            tutorialController.ShowMovementInstruction(MOVEMENT_INSTRUCTIONS_DURATION);
-        }
-
+        
         public void TogglePause()
         {
             _isPaused = !_isPaused;
@@ -94,13 +92,10 @@ namespace Systems.Manager
 
             if (canOfferRevive == true)
             {
-                float reviveThreshold = 0.4f;
                 int highscore = PersistentData.Instance.LoadHighScore();
                 int currentScore = PersistentData.Instance.CurrentScore;
 
-                tutorialController.HideTutorial();
-
-                if (currentScore >= highscore * reviveThreshold)
+                if (currentScore >= highscore * REVIVE_THRESHOLD)
                 {
                     OfferRevive();
                 }
@@ -135,7 +130,7 @@ namespace Systems.Manager
 
             Action onDismiss = async () =>
             {
-                await GoGameOver();
+                await GoGameOver(false);
             };
 
             AdsManager.Instance.ShowRewardedAd(onRewarded, onDismiss);
@@ -143,9 +138,10 @@ namespace Systems.Manager
             Debug.Log("[GameManager] Show Revive Ad");
         }
 
-        public async void SkipRevive()
+        public async Task SkipRevive()
         {
-            await GoGameOver();
+            await GoGameOver(false);
+            AdsManager.Instance.AddReviveDismiss();
             
             Debug.Log("[GameManager] Skip Revive");
         }
@@ -156,14 +152,18 @@ namespace Systems.Manager
             ResumeGame();
         }
 
-        public async Task GoGameOver() 
+        public async Task GoGameOver(bool showAd = true) 
         {
-            if (AdsManager.Instance.CanShowAd() == true)
+            if (showAd == true || AdsManager.Instance.CanSkipAd() == false)
             {
-                AdsManager.Instance.ShowInterstitialAd();
+                if (AdsManager.Instance.CanShowAd() == true)
+                {
+                    AdsManager.Instance.ShowInterstitialAd();
+                }
             }
 
             await PersistentData.Instance.SaveHighScore();
+            
             SceneManager.Instance.LoadScene("GameOverScene");
 
             Debug.Log("[GameManager] Game Over Scene");
@@ -182,11 +182,6 @@ namespace Systems.Manager
             PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
 
             Debug.Log("[GameManager] Offer revive");
-        }
-
-        public void UploadHighscore(int score)
-        {
-            PersistentData.Instance.UploadScore(score);
         }
     }
 }

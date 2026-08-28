@@ -22,17 +22,58 @@ namespace Systems.Manager
         public int CurrentScore => _currentScore;
         public int HighScore => _highScore;
         public bool resetHighScore;
+        public bool resetTimeWithoutAds;
+
+        public float TimeWithoutAds
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat("TWA", 0f);
+            }
+            set
+            {
+                PlayerPrefs.SetFloat("TWA", value);
+            }
+        }
+
+        public float TimeBetweenAds
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat("TBA", 0f);
+            }
+            set
+            {
+                PlayerPrefs.SetFloat("TBA", value);
+            }
+        }
+
+        private async void Start()
+        {
+            if (resetHighScore == true)
+            {
+                PlayerPrefs.SetInt("Score", 0);
+            }
+            if (resetTimeWithoutAds == true)
+            {
+                PlayerPrefs.SetFloat("TWA", 0);
+            }
+
+            DontDestroyOnLoad(gameObject);
+
+            // Inicializamos la carga de datos al arrancar el sistema.
+            await SignInAnonymouslyAsync();
+            LoadHighScore();
+        }
 
         public int AddPoints()
         {
             _currentScore++;
             OnCurrentScoreChanged?.Invoke(_currentScore);
             return _currentScore;
-        }
-        
+        }        
         
         /// Carga el récord guardado localmente y actualiza la variable interna.
-        
         public int LoadHighScore()
         {            
             _highScore = PlayerPrefs.GetInt("Score", 0);
@@ -43,7 +84,6 @@ namespace Systems.Manager
         
         
         /// Compara el puntaje actual con el récord y guarda si es mayor.
-        
         public async Task SaveHighScore()
         {
             if (_currentScore > _highScore)
@@ -54,20 +94,6 @@ namespace Systems.Manager
 
                 await SubmitScoreAsync(_currentScore);
             }
-        }
-
-        private async void Start()
-        {
-            if (resetHighScore == true)
-            {
-                PlayerPrefs.SetInt("Score", 0);
-            }
-
-            DontDestroyOnLoad(gameObject);
-
-            // Inicializamos la carga de datos al arrancar el sistema.
-            await SignInAnonymouslyAsync();
-            LoadHighScore();
         }
 
         private async Task SignInAnonymouslyAsync()
