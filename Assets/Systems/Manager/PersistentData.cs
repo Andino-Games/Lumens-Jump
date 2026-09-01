@@ -141,5 +141,12 @@ namespace Systems.Manager
                 return null;
             }
         }
+
+        public async void UploadScore(int score)
+        {
+            _currentScore = score;
+
+            await SaveHighScore();
+        }
     }
 }

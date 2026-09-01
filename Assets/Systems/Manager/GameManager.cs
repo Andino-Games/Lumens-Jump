@@ -14,6 +14,8 @@ namespace Systems.Manager
 {
     public class GameManager : Singleton<GameManager>
     {
+        private const float MOVEMENT_INSTRUCTIONS_DURATION = 5f;
+        private const float SHOW_TUTORIAL_DELAY = 0f;
         private const float REVIVE_THRESHOLD = 0.4f;
 
         private bool _isPaused;
@@ -22,8 +24,11 @@ namespace Systems.Manager
         [SerializeField] private PlayerDeath playerDeath;
         [SerializeField] private PlayerJump playerJump;
         [SerializeField] private RisingDeathZone deathZone;
+        [SerializeField] private TutorialController tutorialController;
+        [SerializeField] private MenuController menuController;
 
         //  Debugging
+        [Header("Developer")]
         [SerializeField] private DeveloperUIController devUI;
 
         private void Awake()
@@ -46,8 +51,16 @@ namespace Systems.Manager
             AdsManager.Instance.RunGameplayTimer();
 
             hudController.SetRevivePanelActive(false);
+
+            tutorialController.HideTutorial();
+            Invoke(nameof(ShowTutorial), SHOW_TUTORIAL_DELAY);
         }
-        
+
+        private void ShowTutorial()
+        {
+            tutorialController.ShowMovementInstruction();
+        }
+
         public void TogglePause()
         {
             _isPaused = !_isPaused;
@@ -118,14 +131,17 @@ namespace Systems.Manager
         {
             hudController.SetRevivePanelActive(false);
 
+            //  Revive and continue playing
             Action onRewarded = () => 
             {
                 AdsManager.Instance.RunGameplayTimer();
                 ResumeGame();
-                playerDeath.ResetGame();
-                deathZone.HandleResetZone();
-                playerJump.isFollowActive = true;
                 hudController.SetRevivePanelActive(false);
+                playerJump.isFollowActive = true;
+                playerDeath.ResetGame();
+
+                //  Activate the death zone last
+                deathZone.HandleResetZone();
             };
 
             Action onDismiss = async () =>
@@ -148,8 +164,7 @@ namespace Systems.Manager
 
         public void GoMainMenu()
         {
-            SceneManager.Instance.LoadScene("MainMenuScene");
-            ResumeGame();
+            menuController.ShowMainMenu();
         }
 
         public async Task GoGameOver(bool showAd = true) 
@@ -182,6 +197,11 @@ namespace Systems.Manager
             PostProcessingManager.Instance?.SetVignetteIntensity(0.3f, 0.05f);
 
             Debug.Log("[GameManager] Offer revive");
+        }
+
+        public void UploadHighscore(int score)
+        {
+            PersistentData.Instance.UploadScore(score);
         }
     }
 }

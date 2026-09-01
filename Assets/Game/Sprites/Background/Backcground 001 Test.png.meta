@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: e83d8526ffaa2c74fa174de2851c47bd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7311900644588444954
+    second: 001 lumens plataforma variation primer plano_0
+  - first:
+      213: -8727448191290948782
+    second: 001 lumens plataforma variation primer plano_1
+  - first:
+      213: 2764390968408936016
+    second: 001 lumens plataforma variation primer plano_2
+  - first:
+      213: 6559626606353377763
+    second: 001 lumens plataforma variation primer plano_3
+  - first:
+      213: 1307067842833669723
+    second: 001 lumens plataforma variation primer plano_4
+  - first:
+      213: 1348080183960899239
+    second: 001 lumens plataforma variation primer plano_5
+  - first:
+      213: 1141056717122845779
+    second: 001 lumens plataforma variation primer plano_6
+  - first:
+      213: -3634651708316292034
+    second: 001 lumens plataforma variation primer plano_7
+  - first:
+      213: -8771849709085023609
+    second: 001 lumens plataforma variation primer plano_8
+  - first:
+      213: -1507404178454036834
+    second: 001 lumens plataforma variation primer plano_9
+  - first:
+      213: 7576888260041685745
+    second: 001 lumens plataforma variation primer plano_10
+  - first:
+      213: -1149891901952501807
+    second: 001 lumens plataforma variation primer plano_11
+  - first:
+      213: 8077798678855967211
+    second: 001 lumens plataforma variation primer plano_12
+  - first:
+      213: 7837136979669889332
+    second: 001 lumens plataforma variation primer plano_13
+  - first:
+      213: -9040363049727010769
+    second: 001 lumens plataforma variation primer plano_14
+  - first:
+      213: 6032322891912326516
+    second: 001 lumens plataforma variation primer plano_15
+  - first:
+      213: 632765573889572277
+    second: 001 lumens plataforma variation primer plano_16
+  - first:
+      213: 2474780797617651942
+    second: 001 lumens plataforma variation primer plano_17
+  - first:
+      213: 6405124334389673362
+    second: 001 lumens plataforma variation primer plano_18
+  - first:
+      213: -2462997982736583
+    second: 001 lumens plataforma variation primer plano_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1873
+        width: 246
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e22b569a19e68a90800000000000000
+      internalID: -7311900644588444954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 2217
+        width: 122
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2534a7a2c10e1e680800000000000000
+      internalID: -8727448191290948782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_2
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 1877
+        width: 200
+        height: 379
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e005c70f61d5620800000000000000
+      internalID: 2764390968408936016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1154
+        width: 189
+        height: 438
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9e4e2e4a9780b50800000000000000
+      internalID: 6559626606353377763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_4
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 1609
+        width: 269
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5edf652743a32210800000000000000
+      internalID: 1307067842833669723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_5
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1157
+        width: 133
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae8bbde8c755b210800000000000000
+      internalID: 1348080183960899239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_6
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 1256
+        width: 187
+        height: 667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35c3ea4e909d5df00800000000000000
+      internalID: 1141056717122845779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_7
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 943
+        width: 67
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3c6a8b478f1f8dc0800000000000000
+      internalID: -3634651708316292034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_8
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 869
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 782afd23a21244680800000000000000
+      internalID: -8771849709085023609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_9
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 802
+        width: 97
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ebe42e2ef941be0800000000000000
+      internalID: -1507404178454036834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_10
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 801
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fabc9a7ab3862960800000000000000
+      internalID: 7576888260041685745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_11
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 433
+        width: 268
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d7d5065863ca00f0800000000000000
+      internalID: -1149891901952501807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_12
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 752
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be16454b91b1a1070800000000000000
+      internalID: 8077798678855967211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_13
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 408
+        width: 94
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4313d416f8a13cc60800000000000000
+      internalID: 7837136979669889332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_14
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 603
+        width: 49
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f28547444bd2a8280800000000000000
+      internalID: -9040363049727010769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_15
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 415
+        width: 76
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47d24e6a5bd17b350800000000000000
+      internalID: 6032322891912326516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 49
+        width: 123
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bdb8c9dfe808c800800000000000000
+      internalID: 632765573889572277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_17
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 163
+        width: 271
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e045f20600385220800000000000000
+      internalID: 2474780797617651942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_18
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 196
+        width: 120
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29db18575a293e850800000000000000
+      internalID: 6405124334389673362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 001 lumens plataforma variation primer plano_19
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 0
+        width: 105
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f08289aef37fff0800000000000000
+      internalID: -2462997982736583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      001 lumens plataforma variation primer plano_0: -7311900644588444954
+      001 lumens plataforma variation primer plano_1: -8727448191290948782
+      001 lumens plataforma variation primer plano_10: 7576888260041685745
+      001 lumens plataforma variation primer plano_11: -1149891901952501807
+      001 lumens plataforma variation primer plano_12: 8077798678855967211
+      001 lumens plataforma variation primer plano_13: 7837136979669889332
+      001 lumens plataforma variation primer plano_14: -9040363049727010769
+      001 lumens plataforma variation primer plano_15: 6032322891912326516
+      001 lumens plataforma variation primer plano_16: 632765573889572277
+      001 lumens plataforma variation primer plano_17: 2474780797617651942
+      001 lumens plataforma variation primer plano_18: 6405124334389673362
+      001 lumens plataforma variation primer plano_19: -2462997982736583
+      001 lumens plataforma variation primer plano_2: 2764390968408936016
+      001 lumens plataforma variation primer plano_3: 6559626606353377763
+      001 lumens plataforma variation primer plano_4: 1307067842833669723
+      001 lumens plataforma variation primer plano_5: 1348080183960899239
+      001 lumens plataforma variation primer plano_6: 1141056717122845779
+      001 lumens plataforma variation primer plano_7: -3634651708316292034
+      001 lumens plataforma variation primer plano_8: -8771849709085023609
+      001 lumens plataforma variation primer plano_9: -1507404178454036834
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

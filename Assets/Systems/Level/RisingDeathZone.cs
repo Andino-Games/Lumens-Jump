@@ -32,6 +32,7 @@ namespace Systems.Level
                  "Si el jugador sube más allá de esta distancia, la DeathZone es arrastrada hacia arriba " +
                  "para que no quede rezagada.")]
         [SerializeField] private float maxDistanceBelowPlayer = 12f;
+        [SerializeField] private float maxPlayerHeight = 1f;
 
         [Tooltip("Referencia al Transform del jugador.")]
         [SerializeField] private Transform playerTransform;
@@ -91,7 +92,7 @@ namespace Systems.Level
             if (playerTransform)
             {
                 // Si el jugador subió mucho, arrastrar la DeathZone hacia arriba para no rezagarse
-                float minRequiredY = playerTransform.position.y - maxDistanceBelowPlayer;
+                float minRequiredY = playerTransform.position.y - maxDistanceBelowPlayer + maxPlayerHeight;
                 if (targetY < minRequiredY)
                 {
                     targetY = minRequiredY;
