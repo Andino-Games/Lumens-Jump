@@ -429,7 +429,7 @@ MonoBehaviour:
   isEnabled: 1
   powerUp: {fileID: 0}
   transitionTime: 0.3
-  duration: 5
+  duration: 3
   thrust: 10
   jetpackParticles:
   - {fileID: 4571783830617565245}

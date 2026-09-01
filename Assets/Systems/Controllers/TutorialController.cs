@@ -9,15 +9,16 @@ public class TutorialController : MonoBehaviour
 
     private TutorialPhase currentPhase;
 
+    public bool IsActive => currentPhase != TutorialPhase.Unactive && currentPhase != TutorialPhase.Completed;
+
     private void Awake()
     {
         currentPhase = TutorialPhase.Unactive;
     }
 
-    public void ShowMovementInstruction(float maxDuration)
+    public void ShowMovementInstruction()
     {
         SetMovementActive(true);
-        Invoke(nameof(ShowFallInstruction), maxDuration);
     }
 
     public void SetMovementActive(bool newActive)
@@ -29,16 +30,15 @@ public class TutorialController : MonoBehaviour
             if (currentPhase == TutorialPhase.Unactive)
             {
                 ShowContent(1);
-                animator.SetTrigger("Movement");
             }
         }
     }
 
     public void ShowFallInstructionCoroutine()
     {
-        if (currentPhase == TutorialPhase.Movement || currentPhase == TutorialPhase.Fall) 
+        if (currentPhase == TutorialPhase.Movement || currentPhase == TutorialPhase.Fall)
         {
-            ShowFallInstruction();            
+            ShowFallInstruction();
             StartCoroutine(nameof(FallIntructionCoroutine));
             Debug.Log("[Tutorial Controller] Show Fall Instruction Coroutine");
         }
@@ -46,11 +46,16 @@ public class TutorialController : MonoBehaviour
 
     private void ShowFallInstruction()
     {
-        if (currentPhase == TutorialPhase.Movement)
+        if (currentPhase == TutorialPhase.Movement || currentPhase == TutorialPhase.Fall)
         {
             ShowContent(2);
             Debug.Log("[Tutorial Controller] Show Fall Instruction");
         }
+    }
+
+    public void ShowFallInstruction(float delay)
+    {
+        Invoke(nameof(ShowFallInstruction), delay);
     }
 
     public void HideTutorial()
@@ -60,12 +65,14 @@ public class TutorialController : MonoBehaviour
 
     private IEnumerator FallIntructionCoroutine()
     {
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0.2f;
+        animator.speed = 3f;
 
-        yield return new WaitForSecondsRealtime(2.7f);
+        yield return new WaitForSecondsRealtime(2f);
 
         ShowContent();
         Time.timeScale = 1f;
+        animator.speed = 1f;
 
         currentPhase = TutorialPhase.Completed;
     }
@@ -80,10 +87,12 @@ public class TutorialController : MonoBehaviour
         {
             case 1:
                 currentPhase = TutorialPhase.Movement;
+                animator.SetTrigger("Movement");
                 break;
 
             case 2:
                 currentPhase = TutorialPhase.Fall;
+                animator.SetTrigger("Fall");
                 break;
 
             default:

@@ -15,6 +15,7 @@ namespace Systems.Level
         [SerializeField] private Transform playerTransform;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Transform platformHolder;
+        [SerializeField] private TutorialController tutorialController;
 
         [Header("Prefabs and Pool")]
         [SerializeField] private List<Platform> platformPrefabs;
@@ -76,11 +77,18 @@ namespace Systems.Level
             // Limitar spawns por frame para evitar spikes de rendimiento
             for (int i = 0; i < MaxSpawnsPerFrame && _nextSpawnY < playerTransform.position.y + lookaheadDistance; i++)
             {
-                Spawn();
+                if (tutorialController.IsActive == true)
+                {
+                    Spawn(_pools[0], false);
+                }
+                else
+                {
+                    Spawn();
+                }
             }
         }
         
-        private void Spawn(ObjectPool<Platform> pool = null)
+        private void Spawn(ObjectPool<Platform> pool = null, bool canSpawnPowerUps = true)
         {
             if (pool == null)
             {
@@ -101,7 +109,12 @@ namespace Systems.Level
             _nextSpawnY += spawnYInterval;
             
             plat.Initialize(pool, data);
-            
+
+            if (canSpawnPowerUps == false)
+            {
+                return;
+            }
+
             bool isPowerUpSpawned = Random.value < powerUpSpawnChance;
             
             if (isPowerUpSpawned)
@@ -154,7 +167,7 @@ namespace Systems.Level
             _nextSpawnY = playerTransform.position.y + spawnYInterval - 0.5f;
             for (int i = 0; i < initialSpawnCount; i++)
             {
-                Spawn(defaultPool);
+                Spawn(defaultPool, false);
             }
         }
     }
