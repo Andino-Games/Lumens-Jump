@@ -1438,9 +1438,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 852092361}
     - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: smoothSpeed
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: tutorialController
       value: 
       objectReference: {fileID: 1591687484}
+    - target: {fileID: 5779436213759859445, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899621857611879200, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8615648123826762830, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5303,7 +5315,7 @@ MonoBehaviour:
   maxDistanceBelowPlayer: 20
   maxPlayerHeight: 1
   playerTransform: {fileID: 711998421}
-  startDelay: 2
+  startDelay: 4
 --- !u!1 &1955375097
 GameObject:
   m_ObjectHideFlags: 0

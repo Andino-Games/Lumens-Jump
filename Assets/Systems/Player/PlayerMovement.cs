@@ -5,6 +5,8 @@ namespace Systems.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private const float FALL_GRAVITY = 3.8f;
+
         [Header("Joystick Config")]
         public Joystick joystick;
 
@@ -79,7 +81,7 @@ namespace Systems.Player
             if(rb.gravityScale != 0)
             {
                 rb.linearVelocity = Vector2.zero;
-                rb.gravityScale = newDoFall ? 4f : 1f;
+                rb.gravityScale = newDoFall ? FALL_GRAVITY : 1f;
 
                 if (hasUsedMovement == true && hasUsedFall == false)
                 {
