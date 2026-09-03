@@ -90,6 +90,12 @@ namespace Systems.Manager
         
         public void AddPoints()
         {
+            //  Clamp the score to 10 if the user hasn't completed the tutorial yet.
+            if (tutorialController.IsActive && PersistentData.Instance.CurrentScore >= 10)
+            {
+                return;
+            }
+
             PersistentData.Instance.AddPoints();
             AudioManager.Instance.PlayUI("Score");
         }

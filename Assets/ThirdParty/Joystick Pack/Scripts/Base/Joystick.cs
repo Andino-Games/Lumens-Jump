@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
@@ -32,9 +33,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private bool snapX = false;
     [SerializeField] private bool snapY = false;
 
-    [SerializeField] protected RectTransform background = null;
-    [SerializeField] protected RectTransform handle = null;
-    protected RectTransform baseRect = null;
+    [SerializeField] protected RectTransform background;
+    [SerializeField] protected RectTransform handle;
+    protected RectTransform baseRect;
 
     protected Canvas canvas;
     protected Camera cam;
@@ -55,7 +56,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             Debug.LogError("The Joystick is not placed inside a canvas");
 
         Vector2 center = new Vector2(0.5f, 0.5f);
+
+        background.anchorMin = center;
+        background.anchorMax = center;
         background.pivot = center;
+        background.anchoredPosition = Vector2.zero;
+
         handle.anchorMin = center;
         handle.anchorMax = center;
         handle.pivot = center;
