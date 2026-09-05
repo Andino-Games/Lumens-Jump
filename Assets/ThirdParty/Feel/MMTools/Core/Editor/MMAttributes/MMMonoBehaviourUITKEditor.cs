@@ -114,8 +114,9 @@ namespace MoreMountains.Tools
 
 				if (!GroupData.TryGetValue(group.GroupName, out groupData))
 				{
-					bool fallbackOpenState = !group.ClosedByDefault;
-					bool groupIsOpen = EditorPrefs.GetBool(string.Format($"{group.GroupName}{fieldInfoList[i].Name}{target.GetEntityId()}"), fallbackOpenState);
+					bool fallbackOpenState = true;
+					if (group.ClosedByDefault) { fallbackOpenState = false; }
+					bool groupIsOpen = EditorPrefs.GetBool(string.Format($"{group.GroupName}{fieldInfoList[i].Name}{target.GetInstanceID()}"), fallbackOpenState);
 					GroupData.Add(group.GroupName, new MMInspectorGroupData
 					{
 						GroupAttribute = group,

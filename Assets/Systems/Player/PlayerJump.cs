@@ -1,3 +1,4 @@
+using System;
 using Systems.Audio;
 using Systems.Level;
 using Systems.Level.Platforms; // Necesario para RisingDeathZone
@@ -43,6 +44,8 @@ namespace Systems.Player
 
         public bool isFollowActive;
         [SerializeField] private JetpackPowerUp jetpack;
+
+        public Action OnJumped;
 
         void Start()
         {
@@ -94,6 +97,8 @@ namespace Systems.Player
             _rb.linearVelocity = Vector2.zero;
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
             AudioManager.Instance.PlaySfx("Bounce", 1);
+
+            OnJumped?.Invoke();
         }
 
         private void IncreaseDifficulty()

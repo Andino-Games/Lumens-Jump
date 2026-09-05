@@ -160,7 +160,7 @@ namespace Systems.Manager
             Debug.Log("[GameManager] Show Revive Ad");
         }
 
-        public async Task SkipRevive()
+        public async void SkipRevive()
         {
             await GoGameOver(false);
             AdsManager.Instance.AddReviveDismiss();

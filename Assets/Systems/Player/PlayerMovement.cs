@@ -13,6 +13,8 @@ namespace Systems.Player
         [Header("Movement Config")]
         public float speed;
         [SerializeField] private JetpackPowerUp jetpack;
+        [SerializeField] private PlayerJump jump;
+
         [Tooltip("The speed at which the player moves. Go from 0.1 to 1.")]
         [Range(0.1f, 1f)] public float smoothSpeed;
         [Tooltip("The maximum distance the player can move on the X axis.")]
@@ -24,12 +26,18 @@ namespace Systems.Player
         private Vector3 _targetPosition;
         private PlayerEffects _playerEffects;
         private SpriteRenderer _spriteRenderer;
+        private bool canFall;
 
         private bool hasUsedMovement, hasUsedFall;
 
         private void Awake()
         {
             joystick.OnPointerUpEnded += () => DoFall(true);
+            jump.OnJumped += () =>
+            {
+                canFall = false;
+                Invoke(nameof(ResetFall), 0.1f);
+            };
         }
 
         void Start()
@@ -37,6 +45,8 @@ namespace Systems.Player
             GetComponent<Rigidbody2D>();
             _playerEffects = GetComponent<PlayerEffects>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            ResetFall();
         }
 
         void Update()
@@ -90,5 +100,7 @@ namespace Systems.Player
                 }
             }
         }
+
+        private void ResetFall() => canFall = true;
     }
 }

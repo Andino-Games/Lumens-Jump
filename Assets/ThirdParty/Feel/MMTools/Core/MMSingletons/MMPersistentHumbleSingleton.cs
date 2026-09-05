@@ -63,7 +63,7 @@ namespace MoreMountains.Tools
 
 			DontDestroyOnLoad (this.gameObject);
 			// we check for existing objects of the same type
-			T[] check = FindObjectsByType<T>();
+			T[] check = FindObjectsByType<T>(FindObjectsSortMode.None);
 			foreach (T searched in check)
 			{
 				if (searched!=this)

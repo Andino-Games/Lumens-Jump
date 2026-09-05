@@ -224,9 +224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUps:
   - powerUp: {fileID: 3834924701943638656, guid: cbb152ae6ec4165429bd9c161040396d, type: 3}
-    percentageChance: 30
+    percentageChance: 27
   - powerUp: {fileID: 4539198589217000641, guid: a19d8d2dbc585654b827bc3190d657c5, type: 3}
-    percentageChance: 70
+    percentageChance: 73
 --- !u!4 &124394442
 Transform:
   m_ObjectHideFlags: 0
@@ -569,7 +569,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 480, y: -833.0183}
-  m_SizeDelta: {x: 600, y: 450}
+  m_SizeDelta: {x: 700, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464380217
 MonoBehaviour:
@@ -1187,7 +1187,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'No,
 
-    Thanks'
+    Gracias'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
@@ -1196,8 +1196,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1305,7 +1305,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 480, y: -293.85165}
-  m_SizeDelta: {x: 600, y: 450}
+  m_SizeDelta: {x: 650, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675345774
 MonoBehaviour:
@@ -1429,17 +1429,25 @@ PrefabInstance:
       propertyPath: risingDeathZone
       value: 
       objectReference: {fileID: 1943443153}
+    - target: {fileID: 2810495931398700595, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: maxPositionYOffset
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3364080409062560796, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 711998424}
     - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 852092361}
     - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: smoothSpeed
-      value: 0.4
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 5230736539419968627, guid: f5e97e55058057d47b65b4d7451686af, type: 3}
       propertyPath: tutorialController
@@ -1563,7 +1571,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1440, y: -293.85165}
-  m_SizeDelta: {x: 600, y: 450}
+  m_SizeDelta: {x: 650, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780742077
 MonoBehaviour:
@@ -1766,6 +1774,14 @@ PrefabInstance:
     - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1979,7 +1995,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume
+  m_text: Seguir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
@@ -2920,7 +2936,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "See \nadd"
+  m_text: 'Ver
+
+    anuncio'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
@@ -3309,7 +3327,6 @@ MonoBehaviour:
   acceleration: 0.015
   safetyDistance: 4
   maxDistanceBelowPlayer: 10
-  maxPlayerHeight: 1
   playerTransform: {fileID: 711998421}
   startDelay: 3
 --- !u!224 &1427760241 stripped
@@ -3729,7 +3746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pause
+  m_text: Pausa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
@@ -3821,6 +3838,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 215599185661091874, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1171310363136696736, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3845,13 +3866,17 @@ PrefabInstance:
       propertyPath: m_PointLightOuterRadius
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2824737565135639696, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
+      propertyPath: m_text
+      value: "Mueve hacia \nlos lados"
+      objectReference: {fileID: 0}
     - target: {fileID: 4246415229358833953, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4246415229358833953, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4246415229358833953, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3859,11 +3884,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4246415229358833953, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 4246415229358833953, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -390
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883471192053282807, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
+      propertyPath: m_text
+      value: "Suelta la pantalla \npara caer"
       objectReference: {fileID: 0}
     - target: {fileID: 5008087364863276449, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_Pivot.x
@@ -3947,11 +3976,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7016821445435432441, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7016821445435432441, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7016821445435432441, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3959,31 +3988,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7016821445435432441, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2024.1666
+      value: -2046.6665
       objectReference: {fileID: 0}
     - target: {fileID: 7541976753708161652, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7541976753708161652, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7541976753708161652, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 7541976753708161652, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -2046.6666
       objectReference: {fileID: 0}
     - target: {fileID: 8698872741746854197, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8698872741746854197, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8698872741746854197, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3995,7 +4024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8698872741746854197, guid: a0ae932d1ddcea446bf6c12deb4eedf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -367.5
+      value: -390
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4233,7 +4262,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.9
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -4336,9 +4365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Points
-
-'
+  m_text: Puntaje
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
@@ -4777,7 +4804,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1440, y: -833.0183}
-  m_SizeDelta: {x: 600, y: 450}
+  m_SizeDelta: {x: 700, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880431127
 MonoBehaviour:
@@ -4922,7 +4949,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -4946,7 +4973,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightOuterRadius: 1.5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -5122,7 +5149,7 @@ MonoBehaviour:
   initialSpawnCount: 4
   spawnYInterval: 2.3
   spawnXInterval: 3
-  powerUpSpawnChance: 0.2
+  powerUpSpawnChance: 0.19
   powerUpsGenerator: {fileID: 124394441}
 --- !u!1 &1943443148
 GameObject:
@@ -5241,7 +5268,6 @@ MonoBehaviour:
   acceleration: 0.025
   safetyDistance: 10
   maxDistanceBelowPlayer: 20
-  maxPlayerHeight: 0.6
   playerTransform: {fileID: 711998421}
   startDelay: 4
 --- !u!1 &1955375097
@@ -5818,7 +5844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue?
+  m_text: "\xBFContinuar?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
@@ -6976,7 +7002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive!
+  m_text: "\xA1Revive!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b658baa31e8466a4ea459e25365e6825, type: 2}
   m_sharedMaterial: {fileID: 4674408113745475467, guid: b658baa31e8466a4ea459e25365e6825, type: 2}

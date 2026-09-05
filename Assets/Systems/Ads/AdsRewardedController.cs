@@ -38,6 +38,8 @@ public class AdsRewardedController
             Debug.LogWarning("[Rewarded] Ad is not ready yet");
             LoadAd();
 
+            //  In case the ad is not ready to be shown, Invoke the dismiss functionality.
+            onDismiss?.Invoke();
             return;
         }
 
